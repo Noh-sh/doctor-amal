@@ -1,0 +1,119 @@
+# Хронология проекта
+
+Записи добавляются после завершения каждого проверенного плана.
+
+## Формат записи
+
+Для новой записи использовать шаблон `Roadmap/TEMPLATE.md`.
+
+```md
+## YYYY-MM-DD - Название завершенного плана
+
+- План: `Work plans/Завершенные/...`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Проверка`
+- Specs:
+  - `spec/...`
+- Сделано:
+  - ...
+- Проверка:
+  - ...
+- Измененные файлы:
+  - ...
+- Git:
+  - commit: не выполнен / `hash`
+  - push: не выполнен / выполнен
+- Следующий шаг:
+  - ...
+```
+
+## 2026-05-11 - Инициализация процесса работы
+
+- План: без отдельного завершенного плана
+- Статус: выполнено
+- Области: `Процесс`, `Документация`
+- Specs:
+  - `AGENTS.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - создана рабочая структура `Work plans/`;
+  - добавлены папки `Активные/` и `Завершенные/`;
+  - создан первый активный план каркаса проекта;
+  - создана папка `Roadmap/` для хронологической истории;
+  - в `AGENTS.md` добавлены правила работы с планами.
+- Проверка:
+  - проверена структура файлов;
+  - git-действия не выполнялись.
+- Измененные файлы:
+  - `AGENTS.md`
+  - `Work plans/README.md`
+  - `Work plans/Активные/001-karkas-proekta.md`
+  - `Roadmap/README.md`
+  - `Roadmap/chronology.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - выполнить первый активный план `Work plans/Активные/001-karkas-proekta.md`, проверить результат вручную и через build.
+
+## 2026-05-12 - Каркас проекта
+
+- План: `Work plans/Завершенные/001-karkas-proekta.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Проверка`, `Документация`
+- Specs:
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - создан минимальный Next.js + TypeScript каркас;
+  - добавлен App Router с базовыми маршрутами `/`, `/doctor`, `/courses`, `/courses/[courseId]`, `/request`, `/articles`, `/articles/[articleId]`;
+  - добавлен общий layout и навигация;
+  - добавлена страница 404;
+  - добавлены базовые стили;
+  - добавлены служебные папки `components/`, `data/`, `domain/`, `lib/`, `styles/`;
+  - временные страницы разделены по смыслу и структуре, чтобы `Курсы`, `Статьи`, `Заявка` и `О докторе` не выглядели одинаковыми заглушками;
+  - добавлен `.gitignore` для `node_modules/`, `.next/`, env-файлов и логов.
+- Проверка:
+  - `npm install` выполнен после разрешения сетевого доступа к npm registry;
+  - `npm run build` выполнен успешно;
+  - dev server запущен на `http://localhost:3000`;
+  - техническая проверка маршрутов через `curl -I` показала `200 OK`;
+  - ручная проверка пользователем выполнена успешно.
+- Измененные файлы:
+  - `.gitignore`
+  - `package.json`
+  - `package-lock.json`
+  - `next-env.d.ts`
+  - `next.config.ts`
+  - `tsconfig.json`
+  - `app/layout.tsx`
+  - `app/page.tsx`
+  - `app/doctor/page.tsx`
+  - `app/courses/page.tsx`
+  - `app/courses/[courseId]/page.tsx`
+  - `app/request/page.tsx`
+  - `app/articles/page.tsx`
+  - `app/articles/[articleId]/page.tsx`
+  - `app/not-found.tsx`
+  - `styles/globals.css`
+  - `components/.gitkeep`
+  - `components/layout/.gitkeep`
+  - `components/courses/.gitkeep`
+  - `components/articles/.gitkeep`
+  - `components/requests/.gitkeep`
+  - `components/common/.gitkeep`
+  - `data/.gitkeep`
+  - `domain/.gitkeep`
+  - `lib/.gitkeep`
+  - `lib/repositories/.gitkeep`
+  - `lib/validation/.gitkeep`
+  - `lib/messages/.gitkeep`
+  - `Work plans/Завершенные/001-karkas-proekta.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после локального commit начать следующий план: доменные модели и локальные данные.
