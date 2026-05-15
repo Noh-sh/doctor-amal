@@ -192,7 +192,6 @@ p {
   margin-top: 8px;
 }
 
-.catalog-preview,
 .article-preview-list {
   display: grid;
   gap: 16px;
@@ -212,18 +211,6 @@ p {
   padding: 10px 12px;
 }
 
-.course-preview-card {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  padding: 22px;
-}
-
-.course-preview-card h3,
 .article-preview-item h3 {
   margin: 10px 0 8px;
   font-size: 22px;
@@ -238,6 +225,114 @@ p {
   padding: 5px 10px;
   font-size: 14px;
   font-weight: 700;
+}
+
+.status-open {
+  border-color: #5b9b72;
+  background: #e7f5ec;
+  color: #22613a;
+}
+
+.status-closed {
+  border-color: #b7aaa0;
+  background: #f1ece7;
+  color: #62554c;
+}
+
+.status-coming_soon {
+  border-color: #b79d50;
+  background: #fff7dc;
+  color: #725b13;
+}
+
+.catalog-status {
+  display: grid;
+  gap: 8px;
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 18px 20px;
+}
+
+.catalog-status h2 {
+  font-size: 22px;
+}
+
+.catalog-status p {
+  color: var(--muted);
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.course-card {
+  display: grid;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 22px;
+}
+
+.course-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.course-card h2 {
+  margin-top: 4px;
+}
+
+.course-category {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.course-description {
+  color: var(--muted);
+}
+
+.course-facts {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.course-facts div {
+  display: grid;
+  gap: 4px;
+}
+
+.course-facts dt {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.course-facts dd {
+  margin: 0;
+}
+
+.course-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.empty-state {
+  display: grid;
+  gap: 10px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 24px;
 }
 
 .article-preview-item {
@@ -274,11 +369,14 @@ p {
   }
 
   .filter-preview,
+  .course-grid,
   .article-preview-item {
     grid-template-columns: 1fr;
   }
 
-  .course-preview-card {
+  .course-card-header,
+  .course-card-footer {
     flex-direction: column;
+    align-items: flex-start;
   }
 }

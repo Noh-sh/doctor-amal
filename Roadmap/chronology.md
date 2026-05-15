@@ -166,3 +166,39 @@
   - push: не выполнен
 - Следующий шаг:
   - после локального commit начать следующий план: каталог курсов.
+
+## 2026-05-15 - Каталог курсов
+
+- План: `Work plans/Завершенные/003-katalog-kursov.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Данные`, `Проверка`, `Документация`
+- Specs:
+  - `spec/feature-specs/course-catalog.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - страница `/courses` подключена к `getPublishedCourses()`;
+  - добавлен компонент карточки курса `CourseCard`;
+  - каталог показывает опубликованные курсы из локальных данных;
+  - добавлен общий блок состояния продаж над каталогом;
+  - карточки показывают категорию, краткое описание, темы и симптомы, стоимость, период продаж, формат доступа и статус продаж;
+  - черновые курсы не отображаются;
+  - внутренние названия Telegram-каналов не выводятся;
+  - в каталоге нет кнопки покупки, только переход “Подробнее”.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - ручная проверка пользователем подтверждена.
+- Измененные файлы:
+  - `Work plans/Завершенные/003-katalog-kursov.md`
+  - `app/courses/page.tsx`
+  - `components/courses/CourseCard.tsx`
+  - `components/courses/.gitkeep`
+  - `styles/globals.css`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после локального commit начать следующий план: поиск и фильтры курсов.
