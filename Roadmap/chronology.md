@@ -117,3 +117,52 @@
   - push: не выполнен
 - Следующий шаг:
   - после локального commit начать следующий план: доменные модели и локальные данные.
+
+## 2026-05-15 - Доменные модели и локальные данные
+
+- План: `Work plans/Завершенные/002-modeli-i-dannye.md`
+- Статус: завершено
+- Области: `Данные`, `Проверка`, `Документация`
+- Specs:
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/local-storage.md`
+  - `spec/feature-specs/local-data-storage.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/feature-specs/course-catalog.md`
+  - `spec/feature-specs/articles.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - добавлены доменные модели `Course`, `Article`, `UserRequest`;
+  - добавлены правила продаж `canSubmitCoursePurchase`, `canSubmitPrePurchaseConsultation`, `hasAnyOpenSales`;
+  - добавлены локальные seed-данные `data/courses.json` и `data/articles.json`;
+  - добавлен repository слой для чтения опубликованных курсов и статей;
+  - добавлены базовые русские сообщения для статусов, пустых состояний и ошибок;
+  - удалены `.gitkeep` из папок, которые теперь содержат реальные файлы.
+- Проверка:
+  - `npm run build` сначала выявил проблему типизации JSON-импортов;
+  - repository слой исправлен через чтение JSON как `unknown` и последующую проверку type guard;
+  - после исправления `npm run build` выполнен успешно;
+  - проверено, что UI не импортирует JSON напрямую;
+  - проверены seed-данные: 3 опубликованных курса, 1 скрытый курс, 2 полноценные опубликованные статьи, 2 скрытые или неполные статьи;
+  - ручная проверка пользователем подтверждена.
+- Измененные файлы:
+  - `Work plans/Завершенные/002-modeli-i-dannye.md`
+  - `data/courses.json`
+  - `data/articles.json`
+  - `domain/course.ts`
+  - `domain/article.ts`
+  - `domain/request.ts`
+  - `domain/sales.ts`
+  - `lib/messages/ru.ts`
+  - `lib/repositories/courseRepository.ts`
+  - `lib/repositories/articleRepository.ts`
+  - `data/.gitkeep`
+  - `domain/.gitkeep`
+  - `lib/.gitkeep`
+  - `lib/messages/.gitkeep`
+  - `lib/repositories/.gitkeep`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после локального commit начать следующий план: каталог курсов.
