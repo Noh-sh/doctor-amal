@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CourseCard } from "@/components/courses/CourseCard";
+import { CourseCatalog } from "@/components/courses/CourseCatalog";
 import { hasAnyOpenSales } from "@/domain/sales";
 import { ruMessages } from "@/lib/messages/ru";
 import { getPublishedCourses } from "@/lib/repositories/courseRepository";
@@ -50,11 +50,7 @@ export default async function CoursesPage() {
       ) : null}
 
       {courses.length > 0 ? (
-        <section className="course-grid" aria-label="Список курсов">
-          {courses.map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
-        </section>
+        <CourseCatalog courses={courses} />
       ) : (
         <section className="empty-state">
           <h2>{ruMessages.empty.courses}</h2>
