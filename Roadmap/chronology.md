@@ -202,3 +202,37 @@
   - push: не выполнен
 - Следующий шаг:
   - после локального commit начать следующий план: поиск и фильтры курсов.
+
+## 2026-05-15 - Поиск и фильтры курсов
+
+- План: `Work plans/Завершенные/004-poisk-i-filtry-kursov.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Данные`, `Проверка`, `Документация`
+- Specs:
+  - `spec/feature-specs/course-catalog.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - добавлен client component `CourseCatalog`;
+  - добавлен поиск по названию, описанию, категории, темам и симптомам;
+  - добавлен фильтр по категории;
+  - добавлен фильтр по статусу продаж;
+  - добавлено состояние “Подходящие курсы не найдены”;
+  - добавлена кнопка сброса фильтров;
+  - добавлено предупреждение, что поиск не ставит диагноз и не заменяет консультацию доктора.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - ручная проверка пользователем подтверждена.
+- Измененные файлы:
+  - `Work plans/Завершенные/004-poisk-i-filtry-kursov.md`
+  - `app/courses/page.tsx`
+  - `components/courses/CourseCatalog.tsx`
+  - `styles/globals.css`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после локального commit начать следующий план: страница курса.

@@ -268,6 +268,48 @@ p {
   gap: 18px;
 }
 
+.course-catalog {
+  display: grid;
+  gap: 18px;
+}
+
+.catalog-controls {
+  display: grid;
+  grid-template-columns: minmax(240px, 2fr) minmax(180px, 1fr) minmax(180px, 1fr);
+  gap: 12px;
+  align-items: end;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  padding: 9px 11px;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--accent);
+  outline: 2px solid rgba(47, 102, 89, 0.16);
+  outline-offset: 2px;
+}
+
 .course-card {
   display: grid;
   gap: 18px;
@@ -370,6 +412,7 @@ p {
 
   .filter-preview,
   .course-grid,
+  .catalog-controls,
   .article-preview-item {
     grid-template-columns: 1fr;
   }
