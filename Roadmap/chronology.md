@@ -326,3 +326,46 @@
   - push: не выполнен
 - Следующий шаг:
   - после локального commit начать следующий план: статьи.
+
+## 2026-05-16 - Статьи
+
+- План: `Work plans/Завершенные/007-stati.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Данные`, `Проверка`, `Документация`
+- Specs:
+  - `spec/feature-specs/articles.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/local-storage.md`
+  - `spec/feature-specs/error-handling.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `spec/user-stories/edge-case-stories.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - `/articles` подключен к `getPublishedArticles()`;
+  - заглушки списка статей заменены опубликованными материалами из локальных данных;
+  - `/articles/[articleId]` подключен к `getArticleById()`;
+  - страница статьи показывает заголовок, краткое описание, дату, тему, источник, теги и полный текст;
+  - черновики и статьи без полного текста не раскрываются пользователю;
+  - для недоступной статьи добавлено понятное состояние без технических деталей;
+  - страница статьи не ведет напрямую к заявке на покупку;
+  - добавлены стили для списка и страницы статьи.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - production server из собранного приложения запущен на `http://localhost:3001` и остановлен после проверки;
+  - HTTP-проверки показали `200 OK` для `/articles`, `/articles/skin-and-lifestyle`, `/articles/draft-short-note`, `/articles/incomplete-published-note`;
+  - проверено, что черновик и неполная статья показывают безопасное состояние недоступной статьи;
+  - проверено отсутствие прямого перехода к заявке на покупку со страницы опубликованной статьи.
+- Измененные файлы:
+  - `Work plans/Завершенные/007-stati.md`
+  - `app/articles/page.tsx`
+  - `app/articles/[articleId]/page.tsx`
+  - `styles/globals.css`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после локального commit начать следующий план: главная и страница "О докторе".

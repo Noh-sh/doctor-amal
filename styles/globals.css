@@ -216,6 +216,51 @@ p {
   font-size: 22px;
 }
 
+.article-detail {
+  display: grid;
+  gap: 22px;
+}
+
+.article-header {
+  display: grid;
+  gap: 16px;
+}
+
+.article-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.article-facts div {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 14px;
+}
+
+.article-facts dt {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.article-facts dd {
+  margin: 0;
+}
+
+.article-body {
+  display: grid;
+  gap: 16px;
+  max-width: 780px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  font-size: 18px;
+}
+
 .status-pill {
   display: inline-flex;
   border: 1px solid #b79d50;
@@ -681,6 +726,7 @@ p {
   .course-action-panel,
   .related-course-item,
   .article-preview-item,
+  .article-facts,
   .request-layout,
   .request-type-grid,
   .checkbox-grid {
