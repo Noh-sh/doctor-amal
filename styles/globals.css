@@ -247,6 +247,7 @@ p {
 
 .catalog-status {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
   gap: 8px;
   border-left: 4px solid var(--accent);
   border-radius: 8px;
@@ -254,12 +255,47 @@ p {
   padding: 18px 20px;
 }
 
+.catalog-status-closed {
+  border-left-color: #b7aaa0;
+}
+
+.catalog-status-coming_soon {
+  border-left-color: #b79d50;
+}
+
 .catalog-status h2 {
+  margin-top: 10px;
   font-size: 22px;
 }
 
 .catalog-status p {
   color: var(--muted);
+}
+
+.catalog-status-courses {
+  display: grid;
+  gap: 10px;
+}
+
+.catalog-status-course {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfaf7;
+  color: var(--text);
+  padding: 12px 14px;
+}
+
+.catalog-status-course:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.catalog-status-course span {
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .course-grid {
@@ -292,7 +328,8 @@ p {
 }
 
 .field input,
-.field select {
+.field select,
+.field textarea {
   width: 100%;
   min-height: 44px;
   border: 1px solid var(--line);
@@ -304,10 +341,20 @@ p {
 }
 
 .field input:focus,
-.field select:focus {
+.field select:focus,
+.field textarea:focus {
   border-color: var(--accent);
   outline: 2px solid rgba(47, 102, 89, 0.16);
   outline-offset: 2px;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
 }
 
 .course-card {
@@ -466,6 +513,152 @@ p {
   font-weight: 700;
 }
 
+.request-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  gap: 24px;
+  align-items: start;
+}
+
+.request-form {
+  display: grid;
+  gap: 18px;
+}
+
+.form-fieldset {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 20px;
+}
+
+.form-fieldset:disabled {
+  opacity: 0.78;
+}
+
+.form-fieldset legend {
+  padding: 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.request-type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.request-type-option,
+.checkbox-option {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.request-type-option {
+  min-height: 92px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.request-type-option:has(input:checked) {
+  border-color: var(--accent);
+  background: #eef6f2;
+}
+
+.request-type-option input,
+.checkbox-option input {
+  margin-top: 5px;
+}
+
+.request-type-option span,
+.checkbox-option span {
+  display: grid;
+  gap: 4px;
+}
+
+.request-type-option small,
+.field-hint {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.checkbox-option-wide {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.checkbox-group {
+  display: grid;
+  gap: 10px;
+}
+
+.field-label {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.field-error {
+  color: #9f2d20;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form-summary,
+.success-panel,
+.request-side-note,
+.course-inline-summary {
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 20px;
+}
+
+.form-summary {
+  border-left: 4px solid #9f2d20;
+}
+
+.success-panel {
+  border-left: 4px solid var(--accent);
+}
+
+.request-side-note {
+  position: sticky;
+  top: 18px;
+}
+
+.course-inline-summary {
+  background: #fbfaf7;
+}
+
+.form-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.submit-feedback {
+  scroll-margin: 24px;
+}
+
+.submit-feedback:focus {
+  outline: 2px solid rgba(47, 102, 89, 0.35);
+  outline-offset: 3px;
+}
+
 @media (max-width: 700px) {
   .site-header {
     align-items: flex-start;
@@ -483,10 +676,14 @@ p {
   .filter-preview,
   .course-grid,
   .catalog-controls,
+  .catalog-status,
   .course-hero,
   .course-action-panel,
   .related-course-item,
-  .article-preview-item {
+  .article-preview-item,
+  .request-layout,
+  .request-type-grid,
+  .checkbox-grid {
     grid-template-columns: 1fr;
   }
 
