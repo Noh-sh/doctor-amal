@@ -1,47 +1,78 @@
 import Link from "next/link";
+import type { Article } from "@/domain/article";
+import { ruMessages } from "@/lib/messages/ru";
+import { getPublishedArticles } from "@/lib/repositories/articleRepository";
 
-export default function ArticlesPage() {
+function formatArticleDate(publishedAt: Article["publishedAt"]): string | null {
+  if (!publishedAt) {
+    return null;
+  }
+
+  return new Intl.DateTimeFormat("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }).format(new Date(publishedAt));
+}
+
+function getArticleMeta(article: Article): string {
+  const date = formatArticleDate(article.publishedAt);
+  const parts = [article.category, date, article.source.displayText].filter(Boolean);
+
+  return parts.join(" · ");
+}
+
+export default async function ArticlesPage() {
+  const articles = await getPublishedArticles();
+
   return (
     <section className="page-section">
       <p className="eyebrow">Материалы</p>
       <h1>Статьи</h1>
       <p className="lead">
-        Здесь будет список бесплатных опубликованных материалов, которые помогают познакомиться с подходом доктора.
+        Бесплатные ознакомительные материалы о здоровье, питании, образе жизни и подходе Doctor Amal.
       </p>
 
-      <section className="article-preview-list" aria-labelledby="article-preview-title">
-        <div>
-          <h2 id="article-preview-title">Будущий список материалов</h2>
-          <p className="muted">
-            На следующем этапе здесь появятся опубликованные статьи из локальных данных.
-          </p>
-        </div>
-        <article className="article-preview-item">
+      {articles.length > 0 ? (
+        <section className="article-preview-list" aria-labelledby="article-preview-title">
           <div>
-            <p className="article-meta">Питание · дата публикации</p>
-            <h3>Пример материала из Telegram-канала</h3>
-            <p>
-              В статье будут краткое описание, тема, источник и переход к полному тексту материала.
+            <h2 id="article-preview-title">Опубликованные материалы</h2>
+            <p className="muted">
+              Статьи помогают познакомиться с темами проекта и не заменяют очный медицинский осмотр.
             </p>
           </div>
-          <Link href="/articles/test-article">Открыть пример статьи</Link>
-        </article>
-        <article className="article-preview-item">
-          <div>
-            <p className="article-meta">Образ жизни · дата публикации</p>
-            <h3>Еще один пример материала</h3>
-            <p>
-              Статьи остаются ознакомительным разделом и не ведут напрямую к заявке на покупку.
-            </p>
-          </div>
-          <Link href="/doctor">О подходе доктора</Link>
-        </article>
-      </section>
+          {articles.map((article) => (
+            <article className="article-preview-item" key={article.id}>
+              <div>
+                <p className="article-meta">{getArticleMeta(article)}</p>
+                <h3>{article.title}</h3>
+                <p>{article.summary}</p>
+              </div>
+              <Link className="button button-secondary" href={`/articles/${article.id}`}>
+                Читать статью
+              </Link>
+            </article>
+          ))}
+        </section>
+      ) : (
+        <section className="empty-state">
+          <h2>{ruMessages.empty.articles}</h2>
+          <p>Пока можно перейти к каталогу курсов или вернуться позже, когда материалы будут опубликованы.</p>
+        </section>
+      )}
 
       <div className="notice">
-        Статьи остаются ознакомительным разделом и не ведут напрямую к заявке на покупку курса.
+        Материалы носят ознакомительный характер, не ставят диагноз, не назначают лечение и не ведут
+        напрямую к заявке на покупку курса.
       </div>
-      <Link href="/courses">Перейти к каталогу курсов</Link>
+      <div className="actions">
+        <Link className="button button-secondary" href="/courses">
+          Перейти к каталогу курсов
+        </Link>
+        <Link className="button button-secondary" href="/doctor">
+          О докторе
+        </Link>
+      </div>
     </section>
   );
 }
