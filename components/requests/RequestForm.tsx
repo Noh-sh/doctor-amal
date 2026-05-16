@@ -399,6 +399,9 @@ export function RequestForm({ courses, initialType, initialCourseId, queryMessag
           ) : null}
           <label className="checkbox-option checkbox-option-wide">
             <input
+              aria-describedby={
+                errors.consentNotMedicalConsultation ? "consentNotMedicalConsultation-error" : undefined
+              }
               checked={values.consentNotMedicalConsultation}
               onChange={(event) => updateValue("consentNotMedicalConsultation", event.target.checked)}
               type="checkbox"
@@ -406,17 +409,24 @@ export function RequestForm({ courses, initialType, initialCourseId, queryMessag
             <span>Я понимаю, что заявка не является медицинской консультацией и не заменяет очный медицинский осмотр.</span>
           </label>
           {errors.consentNotMedicalConsultation ? (
-            <p className="field-error">{errors.consentNotMedicalConsultation}</p>
+            <p className="field-error" id="consentNotMedicalConsultation-error">
+              {errors.consentNotMedicalConsultation}
+            </p>
           ) : null}
           <label className="checkbox-option checkbox-option-wide">
             <input
+              aria-describedby={errors.consentNoOnlinePayment ? "consentNoOnlinePayment-error" : undefined}
               checked={values.consentNoOnlinePayment}
               onChange={(event) => updateValue("consentNoOnlinePayment", event.target.checked)}
               type="checkbox"
             />
             <span>Я понимаю, что оплата не выполняется на сайте и обсуждается отдельно с доктором или ассистентом.</span>
           </label>
-          {errors.consentNoOnlinePayment ? <p className="field-error">{errors.consentNoOnlinePayment}</p> : null}
+          {errors.consentNoOnlinePayment ? (
+            <p className="field-error" id="consentNoOnlinePayment-error">
+              {errors.consentNoOnlinePayment}
+            </p>
+          ) : null}
         </fieldset>
 
         {successMessage || errorList.length > 0 ? (
