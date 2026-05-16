@@ -236,3 +236,45 @@
   - push: не выполнен
 - Следующий шаг:
   - после локального commit начать следующий план: страница курса.
+
+## 2026-05-16 - Страница курса
+
+- План: `Work plans/Завершенные/005-stranica-kursa.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Данные`, `Проверка`, `Документация`
+- Specs:
+  - `spec/feature-specs/course-detail-page.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/feature-specs/error-handling.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `spec/user-stories/edge-case-stories.md`
+  - `spec/technical-specs/local-storage.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - страница `/courses/[courseId]` подключена к repository layer;
+  - опубликованный курс показывает полное описание, категорию, темы, симптомы, пользу, стоимость, статус продаж, период продаж, условия заявки и Telegram-доступ;
+  - для `open` добавлены переходы к заявке на покупку и консультации по подбору курса;
+  - для `closed` и `coming_soon` заявки не предлагаются, есть переход к статьям;
+  - добавлен блок похожих опубликованных курсов;
+  - несуществующий или неопубликованный курс показывает понятное состояние без раскрытия содержимого;
+  - внутреннее название Telegram-канала не выводится пользователю;
+  - добавлены стили для детальной страницы курса.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - через локальный dev server проверены курсы со статусами `open`, `closed`, `coming_soon`;
+  - проверены несуществующий курс и прямая ссылка на черновой курс;
+  - проверено, что закрытые и будущие продажи не содержат ссылку заявки на покупку;
+  - проверено, что внутреннее название Telegram-канала не выводится.
+- Измененные файлы:
+  - `Work plans/Завершенные/005-stranica-kursa.md`
+  - `app/courses/[courseId]/page.tsx`
+  - `styles/globals.css`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после локального commit начать следующий план: заявки.
