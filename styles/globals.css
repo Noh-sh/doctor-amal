@@ -163,6 +163,10 @@ p {
   gap: 12px;
 }
 
+.feature-panel {
+  border-left: 4px solid var(--accent);
+}
+
 .notice {
   color: var(--muted);
 }
