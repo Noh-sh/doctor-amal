@@ -278,3 +278,51 @@
   - push: не выполнен
 - Следующий шаг:
   - после локального commit начать следующий план: заявки.
+
+## 2026-05-16 - Заявки
+
+- План: `Work plans/Завершенные/006-zayavki.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Данные`, `Валидация`, `Локальное хранение`, `Проверка`, `Документация`
+- Specs:
+  - `spec/feature-specs/requests.md`
+  - `spec/technical-specs/requests-and-validation.md`
+  - `spec/technical-specs/local-storage.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/feature-specs/error-handling.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `spec/user-stories/edge-case-stories.md`
+- Сделано:
+  - страница `/request` подключена к query params `type` и `courseId`;
+  - добавлена форма заявки с режимами покупки курса и консультации по подбору курса;
+  - добавлена валидация имени, контакта, согласий, курса, возраста, описания проблемы, тем и предпочтительного курса;
+  - заявки сохраняются в browser `localStorage` через repository/service layer;
+  - добавлена версия локального хранения `doctor-amal:storage-version = 1`;
+  - добавлена защита от похожей повторной заявки за последние 10 минут;
+  - при ошибке сохранения форма остается заполненной и не показывает ложный успех;
+  - результат отправки показывается рядом с кнопкой отправки, страница прокручивается к сообщению и переводит на него фокус;
+  - в `/courses` обновлен общий блок фактического статуса продаж с перечислением курсов при открытых или будущих продажах;
+  - онлайн-оплата, серверная отправка, админка, уведомления и автоматический доступ в Telegram не добавлялись.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - после UX-правки формы `npm run build` повторно выполнен успешно;
+  - после правки общего блока статуса продаж в каталоге `npm run build` повторно выполнен успешно;
+  - через локальный dev server проверены HTTP-ответы `200 OK` для `/request?type=course_purchase&courseId=skin-health-basics`, `/request?type=course_purchase&courseId=nutrition-energy-support`, `/request?type=pre_purchase_consultation`, `/request?type=bad`;
+  - ручная проверка пользователем подтверждена.
+- Измененные файлы:
+  - `Work plans/Завершенные/006-zayavki.md`
+  - `app/courses/page.tsx`
+  - `app/request/page.tsx`
+  - `components/requests/RequestForm.tsx`
+  - `domain/request.ts`
+  - `lib/repositories/requestRepository.ts`
+  - `lib/validation/requestValidation.ts`
+  - `styles/globals.css`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после локального commit начать следующий план: статьи.

@@ -41,5 +41,8 @@ export interface PrePurchaseConsultationRequest extends BaseUserRequest {
 export type UserRequest = CoursePurchaseRequest | PrePurchaseConsultationRequest;
 
 export type SaveRequestResult =
-  | { ok: true; request: UserRequest }
-  | { ok: false; reason: "duplicate_request" | "storage_unavailable" | "invalid_data" };
+  | { ok: true; requestId: string }
+  | {
+      ok: false;
+      errorCode: "storage_unavailable" | "validation_failed" | "duplicate_recent" | "unknown";
+    };
