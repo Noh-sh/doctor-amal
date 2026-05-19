@@ -7,7 +7,6 @@
 - `spec/global-spec.md` — обзор проекта, методология, основные компоненты, технические требования, цели и границы ответственности.
 - `spec/functional-map.md` — роли, пользовательские пути, точки взаимодействия, основные функции, границы первой локальной версии и будущие направления.
 - `spec/feature-specs/README.md` — актуальная карта feature specs новой Taplink-версии и статус старых feature specs.
-- `spec/feature-specs-outline.md` — старый материал для feature specs предыдущей версии; не использовать как основание для новой Taplink-версии.
 
 ## Пользовательские сценарии
 
@@ -25,18 +24,6 @@
 - `spec/feature-specs/external-links.md` — внешние кнопки `Telegram`, `WhatsApp`, `YouTube`, `Instagram`, подтвержденные URL и состояние без ссылки.
 - `spec/feature-specs/medical-content-rules.md` — медицинские ограничения пользовательских текстов, запрет обещаний результата, диагностики, схем лечения и персональных рекомендаций.
 - `spec/feature-specs/future-online-purchase.md` — будущая онлайн-покупка, не входящая в первую локальную версию.
-
-## Старые feature specs предыдущей версии
-
-Эти файлы относятся к предыдущей версии проекта с каталогом, отдельными страницами, заявками, статьями и локальным хранением. До переписывания они не являются актуальными требованиями новой Taplink-версии:
-
-- `spec/feature-specs/course-catalog.md`;
-- `spec/feature-specs/course-detail-page.md`;
-- `spec/feature-specs/requests.md`;
-- `spec/feature-specs/doctor-profile.md`;
-- `spec/feature-specs/articles.md`;
-- `spec/feature-specs/local-data-storage.md`;
-- `spec/feature-specs/error-handling.md`.
 
 ## Technical specs
 
@@ -58,13 +45,6 @@
 - Внешние кнопки: `external-links.md`, `functional-map.md`, `README.md`.
 - Медицинские ограничения текстов: `medical-content-rules.md`, `doctor-block.md`, `courses-block.md`, `functional-map.md`.
 - Будущая онлайн-покупка: `future-online-purchase.md`, `course-purchase-link.md`, `functional-map.md`, `global-spec.md`.
-- Каталог курсов предыдущей версии: `course-catalog.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.
-- Страница курса предыдущей версии: `course-detail-page.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.
-- Заявки и формы предыдущей версии: `requests.md`, `requests-and-validation.md`, `local-storage.md`, `data-model.md`, `error-handling.md`.
-- Страница "О докторе" предыдущей версии: `doctor-profile.md`, `routing-and-ui.md`, `functional-map.md`.
-- Статьи и Telegram-материалы предыдущей версии: `articles.md`, `routing-and-ui.md`, `data-model.md`, `local-storage.md`.
-- Ошибки и пустые состояния предыдущей версии: `error-handling.md`, `edge-case-stories.md`, `routing-and-ui.md`.
-- Локальное хранение: `local-data-storage.md`, `local-storage.md`, `data-model.md`, `architecture.md`.
 - Архитектура и структура приложения: `architecture.md`, `routing-and-ui.md`, `technical-specs/README.md`, `change-management.md`.
 - Будущие возможности: `future-extension-plan.md`, но только для планирования, не для реализации текущей версии.
 

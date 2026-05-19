@@ -92,100 +92,87 @@ AI может писать черновики specs, предлагать улу
 
 ## Какие specs читать перед изменением
 
-### Изменение каталога курсов
+### Изменение блока "О докторе"
 Читать:
-- `spec/feature-specs/course-catalog.md`;
-- `spec/technical-specs/data-model.md`;
-- `spec/technical-specs/routing-and-ui.md`;
-- `spec/technical-specs/local-storage.md`;
-- `spec/technical-specs/implementation-checklist.md`.
+- `spec/feature-specs/doctor-block.md`;
+- `spec/feature-specs/medical-content-rules.md`;
+- `spec/functional-map.md`;
+- `spec/global-spec.md`.
 
 Проверить:
-- поиск;
-- фильтры;
-- статусы продаж;
-- пустые состояния;
-- скрытие неопубликованных курсов.
+- блок остается частью одной страницы;
+- нет отдельного маршрута `О докторе`;
+- нет формы связи или записи;
+- нет сбора данных;
+- нет обещаний лечения, выздоровления или медицинского результата.
 
-### Изменение страницы курса
+### Изменение блока "Курсы"
 Читать:
-- `spec/feature-specs/course-detail-page.md`;
-- `spec/technical-specs/data-model.md`;
-- `spec/technical-specs/routing-and-ui.md`;
-- `spec/feature-specs/error-handling.md`;
-- `spec/technical-specs/implementation-checklist.md`.
+- `spec/feature-specs/courses-block.md`;
+- `spec/feature-specs/course-purchase-link.md`;
+- `spec/feature-specs/medical-content-rules.md`;
+- `spec/functional-map.md`;
+- `spec/global-spec.md`.
 
 Проверить:
-- открытые продажи;
-- закрытые продажи;
-- продажи скоро откроются;
-- похожие курсы;
-- отсутствие онлайн-оплаты;
-- объяснение Telegram-доступа.
+- блок остается частью одной страницы;
+- сначала видны названия курсов и цены;
+- после нажатия раскрываются описание и кнопка `Купить`;
+- цена не дублируется в раскрытом курсе, если specs не изменены;
+- нет отдельного каталога, маршрута курса, поиска, фильтров, корзины, формы заявки, онлайн-оплаты или сбора данных.
 
-### Изменение формы заявки
+### Изменение кнопки "Купить"
 Читать:
-- `spec/feature-specs/requests.md`;
-- `spec/technical-specs/requests-and-validation.md`;
-- `spec/technical-specs/data-model.md`;
-- `spec/technical-specs/local-storage.md`;
-- `spec/feature-specs/error-handling.md`;
-- `spec/technical-specs/implementation-checklist.md`.
+- `spec/feature-specs/course-purchase-link.md`;
+- `spec/feature-specs/courses-block.md`;
+- `spec/feature-specs/future-online-purchase.md`;
+- `spec/functional-map.md`.
 
 Проверить:
-- обязательные поля;
-- контакт для связи;
-- согласия;
-- проверку статуса продаж;
-- повторную отправку;
-- успешное сохранение;
-- ошибку сохранения;
-- отсутствие платежных данных.
+- кнопка остается внешним переходом в Telegram к менеджеру;
+- используется одна общая Telegram-ссылка для всех курсов;
+- при переходе должно передаваться название выбранного курса;
+- без подтвержденной ссылки кнопка не выглядит как рабочий переход;
+- нет формы, оплаты, сбора данных, заказа внутри проекта или автоматической выдачи доступа.
 
-### Изменение статей
+### Изменение внешних кнопок
 Читать:
-- `spec/feature-specs/articles.md`;
-- `spec/technical-specs/data-model.md`;
-- `spec/technical-specs/routing-and-ui.md`;
-- `spec/technical-specs/local-storage.md`;
-- `spec/technical-specs/implementation-checklist.md`.
+- `spec/feature-specs/external-links.md`;
+- `spec/functional-map.md`;
+- `spec/global-spec.md`.
 
 Проверить:
-- список статей;
-- страницу статьи;
-- скрытие черновиков;
-- поведение при пустом списке;
-- отсутствие прямого перехода к покупке из статьи.
+- все внешние кнопки первой версии видны;
+- активной становится только кнопка с подтвержденным URL;
+- кнопка без URL видима, но неактивна;
+- нет аналитики, интеграций, авторизации, оплаты, форм или сбора данных.
 
-### Изменение страницы "О докторе"
+### Изменение медицинских текстов
 Читать:
-- `spec/feature-specs/doctor-profile.md`;
-- `spec/technical-specs/routing-and-ui.md`;
-- `spec/feature-specs/error-handling.md`;
-- `spec/technical-specs/implementation-checklist.md`.
+- `spec/feature-specs/medical-content-rules.md`;
+- `spec/feature-specs/doctor-block.md`;
+- `spec/feature-specs/courses-block.md`;
+- `spec/functional-map.md`;
+- `spec/global-spec.md`.
 
 Проверить:
-- публичную информацию;
-- объяснение роли курсов;
-- объяснение отсутствия онлайн-оплаты;
-- объяснение границ консультации по подбору курса;
-- отсутствие обещаний медицинского результата.
+- нет обещаний лечения, выздоровления или гарантированного результата;
+- нет диагнозов;
+- нет персональных рекомендаций;
+- нет схем лечения или инструкций по приему лекарств, добавок или процедур в публичных текстах;
+- есть короткое медицинское ограничение.
 
-### Изменение хранения данных
+### Изменение будущей онлайн-покупки
 Читать:
-- `spec/feature-specs/local-data-storage.md`;
-- `spec/technical-specs/local-storage.md`;
-- `spec/technical-specs/data-model.md`;
-- `spec/technical-specs/future-extension-plan.md`;
-- `spec/technical-specs/implementation-checklist.md`.
+- `spec/feature-specs/future-online-purchase.md`;
+- `spec/feature-specs/course-purchase-link.md`;
+- `spec/functional-map.md`;
+- `spec/global-spec.md`.
 
 Проверить:
-- чтение курсов;
-- чтение статей;
-- сохранение заявок;
-- поврежденные данные;
-- отсутствие прямой зависимости UI от storage;
-- совместимость с будущим API.
+- онлайн-покупка не переносится в первую локальную версию без отдельного подтверждения;
+- текущая кнопка `Купить` остается переходом в Telegram к менеджеру;
+- не добавляются платежный провайдер, форма, API, база данных, личный кабинет или автоматический доступ без новых specs.
 
 ### Изменение архитектуры или Next.js структуры
 Читать:

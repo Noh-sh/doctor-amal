@@ -60,22 +60,6 @@ Feature specs должны раскрывать эти требования по
 
 Все feature specs из текущего списка созданы.
 
-## Старые feature specs
-
-В папке могут оставаться feature specs предыдущей версии проекта:
-
-- `course-catalog.md`;
-- `course-detail-page.md`;
-- `requests.md`;
-- `doctor-profile.md`;
-- `articles.md`;
-- `local-data-storage.md`;
-- `error-handling.md`.
-
-Эти файлы относятся к прежней версии проекта с каталогом курсов, отдельными страницами, заявками, статьями и локальным хранением заявок.
-
-До переписывания эти файлы не являются актуальными требованиями новой Taplink-версии. Если старый feature spec противоречит `global-spec.md`, `functional-map.md` или новым feature specs, работу нужно остановить и переписать соответствующий feature spec перед реализацией.
-
 ## Правила написания feature specs
 
 Каждый feature spec должен содержать:

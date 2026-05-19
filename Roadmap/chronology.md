@@ -982,6 +982,47 @@
 - Следующий шаг:
   - перейти к переписыванию связанных user stories или technical specs под Taplink-формат.
 
+## 2026-05-19 - Удалить старые feature specs
+
+- План: `Work plans/Завершенные/033-udalit-starye-feature-specs.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/README.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - удалены старые feature specs предыдущей структуры;
+  - удален старый `spec/feature-specs-outline.md`;
+  - очищены `spec/feature-specs/README.md` и skill spec-map;
+  - обновлены технические навигационные specs, чтобы они не ссылались на удаленные feature specs как на актуальные источники;
+  - актуальные feature specs новой Taplink-версии оставлены без изменений.
+- Проверка:
+  - выполнен поиск по именам удаленных старых feature specs и старому outline;
+  - `rg` не нашел совпадений в актуальных specs, `.agents` и `Roadmap/project-roadmap.md`;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/course-catalog.md`
+  - `spec/feature-specs/course-detail-page.md`
+  - `spec/feature-specs/requests.md`
+  - `spec/feature-specs/doctor-profile.md`
+  - `spec/feature-specs/articles.md`
+  - `spec/feature-specs/local-data-storage.md`
+  - `spec/feature-specs/error-handling.md`
+  - `spec/feature-specs-outline.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/technical-specs/README.md`
+  - `spec/technical-specs/change-management.md`
+  - `Work plans/Завершенные/033-udalit-starye-feature-specs.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к переписыванию связанных user stories или technical specs под Taplink-формат.
+
 ## 2026-05-19 - Feature spec медицинских ограничений текстов
 
 - План: `Work plans/Завершенные/031-feature-spec-medical-content-rules.md`
