@@ -646,3 +646,500 @@
   - push: не выполнен
 - Следующий шаг:
   - остальные детали блока курсов раскрыть в feature specs.
+
+## 2026-05-19 - Feature specs README и блок "О докторе"
+
+- План: `Work plans/Завершенные/017-feature-specs-readme-i-doctor-block.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - создан `spec/feature-specs/README.md` с новой картой feature specs Taplink-версии;
+  - создан `spec/feature-specs/doctor-block.md` для блока `О докторе`;
+  - старые feature specs помечены как файлы предыдущей версии до переписывания;
+  - зафиксированы допустимые данные блока `О докторе` и медицинские ограничения;
+  - навигационная карта skill `doctor-amal-specs` обновлена под новую структуру feature specs.
+- Проверка:
+  - выполнен поиск по ключевым формулировкам в `README.md`, `doctor-block.md` и карте specs skill;
+  - проверено, что конкретная биография и реальные тексты не придуманы без подтверждения;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/017-feature-specs-readme-i-doctor-block.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/courses-block.md`.
+
+## 2026-05-19 - Убрать онлайн-консультации из doctor-block
+
+- План: `Work plans/Завершенные/018-ubrat-online-konsultacii-iz-doctor-block.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/functional-map.md`
+- Сделано:
+  - из будущих расширений блока `О докторе` убраны форма записи или связи и интеграция с онлайн-консультациями;
+  - будущая онлайн-версия в `doctor-block.md` привязана к покупке курса внутри проекта, оплате картой и доступу или переходу в закрытый Telegram-канал курса;
+  - первая локальная версия не расширена: консультации, формы и оплата не добавлены.
+- Проверка:
+  - выполнен поиск по онлайн-консультациям, онлайн-покупке и закрытому Telegram;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/doctor-block.md`
+  - `Work plans/Завершенные/018-ubrat-online-konsultacii-iz-doctor-block.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - продолжить `spec/feature-specs/courses-block.md`.
+
+## 2026-05-19 - Смягчить будущую онлайн-покупку в doctor-block
+
+- План: `Work plans/Завершенные/019-smyagchit-budushchuyu-online-pokupku-v-doctor-block.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/doctor-block.md`
+- Сделано:
+  - формулировка будущей онлайн-покупки курса смягчена;
+  - онлайн-покупка описана как возможное расширение при необходимости, а не как обязательная функция будущей онлайн-версии;
+  - условие отдельного подтверждения владельца проекта и обновления specs сохранено.
+- Проверка:
+  - выполнен поиск по формулировкам возможного расширения, обязательности и закрытого Telegram;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/doctor-block.md`
+  - `Work plans/Завершенные/019-smyagchit-budushchuyu-online-pokupku-v-doctor-block.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - продолжить `spec/feature-specs/courses-block.md`.
+
+## 2026-05-19 - Feature spec блока "Курсы"
+
+- План: `Work plans/Завершенные/020-feature-spec-courses-block.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+- Сделано:
+  - создан `spec/feature-specs/courses-block.md`;
+  - блок `Курсы` описан как часть одной локальной страницы;
+  - зафиксирована структура курса на уровне содержания: название, краткое описание, цена, дополнительное описание, кнопка `Купить`, переход в Telegram;
+  - реальные курсы, цены, валюта и Telegram-ссылка оставлены для отдельного подтверждения;
+  - README feature specs и карта specs skill обновлены.
+- Проверка:
+  - выполнен поиск по ключевым ограничениям блока `Курсы`;
+  - подтверждено, что онлайн-оплата, формы, сбор данных, корзина и автоматический доступ в закрытый Telegram-канал не добавлены в первую локальную версию;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/courses-block.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/020-feature-spec-courses-block.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/course-purchase-link.md`.
+
+## 2026-05-19 - Уточнить раскрытие курса по названию
+
+- План: `Work plans/Завершенные/021-utochnit-raskrytie-kursa-po-nazvaniyu.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/courses-block.md`
+  - `spec/functional-map.md`
+- Сделано:
+  - сценарий блока `Курсы` уточнен: сначала показываются названия курсов;
+  - после нажатия на название курса раскрываются описание, цена и кнопка `Купить`;
+  - лишнее поле `details` удалено из структуры курса;
+  - поведение `Купить` осталось прежним: переход в Telegram для связи с менеджером.
+- Проверка:
+  - выполнен поиск по раскрытию курса, описанию, цене, кнопке `Купить` и Telegram;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/courses-block.md`
+  - `Work plans/Завершенные/021-utochnit-raskrytie-kursa-po-nazvaniyu.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/course-purchase-link.md`.
+
+## 2026-05-19 - Показывать цену в свернутом курсе
+
+- План: `Work plans/Завершенные/022-pokazyvat-cenu-v-svernutom-kurse.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/courses-block.md`
+- Сделано:
+  - уточнено свернутое состояние курса: видны название и цена;
+  - уточнено раскрытое состояние курса: описание, цена и кнопка `Купить`;
+  - переход `Купить` оставлен как переход в Telegram для связи с менеджером;
+  - формы, оплата, отдельные маршруты и сбор данных не добавлены.
+- Проверка:
+  - выполнен поиск по свернутому состоянию, цене, раскрытию, кнопке `Купить` и ограничениям;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/courses-block.md`
+  - `Work plans/Завершенные/022-pokazyvat-cenu-v-svernutom-kurse.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/course-purchase-link.md`.
+
+## 2026-05-19 - Убрать цену из раскрытого курса
+
+- План: `Work plans/Завершенные/023-ubrat-cenu-iz-raskrytogo-kursa.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/courses-block.md`
+- Сделано:
+  - цена курса оставлена в свернутом состоянии рядом с названием;
+  - из раскрытого состояния курса убрано дублирование цены;
+  - раскрытое состояние содержит описание курса и кнопку `Купить`;
+  - формы, оплата, отдельные маршруты и сбор данных не добавлены.
+- Проверка:
+  - выполнен поиск по свернутому и раскрытому состоянию курса;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/courses-block.md`
+  - `Work plans/Завершенные/023-ubrat-cenu-iz-raskrytogo-kursa.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/course-purchase-link.md`.
+
+## 2026-05-19 - Выбор варианта раскрытия курса после проверки
+
+- План: `Work plans/Завершенные/024-vybor-varianta-raskrytiya-kursa-posle-proverki.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/courses-block.md`
+- Сделано:
+  - в `courses-block.md` оставлены три допустимых варианта раскрытия курса: accordion, раскрытие карточки под названием, modal без отдельного маршрута;
+  - зафиксировано, что финальный вариант выбирается на этапе UI-реализации после визуальной проверки;
+  - ограничения первой локальной версии сохранены.
+- Проверка:
+  - выполнен поиск по вариантам раскрытия, визуальной проверке и ограничениям;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/courses-block.md`
+  - `Work plans/Завершенные/024-vybor-varianta-raskrytiya-kursa-posle-proverki.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/course-purchase-link.md`.
+
+## 2026-05-19 - Уточнить медицинские ограничения описания курса
+
+- План: `Work plans/Завершенные/025-utochnit-medicinskie-ogranicheniya-opisaniya-kursa.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/courses-block.md`
+- Сделано:
+  - уточнено, что медицинские ограничения относятся к публичному описанию курса в блоке `Курсы`, а не к содержанию самого курса;
+  - зафиксировано, что сам курс может содержать схемы, добавки, процедуры или другие обучающие материалы, если это отдельно подтверждено;
+  - публичное описание курса может упоминать темы курса, но не должно раскрывать конкретные инструкции как готовую схему лечения;
+  - запреты на обещания результата, диагнозы и персональные рекомендации сохранены.
+- Проверка:
+  - выполнен поиск по публичному описанию, внутреннему содержанию курса, схемам, добавкам, процедурам и инструкциям;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/courses-block.md`
+  - `Work plans/Завершенные/025-utochnit-medicinskie-ogranicheniya-opisaniya-kursa.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/course-purchase-link.md`.
+
+## 2026-05-19 - Уточнить неактивную кнопку "Купить"
+
+- План: `Work plans/Завершенные/026-utochnit-neaktivnuyu-knopku-kupit.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/courses-block.md`
+- Сделано:
+  - для кнопки `Купить` без Telegram-ссылки убрана формулировка `будущий раздел`;
+  - уточнено, что кнопку можно показывать только как неактивную кнопку с понятным состоянием;
+  - добавлены примеры состояний: `Ссылка будет добавлена позже` или `Покупка временно недоступна`.
+- Проверка:
+  - выполнен поиск по формулировкам неактивной кнопки и Telegram-ссылки;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/courses-block.md`
+  - `Work plans/Завершенные/026-utochnit-neaktivnuyu-knopku-kupit.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/course-purchase-link.md`.
+
+## 2026-05-19 - Feature spec кнопки "Купить"
+
+- План: `Work plans/Завершенные/027-feature-spec-course-purchase-link.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/course-purchase-link.md`
+- Сделано:
+  - создан отдельный feature spec для кнопки `Купить`;
+  - зафиксировано, что кнопка ведет в Telegram для связи с менеджером;
+  - зафиксировано, что первая локальная версия не оформляет покупку внутри проекта, не запускает оплату, не открывает форму и не собирает данные;
+  - описано неактивное состояние кнопки без подтвержденной Telegram-ссылки;
+  - обновлены `spec/feature-specs/README.md` и skill spec-map.
+- Проверка:
+  - выполнен поиск по кнопке `Купить`, Telegram, менеджеру, неактивному состоянию, формам, оплате, данным и закрытому Telegram-каналу;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/027-feature-spec-course-purchase-link.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/external-links.md`.
+
+## 2026-05-19 - Feature spec будущей онлайн-покупки
+
+- План: `Work plans/Завершенные/032-feature-spec-future-online-purchase.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/future-online-purchase.md`
+- Сделано:
+  - создан feature spec для будущей онлайн-покупки;
+  - зафиксировано, что онлайн-покупка не входит в первую локальную версию;
+  - зафиксировано, что текущая кнопка `Купить` остается переходом в Telegram к менеджеру;
+  - зафиксировано, что будущая онлайн-покупка не является обязательной функцией будущей онлайн-версии;
+  - перечислены темы, которые нужно отдельно подтвердить перед будущей реализацией: данные, форма, платежи, доступ, серверная часть, база данных, личный кабинет и юридические тексты.
+- Проверка:
+  - выполнен поиск по будущей онлайн-покупке, онлайн-оплате, данным, платежам, доступу, Telegram и подтверждению;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/future-online-purchase.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/032-feature-spec-future-online-purchase.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к переписыванию связанных user stories или technical specs под Taplink-формат.
+
+## 2026-05-19 - Удалить старые feature specs
+
+- План: `Work plans/Завершенные/033-udalit-starye-feature-specs.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/README.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - удалены старые feature specs предыдущей структуры;
+  - удален старый `spec/feature-specs-outline.md`;
+  - очищены `spec/feature-specs/README.md` и skill spec-map;
+  - обновлены технические навигационные specs, чтобы они не ссылались на удаленные feature specs как на актуальные источники;
+  - актуальные feature specs новой Taplink-версии оставлены без изменений.
+- Проверка:
+  - выполнен поиск по именам удаленных старых feature specs и старому outline;
+  - `rg` не нашел совпадений в актуальных specs, `.agents` и `Roadmap/project-roadmap.md`;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/course-catalog.md`
+  - `spec/feature-specs/course-detail-page.md`
+  - `spec/feature-specs/requests.md`
+  - `spec/feature-specs/doctor-profile.md`
+  - `spec/feature-specs/articles.md`
+  - `spec/feature-specs/local-data-storage.md`
+  - `spec/feature-specs/error-handling.md`
+  - `spec/feature-specs-outline.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/technical-specs/README.md`
+  - `spec/technical-specs/change-management.md`
+  - `Work plans/Завершенные/033-udalit-starye-feature-specs.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к переписыванию связанных user stories или technical specs под Taplink-формат.
+
+## 2026-05-19 - Feature spec медицинских ограничений текстов
+
+- План: `Work plans/Завершенные/031-feature-spec-medical-content-rules.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/medical-content-rules.md`
+- Сделано:
+  - создан feature spec для медицинских ограничений пользовательских текстов;
+  - зафиксированы допустимые и запрещенные медицинские формулировки;
+  - зафиксировано, что первая локальная версия не обещает выздоровление, не ставит диагнозы и не заменяет очную консультацию врача;
+  - зафиксировано, что публичные тексты не должны содержать персональные рекомендации, схемы лечения или инструкции по приему лекарств, добавок и процедур;
+  - описаны правила для короткого медицинского ограничения, острых симптомов и сомнительных формулировок.
+- Проверка:
+  - выполнен поиск по медицинским ограничениям, диагнозам, консультациям, схемам, симптомам, персональным рекомендациям и обещаниям результата;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/medical-content-rules.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/031-feature-spec-medical-content-rules.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/future-online-purchase.md`.
+
+## 2026-05-19 - Feature spec внешних ссылок
+
+- План: `Work plans/Завершенные/029-feature-spec-external-links.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/external-links.md`
+- Сделано:
+  - создан feature spec для внешних ссылок первой локальной версии;
+  - зафиксированы внешние кнопки `Telegram`, `WhatsApp`, `YouTube`, `Instagram`;
+  - описано активное и неактивное состояние внешней кнопки;
+  - зафиксировано, что точные URL и правило открытия ссылки должны быть подтверждены перед реализацией;
+  - зафиксировано, что внешние ссылки не добавляют аналитику, интеграции, авторизацию, оплату, формы или сбор данных.
+- Проверка:
+  - выполнен поиск по внешним кнопкам, URL, неактивному состоянию, аналитике и доступности;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/external-links.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/029-feature-spec-external-links.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/medical-content-rules.md`.
+
+## 2026-05-19 - Внешние кнопки видны без URL
+
+- План: `Work plans/Завершенные/030-vneshnie-knopki-vidny-bez-url.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/feature-specs/external-links.md`
+- Сделано:
+  - зафиксировано, что внешние кнопки `Telegram`, `WhatsApp`, `YouTube`, `Instagram` должны быть видны в интерфейсе первой версии;
+  - зафиксировано, что без подтвержденного URL внешняя кнопка остается видимой, но неактивной;
+  - сохранен запрет на рабочий внешний переход без подтвержденного URL;
+  - точные URL, правило открытия ссылки и визуальный стиль неактивного состояния оставлены на подтверждение перед реализацией.
+- Проверка:
+  - выполнен поиск по видимости кнопок, URL, неактивному состоянию и рабочим ссылкам;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/external-links.md`
+  - `Work plans/Завершенные/030-vneshnie-knopki-vidny-bez-url.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/medical-content-rules.md`.
+
+## 2026-05-19 - Уточнить общую Telegram-ссылку кнопки "Купить"
+
+- План: `Work plans/Завершенные/028-utochnit-obshchuyu-telegram-ssylku-kupit.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/courses-block.md`
+- Сделано:
+  - зафиксировано, что для всех курсов используется одна общая Telegram-ссылка на одного менеджера;
+  - зафиксировано, что при переходе в Telegram должно передаваться название выбранного курса;
+  - `purchaseTarget` убран из структуры отдельного курса;
+  - точная ссылка и технический способ передачи названия курса оставлены на подтверждение перед реализацией.
+- Проверка:
+  - выполнен поиск по общей ссылке, одному менеджеру, названию выбранного курса, `purchaseTarget` и техническому способу передачи;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/courses-block.md`
+  - `Work plans/Завершенные/028-utochnit-obshchuyu-telegram-ssylku-kupit.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/external-links.md`.
