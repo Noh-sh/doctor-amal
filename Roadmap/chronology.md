@@ -27,6 +27,37 @@
   - ...
 ```
 
+## 2026-05-19 - Упростить feature specs
+
+- План: `Work plans/Завершенные/034-uprostit-feature-specs.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/medical-content-rules.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - в `feature-specs/README.md` добавлено правило не повторять механически общие ограничения первой локальной версии в каждом feature spec;
+  - в `doctor-block.md` удалена связь блока `О докторе` с будущей онлайн-покупкой курса;
+  - ограничения блока `О докторе` сохранены и связаны с общей рамкой `global-spec.md`, `functional-map.md` и `medical-content-rules.md`.
+- Проверка:
+  - проверен diff по `spec/feature-specs/README.md` и `spec/feature-specs/doctor-block.md`;
+  - `git status --short --branch` выполнен.
+- Измененные файлы:
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `Work plans/Завершенные/034-uprostit-feature-specs.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перед реализацией первой Taplink-страницы подтвердить фактические тексты, URL внешних платформ, список курсов, цены и Telegram-ссылку менеджера.
+
 ## 2026-05-11 - Инициализация процесса работы
 
 - План: без отдельного завершенного плана

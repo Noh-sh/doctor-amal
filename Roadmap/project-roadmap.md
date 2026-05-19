@@ -49,6 +49,7 @@
 | 31 | Feature spec медицинских ограничений текстов | Завершено | `Work plans/Завершенные/031-feature-spec-medical-content-rules.md` | создан `medical-content-rules.md`: правила медицинских текстов без обещаний результата, диагностики, схем лечения и персональных рекомендаций |
 | 32 | Feature spec будущей онлайн-покупки | Завершено | `Work plans/Завершенные/032-feature-spec-future-online-purchase.md` | создан `future-online-purchase.md`: онлайн-покупка остается будущим направлением и не входит в первую локальную версию |
 | 33 | Удалить старые feature specs | Завершено | `Work plans/Завершенные/033-udalit-starye-feature-specs.md` | удалены feature specs предыдущей структуры и старый outline; текущие карты specs больше не направляют к удаленным feature specs |
+| 34 | Упростить feature specs | Завершено | `Work plans/Завершенные/034-uprostit-feature-specs.md` | убрана лишняя связь блока `О докторе` с будущей онлайн-покупкой; добавлен принцип не повторять общие ограничения в каждом feature spec полным списком |
 
 ## Текущий статус
 
@@ -76,6 +77,8 @@ Feature specs новой версии начаты:
 - `spec/feature-specs/future-online-purchase.md`.
 
 Все feature specs из текущего списка новой Taplink-версии созданы.
+
+Feature specs дополнительно упрощены: общие ограничения первой локальной версии не нужно механически повторять в каждом feature spec, а блок `О докторе` больше не связывается с будущей онлайн-покупкой курса.
 
 Следующий слой работы: переписать связанные user stories или technical specs под Taplink-формат.
 
