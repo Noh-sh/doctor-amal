@@ -6,7 +6,8 @@
 
 - `spec/global-spec.md` — обзор проекта, методология, основные компоненты, технические требования, цели и границы ответственности.
 - `spec/functional-map.md` — роли, пользовательские пути, точки взаимодействия, основные функции, границы первой локальной версии и будущие направления.
-- `spec/feature-specs-outline.md` — материал и структура для feature specs; использовать как вспомогательный контекст, а не как замену готовым feature specs.
+- `spec/feature-specs/README.md` — актуальная карта feature specs новой Taplink-версии и статус старых feature specs.
+- `spec/feature-specs-outline.md` — старый материал для feature specs предыдущей версии; не использовать как основание для новой Taplink-версии.
 
 ## Пользовательские сценарии
 
@@ -15,15 +16,30 @@
 - `spec/user-stories/core-user-stories.md` — основные сценарии: знакомство, поиск курса, страница курса, заявка на покупку, консультация по подбору, статьи, закрытые продажи.
 - `spec/user-stories/edge-case-stories.md` — исключительные ситуации: пустой поиск, несуществующий курс, черновик курса, ошибки формы, повторная отправка, пустые списки, ожидание медицинской помощи.
 
-## Feature specs
+## Feature specs новой Taplink-версии
 
-- `spec/feature-specs/course-catalog.md` — каталог курсов, поиск, фильтрация, карточки, статусы, пустые состояния.
-- `spec/feature-specs/course-detail-page.md` — страница курса, данные курса, статусы продаж, действия пользователя, похожие курсы, ошибки.
-- `spec/feature-specs/requests.md` — заявки на покупку и консультацию по подбору курса, поля, статусы, сохранение, сообщения, ошибки.
-- `spec/feature-specs/doctor-profile.md` — страница "О докторе", доверие, роль курсов, переходы, ограничения.
-- `spec/feature-specs/articles.md` — статьи и Telegram-материалы, темы, список, отдельная статья, связь с курсами, ограничения.
-- `spec/feature-specs/local-data-storage.md` — локальное хранение данных первой версии, временные форматы, ошибки хранения.
-- `spec/feature-specs/error-handling.md` — ошибки, подсказки, пустые состояния, статусы продаж, ошибки формы и недоступные сущности.
+- `spec/feature-specs/README.md` — карта актуальных feature specs новой Taplink-версии.
+- `spec/feature-specs/doctor-block.md` — блок `О докторе`, допустимые данные, действия пользователя и медицинские ограничения.
+
+Остальные новые feature specs будут добавляться по очереди:
+
+- `spec/feature-specs/courses-block.md` — блок `Курсы`.
+- `spec/feature-specs/course-purchase-link.md` — кнопка `Купить` и переход в Telegram к менеджеру.
+- `spec/feature-specs/external-links.md` — внешние кнопки и поведение ссылок.
+- `spec/feature-specs/medical-content-rules.md` — медицинские ограничения пользовательских текстов.
+- `spec/feature-specs/future-online-purchase.md` — будущая онлайн-покупка, не входящая в первую локальную версию.
+
+## Старые feature specs предыдущей версии
+
+Эти файлы относятся к предыдущей версии проекта с каталогом, отдельными страницами, заявками, статьями и локальным хранением. До переписывания они не являются актуальными требованиями новой Taplink-версии:
+
+- `spec/feature-specs/course-catalog.md`;
+- `spec/feature-specs/course-detail-page.md`;
+- `spec/feature-specs/requests.md`;
+- `spec/feature-specs/doctor-profile.md`;
+- `spec/feature-specs/articles.md`;
+- `spec/feature-specs/local-data-storage.md`;
+- `spec/feature-specs/error-handling.md`.
 
 ## Technical specs
 
@@ -39,12 +55,17 @@
 
 ## Как выбирать specs по задаче
 
-- Каталог курсов: `course-catalog.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.
-- Страница курса: `course-detail-page.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.
-- Заявки и формы: `requests.md`, `requests-and-validation.md`, `local-storage.md`, `data-model.md`, `error-handling.md`.
-- Страница "О докторе": `doctor-profile.md`, `routing-and-ui.md`, `functional-map.md`.
-- Статьи и Telegram-материалы: `articles.md`, `routing-and-ui.md`, `data-model.md`, `local-storage.md`.
-- Ошибки и пустые состояния: `error-handling.md`, `edge-case-stories.md`, `routing-and-ui.md`.
+- Блок "О докторе" новой Taplink-версии: `doctor-block.md`, `functional-map.md`, `global-spec.md`.
+- Блок "Курсы" новой Taplink-версии: `README.md`, `functional-map.md`, затем новый `courses-block.md`, когда он будет создан.
+- Кнопка `Купить`: `README.md`, `functional-map.md`, затем новый `course-purchase-link.md`, когда он будет создан.
+- Внешние кнопки: `README.md`, `functional-map.md`, затем новый `external-links.md`, когда он будет создан.
+- Медицинские ограничения текстов: `doctor-block.md`, `functional-map.md`, затем новый `medical-content-rules.md`, когда он будет создан.
+- Каталог курсов предыдущей версии: `course-catalog.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.
+- Страница курса предыдущей версии: `course-detail-page.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.
+- Заявки и формы предыдущей версии: `requests.md`, `requests-and-validation.md`, `local-storage.md`, `data-model.md`, `error-handling.md`.
+- Страница "О докторе" предыдущей версии: `doctor-profile.md`, `routing-and-ui.md`, `functional-map.md`.
+- Статьи и Telegram-материалы предыдущей версии: `articles.md`, `routing-and-ui.md`, `data-model.md`, `local-storage.md`.
+- Ошибки и пустые состояния предыдущей версии: `error-handling.md`, `edge-case-stories.md`, `routing-and-ui.md`.
 - Локальное хранение: `local-data-storage.md`, `local-storage.md`, `data-model.md`, `architecture.md`.
 - Архитектура и структура приложения: `architecture.md`, `routing-and-ui.md`, `technical-specs/README.md`, `change-management.md`.
 - Будущие возможности: `future-extension-plan.md`, но только для планирования, не для реализации текущей версии.

@@ -646,3 +646,86 @@
   - push: не выполнен
 - Следующий шаг:
   - остальные детали блока курсов раскрыть в feature specs.
+
+## 2026-05-19 - Feature specs README и блок "О докторе"
+
+- План: `Work plans/Завершенные/017-feature-specs-readme-i-doctor-block.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - создан `spec/feature-specs/README.md` с новой картой feature specs Taplink-версии;
+  - создан `spec/feature-specs/doctor-block.md` для блока `О докторе`;
+  - старые feature specs помечены как файлы предыдущей версии до переписывания;
+  - зафиксированы допустимые данные блока `О докторе` и медицинские ограничения;
+  - навигационная карта skill `doctor-amal-specs` обновлена под новую структуру feature specs.
+- Проверка:
+  - выполнен поиск по ключевым формулировкам в `README.md`, `doctor-block.md` и карте specs skill;
+  - проверено, что конкретная биография и реальные тексты не придуманы без подтверждения;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/017-feature-specs-readme-i-doctor-block.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/courses-block.md`.
+
+## 2026-05-19 - Убрать онлайн-консультации из doctor-block
+
+- План: `Work plans/Завершенные/018-ubrat-online-konsultacii-iz-doctor-block.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/functional-map.md`
+- Сделано:
+  - из будущих расширений блока `О докторе` убраны форма записи или связи и интеграция с онлайн-консультациями;
+  - будущая онлайн-версия в `doctor-block.md` привязана к покупке курса внутри проекта, оплате картой и доступу или переходу в закрытый Telegram-канал курса;
+  - первая локальная версия не расширена: консультации, формы и оплата не добавлены.
+- Проверка:
+  - выполнен поиск по онлайн-консультациям, онлайн-покупке и закрытому Telegram;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/doctor-block.md`
+  - `Work plans/Завершенные/018-ubrat-online-konsultacii-iz-doctor-block.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - продолжить `spec/feature-specs/courses-block.md`.
+
+## 2026-05-19 - Смягчить будущую онлайн-покупку в doctor-block
+
+- План: `Work plans/Завершенные/019-smyagchit-budushchuyu-online-pokupku-v-doctor-block.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/doctor-block.md`
+- Сделано:
+  - формулировка будущей онлайн-покупки курса смягчена;
+  - онлайн-покупка описана как возможное расширение при необходимости, а не как обязательная функция будущей онлайн-версии;
+  - условие отдельного подтверждения владельца проекта и обновления specs сохранено.
+- Проверка:
+  - выполнен поиск по формулировкам возможного расширения, обязательности и закрытого Telegram;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/doctor-block.md`
+  - `Work plans/Завершенные/019-smyagchit-budushchuyu-online-pokupku-v-doctor-block.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - продолжить `spec/feature-specs/courses-block.md`.
