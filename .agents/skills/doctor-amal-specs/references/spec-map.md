@@ -23,10 +23,10 @@
 - `spec/feature-specs/courses-block.md` — блок `Курсы`, структура курса, цена, раскрытие курса и ограничения первой версии.
 - `spec/feature-specs/course-purchase-link.md` — кнопка `Купить`, переход в Telegram к менеджеру, состояние без ссылки и ограничения без оплаты и сбора данных.
 - `spec/feature-specs/external-links.md` — внешние кнопки `Telegram`, `WhatsApp`, `YouTube`, `Instagram`, подтвержденные URL и состояние без ссылки.
+- `spec/feature-specs/medical-content-rules.md` — медицинские ограничения пользовательских текстов, запрет обещаний результата, диагностики, схем лечения и персональных рекомендаций.
 
 Остальные новые feature specs будут добавляться по очереди:
 
-- `spec/feature-specs/medical-content-rules.md` — медицинские ограничения пользовательских текстов.
 - `spec/feature-specs/future-online-purchase.md` — будущая онлайн-покупка, не входящая в первую локальную версию.
 
 ## Старые feature specs предыдущей версии
@@ -59,7 +59,7 @@
 - Блок "Курсы" новой Taplink-версии: `courses-block.md`, `functional-map.md`, `README.md`.
 - Кнопка `Купить`: `course-purchase-link.md`, `courses-block.md`, `functional-map.md`, `README.md`.
 - Внешние кнопки: `external-links.md`, `functional-map.md`, `README.md`.
-- Медицинские ограничения текстов: `doctor-block.md`, `functional-map.md`, затем новый `medical-content-rules.md`, когда он будет создан.
+- Медицинские ограничения текстов: `medical-content-rules.md`, `doctor-block.md`, `courses-block.md`, `functional-map.md`.
 - Каталог курсов предыдущей версии: `course-catalog.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.
 - Страница курса предыдущей версии: `course-detail-page.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.
 - Заявки и формы предыдущей версии: `requests.md`, `requests-and-validation.md`, `local-storage.md`, `data-model.md`, `error-handling.md`.

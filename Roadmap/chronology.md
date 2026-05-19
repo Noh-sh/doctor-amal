@@ -949,6 +949,40 @@
 - Следующий шаг:
   - перейти к `spec/feature-specs/external-links.md`.
 
+## 2026-05-19 - Feature spec медицинских ограничений текстов
+
+- План: `Work plans/Завершенные/031-feature-spec-medical-content-rules.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/medical-content-rules.md`
+- Сделано:
+  - создан feature spec для медицинских ограничений пользовательских текстов;
+  - зафиксированы допустимые и запрещенные медицинские формулировки;
+  - зафиксировано, что первая локальная версия не обещает выздоровление, не ставит диагнозы и не заменяет очную консультацию врача;
+  - зафиксировано, что публичные тексты не должны содержать персональные рекомендации, схемы лечения или инструкции по приему лекарств, добавок и процедур;
+  - описаны правила для короткого медицинского ограничения, острых симптомов и сомнительных формулировок.
+- Проверка:
+  - выполнен поиск по медицинским ограничениям, диагнозам, консультациям, схемам, симптомам, персональным рекомендациям и обещаниям результата;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/medical-content-rules.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/031-feature-spec-medical-content-rules.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/future-online-purchase.md`.
+
 ## 2026-05-19 - Feature spec внешних ссылок
 
 - План: `Work plans/Завершенные/029-feature-spec-external-links.md`
