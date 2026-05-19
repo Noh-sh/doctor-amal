@@ -949,6 +949,65 @@
 - Следующий шаг:
   - перейти к `spec/feature-specs/external-links.md`.
 
+## 2026-05-19 - Feature spec внешних ссылок
+
+- План: `Work plans/Завершенные/029-feature-spec-external-links.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/external-links.md`
+- Сделано:
+  - создан feature spec для внешних ссылок первой локальной версии;
+  - зафиксированы внешние кнопки `Telegram`, `WhatsApp`, `YouTube`, `Instagram`;
+  - описано активное и неактивное состояние внешней кнопки;
+  - зафиксировано, что точные URL и правило открытия ссылки должны быть подтверждены перед реализацией;
+  - зафиксировано, что внешние ссылки не добавляют аналитику, интеграции, авторизацию, оплату, формы или сбор данных.
+- Проверка:
+  - выполнен поиск по внешним кнопкам, URL, неактивному состоянию, аналитике и доступности;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/external-links.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/029-feature-spec-external-links.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/medical-content-rules.md`.
+
+## 2026-05-19 - Внешние кнопки видны без URL
+
+- План: `Work plans/Завершенные/030-vneshnie-knopki-vidny-bez-url.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/feature-specs/external-links.md`
+- Сделано:
+  - зафиксировано, что внешние кнопки `Telegram`, `WhatsApp`, `YouTube`, `Instagram` должны быть видны в интерфейсе первой версии;
+  - зафиксировано, что без подтвержденного URL внешняя кнопка остается видимой, но неактивной;
+  - сохранен запрет на рабочий внешний переход без подтвержденного URL;
+  - точные URL, правило открытия ссылки и визуальный стиль неактивного состояния оставлены на подтверждение перед реализацией.
+- Проверка:
+  - выполнен поиск по видимости кнопок, URL, неактивному состоянию и рабочим ссылкам;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/external-links.md`
+  - `Work plans/Завершенные/030-vneshnie-knopki-vidny-bez-url.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/medical-content-rules.md`.
+
 ## 2026-05-19 - Уточнить общую Telegram-ссылку кнопки "Купить"
 
 - План: `Work plans/Завершенные/028-utochnit-obshchuyu-telegram-ssylku-kupit.md`

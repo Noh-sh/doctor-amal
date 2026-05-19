@@ -52,8 +52,9 @@ Feature specs должны раскрывать эти требования по
 На текущем этапе созданы:
 
 - `doctor-block.md`;
-- `courses-block.md`.
-- `course-purchase-link.md`.
+- `courses-block.md`;
+- `course-purchase-link.md`;
+- `external-links.md`.
 
 Остальные файлы должны быть добавлены по очереди после отдельной работы.
 

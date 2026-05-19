@@ -44,6 +44,8 @@
 | 26 | Уточнить неактивную кнопку "Купить" | Завершено | `Work plans/Завершенные/026-utochnit-neaktivnuyu-knopku-kupit.md` | если Telegram-ссылка не задана, `Купить` можно показывать только как неактивную кнопку с понятным состоянием |
 | 27 | Feature spec кнопки "Купить" | Завершено | `Work plans/Завершенные/027-feature-spec-course-purchase-link.md` | создан `course-purchase-link.md`: кнопка `Купить` ведет в Telegram к менеджеру, без формы, оплаты, сбора данных и автоматического доступа |
 | 28 | Уточнить общую Telegram-ссылку кнопки "Купить" | Завершено | `Work plans/Завершенные/028-utochnit-obshchuyu-telegram-ssylku-kupit.md` | для всех курсов используется одна Telegram-ссылка на одного менеджера; при переходе передается название выбранного курса |
+| 29 | Feature spec внешних ссылок | Завершено | `Work plans/Завершенные/029-feature-spec-external-links.md` | создан `external-links.md`: внешние кнопки ведут только на подтвержденные URL, без аналитики, интеграций, авторизации, оплаты, форм и сбора данных |
+| 30 | Внешние кнопки видны без URL | Завершено | `Work plans/Завершенные/030-vneshnie-knopki-vidny-bez-url.md` | все внешние кнопки первой версии видны в интерфейсе; без подтвержденного URL кнопка остается видимой, но неактивной |
 
 ## Текущий статус
 
@@ -64,10 +66,11 @@ Feature specs новой версии начаты:
 
 - `spec/feature-specs/README.md`;
 - `spec/feature-specs/doctor-block.md`;
-- `spec/feature-specs/courses-block.md`.
-- `spec/feature-specs/course-purchase-link.md`.
+- `spec/feature-specs/courses-block.md`;
+- `spec/feature-specs/course-purchase-link.md`;
+- `spec/feature-specs/external-links.md`.
 
-Следующий feature spec: `spec/feature-specs/external-links.md`.
+Следующий feature spec: `spec/feature-specs/medical-content-rules.md`.
 
 Перед следующей продуктовой работой:
 
