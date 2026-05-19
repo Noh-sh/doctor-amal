@@ -21,10 +21,10 @@
 - `spec/feature-specs/README.md` — карта актуальных feature specs новой Taplink-версии.
 - `spec/feature-specs/doctor-block.md` — блок `О докторе`, допустимые данные, действия пользователя и медицинские ограничения.
 - `spec/feature-specs/courses-block.md` — блок `Курсы`, структура курса, цена, раскрытие курса и ограничения первой версии.
+- `spec/feature-specs/course-purchase-link.md` — кнопка `Купить`, переход в Telegram к менеджеру, состояние без ссылки и ограничения без оплаты и сбора данных.
 
 Остальные новые feature specs будут добавляться по очереди:
 
-- `spec/feature-specs/course-purchase-link.md` — кнопка `Купить` и переход в Telegram к менеджеру.
 - `spec/feature-specs/external-links.md` — внешние кнопки и поведение ссылок.
 - `spec/feature-specs/medical-content-rules.md` — медицинские ограничения пользовательских текстов.
 - `spec/feature-specs/future-online-purchase.md` — будущая онлайн-покупка, не входящая в первую локальную версию.
@@ -57,7 +57,7 @@
 
 - Блок "О докторе" новой Taplink-версии: `doctor-block.md`, `functional-map.md`, `global-spec.md`.
 - Блок "Курсы" новой Taplink-версии: `courses-block.md`, `functional-map.md`, `README.md`.
-- Кнопка `Купить`: `README.md`, `functional-map.md`, затем новый `course-purchase-link.md`, когда он будет создан.
+- Кнопка `Купить`: `course-purchase-link.md`, `courses-block.md`, `functional-map.md`, `README.md`.
 - Внешние кнопки: `README.md`, `functional-map.md`, затем новый `external-links.md`, когда он будет создан.
 - Медицинские ограничения текстов: `doctor-block.md`, `functional-map.md`, затем новый `medical-content-rules.md`, когда он будет создан.
 - Каталог курсов предыдущей версии: `course-catalog.md`, `routing-and-ui.md`, `data-model.md`, `core-user-stories.md`, `edge-case-stories.md`.

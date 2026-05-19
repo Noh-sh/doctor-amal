@@ -42,6 +42,8 @@
 | 24 | Выбор варианта раскрытия курса после проверки | Завершено | `Work plans/Завершенные/024-vybor-varianta-raskrytiya-kursa-posle-proverki.md` | варианты раскрытия курса оставлены до визуальной проверки: accordion, карточка под названием или modal без маршрута |
 | 25 | Уточнить медицинские ограничения описания курса | Завершено | `Work plans/Завершенные/025-utochnit-medicinskie-ogranicheniya-opisaniya-kursa.md` | ограничения относятся к публичному описанию курса; внутреннее содержание курса может включать схемы, добавки или процедуры после отдельного подтверждения |
 | 26 | Уточнить неактивную кнопку "Купить" | Завершено | `Work plans/Завершенные/026-utochnit-neaktivnuyu-knopku-kupit.md` | если Telegram-ссылка не задана, `Купить` можно показывать только как неактивную кнопку с понятным состоянием |
+| 27 | Feature spec кнопки "Купить" | Завершено | `Work plans/Завершенные/027-feature-spec-course-purchase-link.md` | создан `course-purchase-link.md`: кнопка `Купить` ведет в Telegram к менеджеру, без формы, оплаты, сбора данных и автоматического доступа |
+| 28 | Уточнить общую Telegram-ссылку кнопки "Купить" | Завершено | `Work plans/Завершенные/028-utochnit-obshchuyu-telegram-ssylku-kupit.md` | для всех курсов используется одна Telegram-ссылка на одного менеджера; при переходе передается название выбранного курса |
 
 ## Текущий статус
 
@@ -63,8 +65,9 @@ Feature specs новой версии начаты:
 - `spec/feature-specs/README.md`;
 - `spec/feature-specs/doctor-block.md`;
 - `spec/feature-specs/courses-block.md`.
+- `spec/feature-specs/course-purchase-link.md`.
 
-Следующий feature spec: `spec/feature-specs/course-purchase-link.md`.
+Следующий feature spec: `spec/feature-specs/external-links.md`.
 
 Перед следующей продуктовой работой:
 

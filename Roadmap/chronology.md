@@ -916,3 +916,63 @@
   - push: не выполнен
 - Следующий шаг:
   - перейти к `spec/feature-specs/course-purchase-link.md`.
+
+## 2026-05-19 - Feature spec кнопки "Купить"
+
+- План: `Work plans/Завершенные/027-feature-spec-course-purchase-link.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/course-purchase-link.md`
+- Сделано:
+  - создан отдельный feature spec для кнопки `Купить`;
+  - зафиксировано, что кнопка ведет в Telegram для связи с менеджером;
+  - зафиксировано, что первая локальная версия не оформляет покупку внутри проекта, не запускает оплату, не открывает форму и не собирает данные;
+  - описано неактивное состояние кнопки без подтвержденной Telegram-ссылки;
+  - обновлены `spec/feature-specs/README.md` и skill spec-map.
+- Проверка:
+  - выполнен поиск по кнопке `Купить`, Telegram, менеджеру, неактивному состоянию, формам, оплате, данным и закрытому Telegram-каналу;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/027-feature-spec-course-purchase-link.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/external-links.md`.
+
+## 2026-05-19 - Уточнить общую Telegram-ссылку кнопки "Купить"
+
+- План: `Work plans/Завершенные/028-utochnit-obshchuyu-telegram-ssylku-kupit.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/courses-block.md`
+- Сделано:
+  - зафиксировано, что для всех курсов используется одна общая Telegram-ссылка на одного менеджера;
+  - зафиксировано, что при переходе в Telegram должно передаваться название выбранного курса;
+  - `purchaseTarget` убран из структуры отдельного курса;
+  - точная ссылка и технический способ передачи названия курса оставлены на подтверждение перед реализацией.
+- Проверка:
+  - выполнен поиск по общей ссылке, одному менеджеру, названию выбранного курса, `purchaseTarget` и техническому способу передачи;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/courses-block.md`
+  - `Work plans/Завершенные/028-utochnit-obshchuyu-telegram-ssylku-kupit.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к `spec/feature-specs/external-links.md`.
