@@ -55,9 +55,10 @@ Feature specs должны раскрывать эти требования по
 - `courses-block.md`;
 - `course-purchase-link.md`;
 - `external-links.md`;
-- `medical-content-rules.md`.
+- `medical-content-rules.md`;
+- `future-online-purchase.md`.
 
-Остальные файлы должны быть добавлены по очереди после отдельной работы.
+Все feature specs из текущего списка созданы.
 
 ## Старые feature specs
 

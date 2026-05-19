@@ -949,6 +949,39 @@
 - Следующий шаг:
   - перейти к `spec/feature-specs/external-links.md`.
 
+## 2026-05-19 - Feature spec будущей онлайн-покупки
+
+- План: `Work plans/Завершенные/032-feature-spec-future-online-purchase.md`
+- Статус: завершено
+- Области: `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/future-online-purchase.md`
+- Сделано:
+  - создан feature spec для будущей онлайн-покупки;
+  - зафиксировано, что онлайн-покупка не входит в первую локальную версию;
+  - зафиксировано, что текущая кнопка `Купить` остается переходом в Telegram к менеджеру;
+  - зафиксировано, что будущая онлайн-покупка не является обязательной функцией будущей онлайн-версии;
+  - перечислены темы, которые нужно отдельно подтвердить перед будущей реализацией: данные, форма, платежи, доступ, серверная часть, база данных, личный кабинет и юридические тексты.
+- Проверка:
+  - выполнен поиск по будущей онлайн-покупке, онлайн-оплате, данным, платежам, доступу, Telegram и подтверждению;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/feature-specs/future-online-purchase.md`
+  - `spec/feature-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/032-feature-spec-future-online-purchase.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к переписыванию связанных user stories или technical specs под Taplink-формат.
+
 ## 2026-05-19 - Feature spec медицинских ограничений текстов
 
 - План: `Work plans/Завершенные/031-feature-spec-medical-content-rules.md`
