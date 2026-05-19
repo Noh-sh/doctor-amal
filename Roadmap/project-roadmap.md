@@ -35,6 +35,13 @@
 | 17 | Feature specs README и блок "О докторе" | Завершено | `Work plans/Завершенные/017-feature-specs-readme-i-doctor-block.md` | новая карта feature specs Taplink-версии, первый feature spec `doctor-block.md`, старые feature specs помечены как предыдущая версия |
 | 18 | Убрать онлайн-консультации из doctor-block | Завершено | `Work plans/Завершенные/018-ubrat-online-konsultacii-iz-doctor-block.md` | будущие расширения блока `О докторе` ограничены биографией, документами и подтвержденными материалами; онлайн-консультации убраны |
 | 19 | Смягчить будущую онлайн-покупку в doctor-block | Завершено | `Work plans/Завершенные/019-smyagchit-budushchuyu-online-pokupku-v-doctor-block.md` | онлайн-покупка курса описана как возможное расширение при необходимости, а не обязательная функция будущей онлайн-версии |
+| 20 | Feature spec блока "Курсы" | Завершено | `Work plans/Завершенные/020-feature-spec-courses-block.md` | создан `courses-block.md`: структура курса, цена, раскрытие курса, кнопка `Купить`, ограничения без оплаты и сбора данных |
+| 21 | Уточнить раскрытие курса по названию | Завершено | `Work plans/Завершенные/021-utochnit-raskrytie-kursa-po-nazvaniyu.md` | в блоке `Курсы` сначала видны названия, по нажатию раскрываются описание, цена и кнопка `Купить` |
+| 22 | Показывать цену в свернутом курсе | Завершено | `Work plans/Завершенные/022-pokazyvat-cenu-v-svernutom-kurse.md` | в свернутом курсе видны название и цена; после нажатия раскрываются описание, цена и `Купить` |
+| 23 | Убрать цену из раскрытого курса | Завершено | `Work plans/Завершенные/023-ubrat-cenu-iz-raskrytogo-kursa.md` | цена видна в свернутом курсе; после нажатия раскрываются описание и `Купить` без дублирования цены |
+| 24 | Выбор варианта раскрытия курса после проверки | Завершено | `Work plans/Завершенные/024-vybor-varianta-raskrytiya-kursa-posle-proverki.md` | варианты раскрытия курса оставлены до визуальной проверки: accordion, карточка под названием или modal без маршрута |
+| 25 | Уточнить медицинские ограничения описания курса | Завершено | `Work plans/Завершенные/025-utochnit-medicinskie-ogranicheniya-opisaniya-kursa.md` | ограничения относятся к публичному описанию курса; внутреннее содержание курса может включать схемы, добавки или процедуры после отдельного подтверждения |
+| 26 | Уточнить неактивную кнопку "Купить" | Завершено | `Work plans/Завершенные/026-utochnit-neaktivnuyu-knopku-kupit.md` | если Telegram-ссылка не задана, `Купить` можно показывать только как неактивную кнопку с понятным состоянием |
 
 ## Текущий статус
 
@@ -54,9 +61,10 @@
 Feature specs новой версии начаты:
 
 - `spec/feature-specs/README.md`;
-- `spec/feature-specs/doctor-block.md`.
+- `spec/feature-specs/doctor-block.md`;
+- `spec/feature-specs/courses-block.md`.
 
-Следующий feature spec: `spec/feature-specs/courses-block.md`.
+Следующий feature spec: `spec/feature-specs/course-purchase-link.md`.
 
 Перед следующей продуктовой работой:
 
