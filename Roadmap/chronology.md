@@ -58,6 +58,50 @@
 - Следующий шаг:
   - перед реализацией первой Taplink-страницы подтвердить фактические тексты, URL внешних платформ, список курсов, цены и Telegram-ссылку менеджера.
 
+## 2026-05-19 - User stories для Taplink-версии
+
+- План: `Work plans/Завершенные/035-user-stories-taplink.md`
+- Статус: завершено
+- Области: `Specs`, `User stories`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/external-links.md`
+  - `spec/feature-specs/medical-content-rules.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - `spec/user-stories/` переписаны под одну локальную Taplink-страницу;
+  - обновлены персоны пользователей первой версии;
+  - основные user stories теперь описывают первое знакомство, блок `О докторе`, блок `Курсы`, раскрытие курса, кнопку `Купить`, внешние платформы и медицинские ограничения;
+  - edge cases переписаны под неподтвержденные URL, отсутствие Telegram-ссылки менеджера, неподтвержденные курсы и цены, недоступность внешних платформ, ожидание оплаты внутри проекта, ожидание медицинской помощи и старого формата сайта;
+  - journey checklist обновлен для ручной проверки будущей Taplink-реализации;
+  - зафиксирован минимальный текст медицинского ограничения: `Информация на странице носит ознакомительный характер.`;
+  - карта specs skill обновлена под актуальные user stories.
+- Проверка:
+  - выполнен поиск старых сценариев каталога, поиска, фильтров, статей, заявок, внутренних маршрутов, `localStorage`, `salesStatus`, `courseId` и `articleId`;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/medical-content-rules.md`
+  - `spec/user-stories/README.md`
+  - `spec/user-stories/personas.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `spec/user-stories/edge-case-stories.md`
+  - `spec/user-stories/journey-checklist.md`
+  - `Work plans/Завершенные/035-user-stories-taplink.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - переписать technical specs под одну Taplink-страницу.
+
 ## 2026-05-11 - Инициализация процесса работы
 
 - План: без отдельного завершенного плана
