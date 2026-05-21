@@ -103,6 +103,110 @@
 - Следующий шаг:
   - переписать technical specs под одну Taplink-страницу.
 
+## 2026-05-20 - Technical specs для Taplink-версии
+
+- План: `Work plans/Завершенные/036-technical-specs-taplink.md`
+- Статус: завершено
+- Области: `Specs`, `Technical specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/external-links.md`
+  - `spec/feature-specs/medical-content-rules.md`
+  - `spec/feature-specs/future-online-purchase.md`
+  - `spec/user-stories/README.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `spec/user-stories/edge-case-stories.md`
+  - `spec/user-stories/journey-checklist.md`
+- Сделано:
+  - technical specs переписаны под Next.js + TypeScript и одну Taplink-страницу `/`;
+  - старая техническая структура с каталогом, статьями, заявками, `localStorage`, поиском, фильтрами и внутренними маршрутами убрана из требований первой версии;
+  - добавлены модели `TaplinkPageData`, `DoctorProfile`, `Course`, `ExternalLink`, `PurchaseSettings`;
+  - зафиксировано, что первая версия не собирает пользовательские данные и не использует пользовательский `localStorage`;
+  - checklist реализации переписан под блоки `О докторе`, `Курсы`, внешние кнопки и `Купить`;
+  - future extension plan переписан под будущую онлайн-версию с CMS/админкой и отдельно возможной онлайн-покупкой;
+  - карта specs skill обновлена под актуальные technical specs.
+- Проверка:
+  - выполнен поиск старых технических сценариев каталога, статей, заявок, `localStorage`, `salesStatus`, `courseId`, `articleId`, внутренних маршрутов, поиска и фильтров;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/technical-specs/README.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/local-storage.md`
+  - `spec/technical-specs/requests-and-validation.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/future-extension-plan.md`
+  - `spec/technical-specs/change-management.md`
+  - `Work plans/Завершенные/036-technical-specs-taplink.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - проверить согласованность всех specs перед реализацией или перейти к уточнению фактических данных первой версии.
+
+## 2026-05-21 - Закрыть серые зоны перед реализацией Taplink-страницы
+
+- План: `Work plans/Завершенные/037-zakryt-serye-zony-pered-realizaciey.md`
+- Статус: завершено
+- Области: `Specs`, `User stories`, `Technical specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/external-links.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `spec/user-stories/edge-case-stories.md`
+  - `spec/user-stories/journey-checklist.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/requests-and-validation.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - зафиксирован согласованный временный placeholder для фото доктора, если реальное фото еще не предоставлено;
+  - будущий онлайн-формат смягчен до возможности после отдельного подтверждения и обновления specs;
+  - закреплен accordion как способ раскрытия курса на одной странице;
+  - закреплена понятная 404-страница для неизвестных внутренних URL;
+  - кнопка `Купить` в первой версии зафиксирована как простая общая Telegram-ссылка менеджера без автоматической передачи названия курса;
+  - зафиксированы тексты неактивных состояний: `Ссылка будет добавлена позже` и `Покупка временно недоступна`.
+- Проверка:
+  - выполнен поиск по старым серым зонам: автоматическая передача названия курса, варианты раскрытия курса, redirect для неизвестных URL, обязательный будущий онлайн-формат;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `spec/functional-map.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/external-links.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `spec/user-stories/edge-case-stories.md`
+  - `spec/user-stories/journey-checklist.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/requests-and-validation.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/change-management.md`
+  - `Work plans/Завершенные/037-zakryt-serye-zony-pered-realizaciey.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - подтвердить фактические данные первой версии или перейти к реализации Taplink-страницы по обновленным specs.
+
 ## 2026-05-11 - Инициализация процесса работы
 
 - План: без отдельного завершенного плана
