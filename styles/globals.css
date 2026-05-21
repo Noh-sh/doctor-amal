@@ -143,6 +143,15 @@ h2 {
   gap: 8px;
 }
 
+.taplink-action-group summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.taplink-action-group summary::-webkit-details-marker {
+  display: none;
+}
+
 .taplink-button,
 .button {
   display: inline-flex;
@@ -160,7 +169,7 @@ h2 {
   text-align: center;
 }
 
-.taplink-button[aria-expanded="true"] {
+.taplink-action-group[open] > .taplink-button {
   background: var(--accent-dark);
 }
 
@@ -211,25 +220,8 @@ h2 {
   padding: 20px;
 }
 
-.taplink-panels {
-  display: grid;
-  gap: 12px;
-}
-
 .taplink-inline-panel {
   margin: 0;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 .section-heading {
