@@ -304,6 +304,37 @@
 - Следующий шаг:
   - зафиксировать реализацию commit после подтверждения пользователя.
 
+## 2026-05-21 - Исправить раскрытие блоков Taplink-страницы
+
+- План: `Work plans/Завершенные/040-ispravit-raskrytie-blokov-taplink.md`
+- Статус: завершено
+- Области: `Frontend`, `UI`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/technical-specs/routing-and-ui.md`
+- Сделано:
+  - раскрытие верхних блоков `О докторе` и `Курсы` переведено на native `details` / `summary`;
+  - из `TaplinkPage` убрана зависимость от клиентского `useState`;
+  - стили открытого состояния обновлены под атрибут `[open]`;
+  - поведение осталось одностраничным и не добавляет новые маршруты, формы, сбор данных или оплату.
+- Проверка:
+  - `npm run build` выполнен успешно после изменения раскрытия;
+  - `git diff --check` выполнен без ошибок;
+  - локально проверено, что главная страница содержит native `details` / `summary` для блоков `О докторе` и `Курсы`.
+- Измененные файлы:
+  - `components/taplink/TaplinkPage.tsx`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/040-ispravit-raskrytie-blokov-taplink.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: будет выполнен после этой проверки;
+  - push: будет выполнен после commit по подтверждению пользователя.
+- Следующий шаг:
+  - перейти к design map после фиксации текущего bugfix.
+
 ## 2026-05-11 - Инициализация процесса работы
 
 - План: без отдельного завершенного плана
