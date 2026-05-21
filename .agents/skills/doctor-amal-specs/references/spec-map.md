@@ -28,15 +28,15 @@
 
 ## Technical specs
 
-- `spec/technical-specs/README.md` — назначение technical specs, источники требований, обязательный стек и ограничения.
-- `spec/technical-specs/architecture.md` — тип приложения, структура Next.js, слои, обязательные страницы, бизнес-правила, offline-first, локализация, доступность.
-- `spec/technical-specs/routing-and-ui.md` — маршруты, навигация, страницы, состояния интерфейса, правила показа действий, UI-тексты, адаптивность.
-- `spec/technical-specs/data-model.md` — модели данных проекта, поля курсов, статей, заявок и связанные типы.
-- `spec/technical-specs/local-storage.md` — repository API, загрузка курсов и статей, сохранение заявок в localStorage, поврежденные данные, экспорт.
-- `spec/technical-specs/requests-and-validation.md` — типы заявок, инициализация формы, валидация, создание заявки, защита от повторной отправки, сообщения.
-- `spec/technical-specs/change-management.md` — порядок изменения проекта, какие specs читать перед изменением, рискованные изменения, regression checklist.
-- `spec/technical-specs/implementation-checklist.md` — чеклист реализации и приемочные сценарии.
-- `spec/technical-specs/future-extension-plan.md` — план будущего расширения; не использовать для текущей реализации без подтверждения пользователя.
+- `spec/technical-specs/README.md` — назначение technical specs первой Taplink-версии, источники требований, обязательный стек и ограничения.
+- `spec/technical-specs/architecture.md` — Next.js + TypeScript архитектура одной Taplink-страницы, слои, данные, Client/Server Components, ограничения.
+- `spec/technical-specs/routing-and-ui.md` — единственный публичный маршрут `/`, структура страницы, блоки, кнопки, раскрытие курса, UI-состояния и доступность.
+- `spec/technical-specs/data-model.md` — локальные модели `TaplinkPageData`, `DoctorProfile`, `Course`, `ExternalLink`, `PurchaseSettings`.
+- `spec/technical-specs/local-storage.md` — допустимые локальные данные проекта и запрет пользовательского `localStorage` в первой версии.
+- `spec/technical-specs/requests-and-validation.md` — отсутствие заявок и форм в первой версии, проверка локального контента и ссылок.
+- `spec/technical-specs/change-management.md` — порядок изменения Taplink-проекта, какие specs читать перед изменением, рискованные изменения и regression checklist.
+- `spec/technical-specs/implementation-checklist.md` — чеклист реализации и приемочные сценарии одной Taplink-страницы.
+- `spec/technical-specs/future-extension-plan.md` — план будущей онлайн-версии с CMS/админкой и возможной онлайн-покупкой; не использовать для текущей реализации без подтверждения пользователя.
 
 ## Как выбирать specs по задаче
 
@@ -46,8 +46,9 @@
 - Внешние кнопки: `external-links.md`, `functional-map.md`, `README.md`.
 - Медицинские ограничения текстов: `medical-content-rules.md`, `doctor-block.md`, `courses-block.md`, `functional-map.md`.
 - Будущая онлайн-покупка: `future-online-purchase.md`, `course-purchase-link.md`, `functional-map.md`, `global-spec.md`.
-- Архитектура и структура приложения: `architecture.md`, `routing-and-ui.md`, `technical-specs/README.md`, `change-management.md`.
-- Будущие возможности: `future-extension-plan.md`, но только для планирования, не для реализации текущей версии.
+- Архитектура и структура Next.js: `architecture.md`, `routing-and-ui.md`, `data-model.md`, `local-storage.md`, `implementation-checklist.md`.
+- Локальные данные проекта: `data-model.md`, `local-storage.md`, `requests-and-validation.md`.
+- Будущие CMS, админка, онлайн-версия или онлайн-покупка: `future-extension-plan.md`, `future-online-purchase.md`, но только для планирования, не для реализации текущей версии.
 
 ## Роли specs
 
