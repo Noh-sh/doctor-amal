@@ -207,6 +207,103 @@
 - Следующий шаг:
   - подтвердить фактические данные первой версии или перейти к реализации Taplink-страницы по обновленным specs.
 
+## 2026-05-21 - Реализация Taplink-страницы
+
+- План: `Work plans/Завершенные/038-realizaciya-taplink-stranicy.md`
+- Статус: завершено
+- Области: `Frontend`, `Данные`, `Маршруты`, `UI`, `Проверка`, `Документация`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/external-links.md`
+  - `spec/feature-specs/medical-content-rules.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `spec/user-stories/edge-case-stories.md`
+  - `spec/user-stories/journey-checklist.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/local-storage.md`
+  - `spec/technical-specs/requests-and-validation.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - старая пользовательская структура с `/doctor`, `/courses`, `/courses/:courseId`, `/request`, `/articles`, `/articles/:articleId` удалена из кода первой версии;
+  - удалены старые модели курсов, статей, заявок, продаж, repository для старых данных, форма заявки и пользовательский `localStorage`;
+  - добавлены модели `TaplinkPageData`, `DoctorProfile`, `Course`, `ExternalLink`, `PurchaseSettings`;
+  - добавлены локальные данные Taplink-страницы без неподтвержденных курсов, URL и биографических фактов;
+  - реализована главная страница `/` с placeholder фото, медицинским ограничением, кнопками первой версии, блоком `О докторе`, блоком `Курсы`, внешними кнопками и неактивными состояниями;
+  - блок `Курсы` реализован через accordion;
+  - 404 обновлена под одну Taplink-страницу и не раскрывает старую структуру проекта.
+- Проверка:
+  - `rg` по коду не нашел старые активные сценарии заявок, статей, `localStorage`, форм, продаж, старых маршрутов и старых моделей;
+  - `npm run build` выполнен успешно;
+  - Next.js build показал только маршруты `/` и `/_not-found`;
+  - dev server запущен на `http://localhost:3000`;
+  - HTTP-проверка показала `200 OK` для `/` и `404 Not Found` для `/courses`, `/request`, `/articles`;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `app/page.tsx`
+  - `app/layout.tsx`
+  - `app/not-found.tsx`
+  - `app/error.tsx`
+  - `app/loading.tsx`
+  - `components/taplink/DoctorPhoto.tsx`
+  - `components/taplink/ExternalButton.tsx`
+  - `components/taplink/CoursesBlock.tsx`
+  - `components/taplink/TaplinkPage.tsx`
+  - `data/taplink-page.ts`
+  - `domain/taplink.ts`
+  - `lib/links/externalLinks.ts`
+  - `styles/globals.css`
+  - удаленные файлы старой версии в `app/`, `components/`, `data/`, `domain/`, `lib/`
+  - `Work plans/Завершенные/038-realizaciya-taplink-stranicy.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - выполнить визуальную проверку страницы в браузере и затем commit после подтверждения пользователя.
+
+## 2026-05-21 - Временные placeholder-данные для просмотра UI
+
+- План: `Work plans/Завершенные/039-vremennye-placeholder-dannye-dlya-prosmotra.md`
+- Статус: завершено
+- Области: `Frontend`, `UI`, `Данные`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/feature-specs/doctor-block.md`
+  - `spec/feature-specs/courses-block.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/data-model.md`
+- Сделано:
+  - добавлены временные placeholder-данные для визуальной проверки блока `О докторе`;
+  - добавлены два временных placeholder-курса с текстом `Цена уточняется`;
+  - блоки `О докторе` и `Курсы` переделаны на inline-раскрытие прямо под соответствующей кнопкой;
+  - повторное нажатие на кнопку закрывает раскрытый блок;
+  - внешние кнопки остаются ниже раскрываемых внутренних блоков.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `data/taplink-page.ts`
+  - `components/taplink/TaplinkPage.tsx`
+  - `components/taplink/CoursesBlock.tsx`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/039-vremennye-placeholder-dannye-dlya-prosmotra.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - зафиксировать реализацию commit после подтверждения пользователя.
+
 ## 2026-05-11 - Инициализация процесса работы
 
 - План: без отдельного завершенного плана
