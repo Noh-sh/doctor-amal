@@ -36,18 +36,19 @@ export function TaplinkPage({ data }: TaplinkPageProps) {
         <div className="taplink-hero-copy">
           <h1 id="page-title">{data.doctor.displayName}</h1>
           {data.doctor.shortIntro ? <p className="lead">{data.doctor.shortIntro}</p> : null}
-          <p className="medical-notice">{data.medicalNotice}</p>
         </div>
       </section>
 
       <div className="taplink-actions" aria-label="Кнопки первой версии">
         <details className="taplink-action-group">
-          <summary className="taplink-button">О докторе</summary>
+          <summary className="taplink-button taplink-button-internal">
+            <span className="button-main">
+              <span className="button-icon button-icon-doctor" aria-hidden="true" />
+              <span>О докторе</span>
+            </span>
+          </summary>
           <section className="taplink-section taplink-inline-panel" id="doctor-panel" aria-labelledby="doctor-title">
-            <div className="section-heading">
-              <p className="eyebrow">О докторе</p>
-              <h2 id="doctor-title">Информация о докторе</h2>
-            </div>
+            <h2 className="visually-hidden" id="doctor-title">О докторе</h2>
             {hasDoctorDetails ? (
               <div className="doctor-details">
                 <TextList items={data.doctor.education} />
@@ -63,7 +64,12 @@ export function TaplinkPage({ data }: TaplinkPageProps) {
         </details>
 
         <details className="taplink-action-group">
-          <summary className="taplink-button">Курсы</summary>
+          <summary className="taplink-button taplink-button-internal">
+            <span className="button-main">
+              <span className="button-icon button-icon-courses" aria-hidden="true" />
+              <span>Курсы</span>
+            </span>
+          </summary>
           <CoursesBlock courses={data.courses} panelId="courses-panel" purchase={data.purchase} />
         </details>
 
@@ -71,6 +77,8 @@ export function TaplinkPage({ data }: TaplinkPageProps) {
           <ExternalButton key={link.platform} link={link} />
         ))}
       </div>
+
+      <p className="medical-notice medical-notice-bottom">{data.medicalNotice}</p>
     </div>
   );
 }

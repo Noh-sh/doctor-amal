@@ -1,15 +1,28 @@
 :root {
   color-scheme: light;
-  --background: #f6f4ef;
+  --background: #f5fbf4;
   --surface: #ffffff;
-  --surface-muted: #ebe7df;
-  --text: #24211d;
-  --muted: #6b6258;
-  --line: #d9d3c9;
-  --accent: #2f6659;
-  --accent-dark: #234d43;
-  --disabled: #8f877d;
-  --shadow: 0 18px 50px rgba(36, 33, 29, 0.1);
+  --surface-soft: #f9fff8;
+  --surface-muted: #e8f1e4;
+  --text: #111816;
+  --muted: #5e6b63;
+  --line: rgba(48, 93, 58, 0.16);
+  --line-strong: rgba(48, 93, 58, 0.28);
+  --accent: #2f8a42;
+  --accent-dark: #1c5a2d;
+  --accent-soft: #e2f3dd;
+  --accent-light: #a9daa3;
+  --secondary: #111816;
+  --secondary-soft: #eef7ea;
+  --disabled: #6e786f;
+  --telegram: #2aabee;
+  --whatsapp: #25d366;
+  --youtube: #ff0033;
+  --instagram: #c13584;
+  --glass: rgba(255, 255, 255, 0.68);
+  --glass-strong: rgba(255, 255, 255, 0.84);
+  --shadow: 0 26px 70px rgba(17, 24, 22, 0.12);
+  --shadow-soft: 0 16px 36px rgba(17, 24, 22, 0.09);
 }
 
 * {
@@ -22,10 +35,47 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
+  background:
+    radial-gradient(circle at 18% 7%, rgba(169, 218, 163, 0.72), transparent 26%),
+    radial-gradient(circle at 85% 16%, rgba(47, 138, 66, 0.16), transparent 28%),
+    radial-gradient(circle at 76% 88%, rgba(169, 218, 163, 0.54), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, var(--background) 44%, #eef8ec 100%);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 18% 20%, rgba(47, 138, 66, 0.12) 0 7%, transparent 8%),
+    radial-gradient(ellipse at 24% 26%, rgba(47, 138, 66, 0.1) 0 5%, transparent 6%),
+    radial-gradient(ellipse at 12% 30%, rgba(47, 138, 66, 0.09) 0 5%, transparent 6%),
+    radial-gradient(ellipse at 90% 64%, rgba(47, 138, 66, 0.1) 0 8%, transparent 9%),
+    radial-gradient(ellipse at 84% 72%, rgba(47, 138, 66, 0.08) 0 6%, transparent 7%);
+  opacity: 0.9;
+}
+
+body::after {
+  width: 210px;
+  height: 210px;
+  right: -72px;
+  top: 52px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(47, 138, 66, 0.14) 0 11%, transparent 12%),
+    radial-gradient(circle at 31% 40%, rgba(47, 138, 66, 0.12) 0 13%, transparent 14%),
+    radial-gradient(circle at 66% 42%, rgba(47, 138, 66, 0.12) 0 13%, transparent 14%),
+    radial-gradient(circle at 48% 62%, rgba(47, 138, 66, 0.1) 0 16%, transparent 17%);
+  filter: blur(0.2px);
 }
 
 a {
@@ -58,29 +108,42 @@ h3 {
 
 h1 {
   font-size: 40px;
+  font-weight: 800;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .site-main {
-  width: min(680px, calc(100% - 32px));
+  width: min(520px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 28px 0 48px;
+  padding: 26px 0 46px;
 }
 
 .taplink-page,
 .page-section {
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 
 .taplink-hero {
   display: grid;
-  gap: 18px;
+  gap: 14px;
   justify-items: center;
   text-align: center;
+  padding: 8px 0 4px;
 }
 
 .taplink-hero-copy {
@@ -91,9 +154,9 @@ h2 {
 
 .doctor-photo-image,
 .doctor-photo-placeholder {
-  width: 156px;
-  height: 156px;
-  border: 1px solid var(--line);
+  width: 248px;
+  height: 248px;
+  border: 8px solid rgba(255, 255, 255, 0.92);
   border-radius: 50%;
   box-shadow: var(--shadow);
 }
@@ -106,10 +169,14 @@ h2 {
 .doctor-photo-placeholder {
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, #ffffff, var(--surface-muted));
+  background:
+    radial-gradient(circle at 50% 32%, #ffffff 0 18%, rgba(169, 218, 163, 0.74) 19% 36%, rgba(47, 138, 66, 0.13) 37% 100%);
   color: var(--muted);
   padding: 18px;
   text-align: center;
+  outline: 1px solid rgba(47, 138, 66, 0.18);
+  outline-offset: -9px;
+  backdrop-filter: blur(16px);
 }
 
 .doctor-photo-placeholder span {
@@ -121,31 +188,42 @@ h2 {
 
 .lead {
   color: var(--muted);
-  font-size: 18px;
+  font-size: 17px;
+  max-width: 460px;
 }
 
 .medical-notice {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(47, 138, 66, 0.16);
   border-radius: 8px;
-  background: var(--surface);
+  background: var(--glass);
   color: var(--muted);
-  padding: 10px 12px;
-  font-size: 14px;
+  padding: 9px 14px;
+  font-size: 13px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+.medical-notice-bottom {
+  justify-self: center;
+  width: 100%;
+  text-align: center;
 }
 
 .taplink-actions {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .taplink-action-group {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 .taplink-action-group summary {
   cursor: pointer;
   list-style: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .taplink-action-group summary::-webkit-details-marker {
@@ -156,28 +234,270 @@ h2 {
 .button {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 48px;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 46px;
   width: 100%;
-  border: 1px solid var(--accent);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.74);
   border-radius: 8px;
-  background: var(--accent);
-  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.56));
+  color: var(--text);
   font: inherit;
   font-weight: 700;
-  padding: 10px 16px;
+  padding: 9px 13px;
+  text-align: left;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px) saturate(150%);
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.taplink-button::before,
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 1px auto auto 12px;
+  width: 46%;
+  height: 1px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 0.75;
+}
+
+.button-main {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+
+.button-icon,
+.course-title-icon {
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(47, 138, 66, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.button-icon::before,
+.button-icon::after,
+.course-title-icon::before,
+.course-title-icon::after {
+  content: "";
+  position: absolute;
+}
+
+.button-icon-doctor::before {
+  width: 12px;
+  height: 15px;
+  border-radius: 12px 12px 12px 3px;
+  background: var(--accent);
+  transform: rotate(38deg);
+}
+
+.button-icon-doctor::after {
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  transform: rotate(72deg);
+}
+
+.button-icon-courses::before,
+.course-title-icon::before {
+  width: 13px;
+  height: 15px;
+  border: 2px solid var(--accent);
+  border-left-width: 4px;
+  border-radius: 3px;
+}
+
+.button-icon-courses::after,
+.course-title-icon::after {
+  width: 8px;
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 4px 0 var(--accent);
+  transform: translateX(2px);
+}
+
+.button-icon-telegram {
+  border-color: rgba(42, 171, 238, 0.24);
+}
+
+.button-icon-telegram::before {
+  border-bottom: 9px solid transparent;
+  border-left: 17px solid var(--telegram);
+  border-top: 9px solid transparent;
+  transform: translateX(2px) rotate(-10deg);
+}
+
+.button-icon-whatsapp {
+  border-color: rgba(37, 211, 102, 0.26);
+}
+
+.button-icon-whatsapp::before {
+  width: 15px;
+  height: 15px;
+  border: 3px solid var(--whatsapp);
+  border-radius: 50%;
+}
+
+.button-icon-whatsapp::after {
+  width: 7px;
+  height: 7px;
+  border-bottom: 3px solid var(--whatsapp);
+  border-left: 3px solid var(--whatsapp);
+  transform: translate(-4px, 7px) rotate(-18deg);
+}
+
+.button-icon-youtube {
+  border-color: rgba(255, 0, 51, 0.24);
+}
+
+.button-icon-youtube::before {
+  width: 18px;
+  height: 13px;
+  border-radius: 5px;
+  background: var(--youtube);
+}
+
+.button-icon-youtube::after {
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid #ffffff;
+  border-top: 4px solid transparent;
+  transform: translateX(1px);
+}
+
+.button-icon-instagram {
+  border-color: rgba(193, 53, 132, 0.22);
+}
+
+.button-icon-instagram::before {
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--instagram);
+  border-radius: 5px;
+}
+
+.button-icon-instagram::after {
+  width: 5px;
+  height: 5px;
+  border: 2px solid var(--instagram);
+  border-radius: 50%;
+}
+
+.taplink-button::after {
+  content: ">";
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1;
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.taplink-action-group[open] > .taplink-button::after {
+  transform: rotate(90deg);
+}
+
+.taplink-button-internal {
+  border-color: rgba(47, 138, 66, 0.22);
+  background:
+    linear-gradient(135deg, rgba(226, 243, 221, 0.88), rgba(255, 255, 255, 0.62));
+  color: var(--accent-dark);
+}
+
+.taplink-button-external {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.taplink-button-telegram,
+.taplink-button-whatsapp {
+  border-left: 4px solid var(--telegram);
+}
+
+.taplink-button-whatsapp {
+  border-left-color: var(--whatsapp);
+}
+
+.taplink-button-youtube,
+.taplink-button-instagram {
+  border-left: 4px solid var(--youtube);
+}
+
+.taplink-button-instagram {
+  border-left-color: var(--instagram);
+}
+
+.button {
+  justify-content: center;
+  min-height: 44px;
+  background: var(--accent);
+  color: #ffffff;
   text-align: center;
 }
 
+.button::after {
+  content: none;
+}
+
 .taplink-action-group[open] > .taplink-button {
-  background: var(--accent-dark);
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
 }
 
 .taplink-button:hover,
 .button:hover {
-  background: var(--accent-dark);
+  border-color: rgba(47, 138, 66, 0.34);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(226, 243, 221, 0.78));
   color: #ffffff;
   text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 22px 45px rgba(31, 90, 45, 0.15);
+}
+
+.taplink-button:hover {
+  color: var(--accent-dark);
+}
+
+.button:hover {
+  background: var(--accent-dark);
+  color: #ffffff;
+}
+
+.taplink-button:hover .button-icon {
+  transform: translateX(2px) scale(1.03);
+}
+
+.taplink-button:hover::after,
+.taplink-action-group[open] > .taplink-button::after {
+  color: #ffffff;
+}
+
+.taplink-action-group[open] > .taplink-button:hover {
+  background: var(--accent-dark);
+  color: #ffffff;
 }
 
 .taplink-button-disabled,
@@ -185,13 +505,33 @@ h2 {
 .button:disabled {
   cursor: not-allowed;
   border-color: var(--line);
-  background: var(--surface-muted);
+  background: rgba(255, 255, 255, 0.62);
   color: var(--disabled);
+  box-shadow: none;
+  transform: none;
 }
 
 .taplink-button-disabled {
-  flex-direction: column;
+  align-items: flex-start;
   gap: 2px;
+}
+
+.taplink-button-disabled::after {
+  content: none;
+}
+
+.taplink-button-disabled:hover,
+.button-disabled:hover,
+.button:disabled:hover {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--disabled);
+  box-shadow: none;
+  transform: none;
+}
+
+.taplink-button-disabled:hover .button-icon {
+  transform: none;
 }
 
 .taplink-button-disabled small {
@@ -214,14 +554,17 @@ h2 {
 .notice {
   display: grid;
   gap: 12px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.74);
   border-radius: 8px;
-  background: var(--surface);
-  padding: 20px;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.86), rgba(246, 255, 244, 0.66));
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(20px) saturate(145%);
 }
 
 .taplink-inline-panel {
-  margin: 0;
+  margin: 2px 0 4px;
 }
 
 .section-heading {
@@ -244,7 +587,7 @@ h2 {
 
 .doctor-details {
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 .plain-list {
@@ -253,30 +596,64 @@ h2 {
 }
 
 .plain-list li + li {
-  margin-top: 6px;
+  margin-top: 4px;
+}
+
+.plain-list li::marker {
+  color: var(--accent);
 }
 
 .course-accordion {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .course-item {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(47, 138, 66, 0.15);
   border-radius: 8px;
-  background: #fbfaf7;
+  background: rgba(255, 255, 255, 0.62);
   overflow: hidden;
+  backdrop-filter: blur(14px);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.course-item[open] {
+  border-color: rgba(47, 138, 66, 0.32);
+  box-shadow: 0 16px 32px rgba(31, 90, 45, 0.1);
 }
 
 .course-item summary {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   cursor: pointer;
-  min-height: 56px;
-  padding: 14px 16px;
+  min-height: 50px;
+  padding: 10px 12px;
   font-weight: 700;
+  list-style: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.course-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  text-transform: uppercase;
+}
+
+.course-title-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.course-item summary::-webkit-details-marker {
+  display: none;
 }
 
 .course-item summary:focus-visible {
@@ -285,15 +662,19 @@ h2 {
 }
 
 .course-item summary strong {
-  color: var(--accent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  padding: 4px 8px;
+  font-size: 13px;
   white-space: nowrap;
 }
 
 .course-item-body {
   display: grid;
-  gap: 14px;
+  gap: 12px;
   border-top: 1px solid var(--line);
-  padding: 16px;
+  padding: 13px 12px 12px;
 }
 
 .actions {
@@ -320,7 +701,7 @@ h2 {
 @media (max-width: 430px) {
   .site-main {
     width: min(100% - 24px, 680px);
-    padding-top: 20px;
+    padding-top: 24px;
   }
 
   h1 {
@@ -329,8 +710,14 @@ h2 {
 
   .doctor-photo-image,
   .doctor-photo-placeholder {
-    width: 136px;
-    height: 136px;
+    width: min(72vw, 250px);
+    height: min(72vw, 250px);
+  }
+
+  .taplink-button,
+  .button {
+    min-height: 46px;
+    padding-inline: 12px;
   }
 
   .course-item summary {
