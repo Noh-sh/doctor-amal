@@ -27,10 +27,7 @@ export function CoursesBlock({ courses, panelId, purchase }: CoursesBlockProps) 
   if (courses.length === 0) {
     return (
       <section className="taplink-section" id={panelId} aria-labelledby="courses-title">
-        <div className="section-heading">
-          <p className="eyebrow">Курсы</p>
-          <h2 id="courses-title">Курсы будут добавлены после подтверждения</h2>
-        </div>
+        <h2 className="visually-hidden" id="courses-title">Курсы</h2>
         <p className="muted">Список курсов, описания и цены не заполняются без подтвержденных данных.</p>
       </section>
     );
@@ -38,15 +35,15 @@ export function CoursesBlock({ courses, panelId, purchase }: CoursesBlockProps) 
 
   return (
     <section className="taplink-section" id={panelId} aria-labelledby="courses-title">
-      <div className="section-heading">
-        <p className="eyebrow">Курсы</p>
-        <h2 id="courses-title">Курсы</h2>
-      </div>
+      <h2 className="visually-hidden" id="courses-title">Курсы</h2>
       <div className="course-accordion">
         {courses.map((course) => (
           <details className="course-item" key={course.id}>
             <summary>
-              <span>{course.title}</span>
+              <span className="course-title">
+                <span className="course-title-icon" aria-hidden="true" />
+                <span>{course.title}</span>
+              </span>
               <strong>{course.price.displayText}</strong>
             </summary>
             <div className="course-item-body">

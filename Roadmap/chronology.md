@@ -335,6 +335,102 @@
 - Следующий шаг:
   - перейти к design map после фиксации текущего bugfix.
 
+## 2026-05-23 - Тестовая design map
+
+- План: `Work plans/Завершенные/041-test-design-map.md`
+- Статус: завершено
+- Области: `Дизайн`, `Документация`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - создана `Design map/test-design-map.md`;
+  - зафиксированы границы тестирования визуальных решений до переноса в настоящий дизайн;
+  - добавлены проверочные состояния для первого блока, кнопок, блоков `О докторе`, `Курсы`, пустых и ошибочных состояний;
+  - добавлены проверочные ширины 360px, 390px, 768px, 1024px и 1440px;
+  - зафиксировано правило переноса в настоящий дизайн только после ручного подтверждения владельца проекта.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - ручная проверка подтвердила, что документ не добавляет новые маршруты, формы, оплату, сбор данных, медицинские сценарии или неподтвержденные факты.
+- Измененные файлы:
+  - `Design map/test-design-map.md`
+  - `Work plans/Завершенные/041-test-design-map.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - создать отдельный план на визуальный тест UI и проверить один или несколько вариантов оформления без изменения specs.
+
+## 2026-05-27 - Реальный визуальный дизайн Taplink-страницы
+
+- План: `Work plans/Завершенные/042-realnyy-vizualnyy-dizayn.md`
+- Статус: завершено
+- Области: `Frontend`, `UI`, `Дизайн`, `Данные`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `Design map/test-design-map.md`
+  - `Design map/design-rules.md`
+- Сделано:
+  - тестовый визуальный вариант перенесен в реальный дизайн первой Taplink-страницы;
+  - удален кодовый маркер `taplink-page-design-test`;
+  - подключено фото `public/images/doctor-amal-avatar.jpg`;
+  - имя изменено на `Dr.Amal`;
+  - медицинское предупреждение перенесено вниз страницы;
+  - заполнен блок `О докторе` подтвержденным смягченным текстом;
+  - добавлены курсы `Эко дом` и `Витамины и минералы` с ценой `15 000 руб.`;
+  - UI сделан компактнее, добавлены иконки, hover-состояния, uppercase названий курсов и зеленые маркеры списка.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - production build показывает только маршруты `/` и `/_not-found`.
+- Измененные файлы:
+  - `components/taplink/CoursesBlock.tsx`
+  - `components/taplink/ExternalButton.tsx`
+  - `components/taplink/TaplinkPage.tsx`
+  - `data/taplink-page.ts`
+  - `public/images/doctor-amal-avatar.jpg`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/042-realnyy-vizualnyy-dizayn.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - подготовить specs для Supabase как источника контента страницы.
+
+## 2026-05-27 - UI design rules
+
+- План: `Work plans/Завершенные/043-ui-design-rules.md`
+- Статус: завершено
+- Области: `Дизайн`, `Документация`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `Design map/test-design-map.md`
+- Сделано:
+  - создан `Design map/design-rules.md`;
+  - зафиксированы утвержденные UI-правила первой Taplink-версии;
+  - описаны палитра, фон, шрифт, avatar, кнопки, liquid glass, иконки, блоки `О докторе` и `Курсы`, mobile-first правила;
+  - зафиксировано, что перед UI-изменениями нужно читать `design-rules.md`.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - ручная проверка подтвердила, что документ не добавляет новые маршруты, формы, оплату, заявки, сбор данных или медицинские обещания.
+- Измененные файлы:
+  - `Design map/design-rules.md`
+  - `Work plans/Завершенные/043-ui-design-rules.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - использовать `Design map/design-rules.md` как источник UI-правил перед следующими визуальными изменениями.
+
 ## 2026-05-11 - Инициализация процесса работы
 
 - План: без отдельного завершенного плана
