@@ -1,51 +1,3 @@
-# Technical Spec: Подготовка Supabase Dashboard
-
-## Цель
-
-Дать пошаговую инструкцию для подготовки online Supabase project перед подключением Next.js к Supabase.
-
-Этот документ не подключает Supabase к коду приложения. Он нужен, чтобы создать таблицы, RLS policies и начальные записи в Supabase Dashboard или перенести тот же SQL в Supabase CLI migration.
-
-## Перед началом
-
-Нужно открыть:
-
-- Supabase Dashboard;
-- новый или выбранный project;
-- раздел SQL Editor.
-
-Локальный Supabase через Docker на этом этапе не используется.
-
-Supabase CLI допускается для применения migration к online project, если структура базы должна храниться в git.
-
-## Что будет создано
-
-SQL создает только таблицы контента:
-
-- `doctor_profile`;
-- `external_links`;
-- `courses`;
-- `purchase_settings`;
-- `page_settings`.
-
-SQL не создает:
-
-- заявки;
-- пользователей;
-- auth покупателей;
-- заказы;
-- платежи;
-- медицинские анкеты;
-- аналитику;
-- админку приложения.
-
-## SQL для Supabase Dashboard
-
-Вставить этот SQL в Supabase Dashboard -> SQL Editor и выполнить.
-
-Если используется Supabase CLI, этот же SQL должен находиться в `supabase/migrations/`.
-
-```sql
 create table if not exists public.doctor_profile (
   id text primary key default 'main',
   display_name text not null,
@@ -187,15 +139,7 @@ begin
       using (is_published = true);
   end if;
 end $$;
-```
 
-## Seed текущего контента
-
-Этот seed переносит текущие подтвержденные данные из `data/taplink-page.ts`.
-
-Описание курсов пока остается временным текстом, потому что финальные описания еще не подтверждены владельцем проекта.
-
-```sql
 insert into public.doctor_profile (
   id,
   display_name,
@@ -335,80 +279,3 @@ insert into public.purchase_settings (
   manager_telegram_url = excluded.manager_telegram_url,
   inactive_text = excluded.inactive_text,
   updated_at = now();
-```
-
-## Проверочные запросы
-
-После выполнения schema и seed можно выполнить эти запросы в SQL Editor.
-
-```sql
-select id, display_name, is_published
-from public.doctor_profile;
-
-select platform, label, url, is_enabled, sort_order
-from public.external_links
-order by sort_order;
-
-select slug, title, price_display_text, price_is_confirmed, is_active, sort_order
-from public.courses
-order by sort_order;
-
-select id, manager_telegram_url, inactive_text
-from public.purchase_settings;
-
-select id, medical_notice, is_published
-from public.page_settings;
-```
-
-Ожидаемый смысл:
-
-- профиль `main` опубликован;
-- внешние ссылки видны, но пока без URL и неактивны;
-- два курса активны и имеют цену `15 000 руб.`;
-- Telegram-ссылка менеджера пока `null`;
-- медицинское ограничение опубликовано.
-
-## Где взять ключи после подготовки
-
-После выполнения SQL нужно открыть Supabase Dashboard:
-
-1. Project Settings.
-2. API Keys или Data API.
-3. Скопировать Project URL.
-4. Скопировать publishable key.
-
-Для локальной разработки позже будут нужны:
-
-```env
-DOCTOR_SUPABASE_URL=...
-DOCTOR_SUPABASE_PUBLISHABLE_KEY=...
-```
-
-Если в dashboard показан legacy anon key:
-
-```env
-DOCTOR_SUPABASE_URL=...
-DOCTOR_SUPABASE_ANON_KEY=...
-```
-
-Secret key или service role key на этом этапе не нужен и не должен использоваться кодом приложения.
-
-Если для обучения нужно сохранить service role key локально, использовать только server-side имя без `NEXT_PUBLIC_`:
-
-```env
-DOCTOR_SUPABASE_SERVICE_ROLE_KEY=
-```
-
-Реальный service role key нельзя отправлять в чат, коммитить в git или использовать во frontend-коде.
-
-## Готовность к следующему плану
-
-Можно переходить к подключению кода, когда:
-
-- project в Supabase создан;
-- SQL для таблиц выполнен;
-- seed выполнен;
-- RLS включен;
-- проверочные запросы показывают ожидаемые данные;
-- Project URL и публичный ключ готовы;
-- `.env.local` еще не коммитится и будет создан только на этапе подключения кода.

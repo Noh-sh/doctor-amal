@@ -64,6 +64,7 @@
 | 46 | Подготовка online Supabase Dashboard | Завершено | `Work plans/Завершенные/046-supabase-dashboard-setup.md` | инструкция и SQL для таблиц контента, RLS policies, seed текущего контента и проверочных запросов |
 | 47 | Env и безопасный источник данных Supabase | Завершено | `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md` | `.env.local`, `.env.example`, data-provider Supabase с fallback на локальные данные |
 | 48 | Проектные env-названия Supabase | Завершено | `Work plans/Завершенные/048-project-env-names-for-supabase.md` | переименование env в `DOCTOR_SUPABASE_*`, описание service role как server-only переменной |
+| 49 | Supabase CLI migration для таблиц контента | Завершено | `Work plans/Завершенные/049-supabase-cli-migration.md` | migration для таблиц контента, RLS policies и seed; `supabase login`, `link`, `db push` |
 
 ## Текущий статус
 
@@ -119,6 +120,8 @@ Specs Supabase content source зафиксированы в `spec/technical-spec
 Кодовый слой Supabase готовится так, чтобы сайт не ломался до создания таблиц: при недоступности Supabase используется подтвержденный локальный контент.
 
 Env-переменные Supabase для проекта используют проектный префикс `DOCTOR_SUPABASE_*`. Service role key может храниться только как server-only переменная и текущим кодом не используется.
+
+Supabase CLI migration применен к online project. Таблицы контента, RLS policies и seed должны быть доступны в Supabase.
 
 Перед следующей продуктовой работой:
 

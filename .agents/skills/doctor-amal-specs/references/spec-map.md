@@ -36,6 +36,7 @@
 - `spec/technical-specs/requests-and-validation.md` — отсутствие заявок и форм в первой версии, проверка локального контента и ссылок.
 - `spec/technical-specs/supabase-content-source.md` — первый Supabase-этап: online-источник контента страницы без изменения публичного сценария, без заявок, оплаты, auth покупателей, заказов, медицинских данных и MCP.
 - `spec/technical-specs/supabase-dashboard-setup.md` — инструкция и SQL для online Supabase Dashboard: таблицы контента, RLS policies, seed текущего контента и проверочные запросы.
+- `supabase/migrations/` — Supabase CLI migrations для воспроизводимого создания таблиц, RLS policies и seed-контента.
 - `spec/technical-specs/change-management.md` — порядок изменения Taplink-проекта, какие specs читать перед изменением, рискованные изменения и regression checklist.
 - `spec/technical-specs/implementation-checklist.md` — чеклист реализации и приемочные сценарии одной Taplink-страницы.
 - `spec/technical-specs/future-extension-plan.md` — план будущей онлайн-версии с CMS/админкой и возможной онлайн-покупкой; не использовать для текущей реализации без подтверждения пользователя.
