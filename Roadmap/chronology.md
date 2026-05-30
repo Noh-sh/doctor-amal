@@ -178,6 +178,46 @@
 - Следующий шаг:
   - при необходимости вручную добавить реальный service role key только в локальный `.env.local`, без использования в коде.
 
+## 2026-05-30 - Supabase CLI migration для таблиц контента
+
+- План: `Work plans/Завершенные/049-supabase-cli-migration.md`
+- Статус: завершено
+- Области: `Supabase`, `SQL`, `CLI`, `Migrations`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - создан migration `supabase/migrations/20260530000000_create_taplink_content_tables.sql`;
+  - выполнен `npx supabase login`;
+  - выполнен `npx supabase link --project-ref dagykilvpiacfbwpcluv`;
+  - выполнен `npx supabase db push`;
+  - migration применен к online Supabase project;
+  - `supabase/.temp/` добавлен в `.gitignore`.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - `npm run build` выполнен успешно;
+  - `npx supabase migration list` показал совпадение local и remote migration `20260530000000`;
+  - ручная проверка выполнена: migration не содержит `drop`;
+  - ручная проверка выполнена: migration не создает таблицы заявок, оплат, заказов, пользователей, медицинских данных или аналитики;
+  - ручная проверка выполнена: RLS включен на всех таблицах, public policies добавлены только для `select`.
+- Измененные файлы:
+  - `.gitignore`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/technical-specs/README.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `supabase/migrations/20260530000000_create_taplink_content_tables.sql`
+  - `Work plans/Завершенные/049-supabase-cli-migration.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - проверить таблицы в Supabase Dashboard и при необходимости сделать commit migration.
+
 ## 2026-05-19 - Упростить feature specs
 
 - План: `Work plans/Завершенные/034-uprostit-feature-specs.md`

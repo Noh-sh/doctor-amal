@@ -194,21 +194,33 @@ UI-компоненты не должны знать, пришли данные 
 
 Если одно из этих требований появится позже, сначала нужны отдельные specs.
 
-## Online Supabase Dashboard
+## Online Supabase Dashboard и CLI migrations
 
 Первый этап готовится сразу в online Supabase Dashboard.
 
-Локальный Supabase через Docker и Supabase CLI на этом этапе не используется.
+После уточнения процесса допускается Supabase CLI без локального Docker, чтобы сохранить структуру базы в git через migration-файлы.
+
+Локальный Supabase через Docker на этом этапе не используется.
 
 Порядок подготовки:
 
 1. Создать Supabase project.
-2. Создать таблицы первого этапа через SQL Editor или Table Editor.
+2. Создать таблицы первого этапа через SQL Editor, Table Editor или Supabase CLI migration.
 3. Включить RLS на всех таблицах.
 4. Добавить policies только для публичного чтения опубликованного контента.
 5. Добавить тестовые записи подтвержденного контента.
 6. Проверить, что публичный ключ не дает прав на запись.
 7. Получить Project URL и публичный ключ.
+
+Рекомендуемый CLI-путь:
+
+```bash
+npx supabase login
+npx supabase link --project-ref dagykilvpiacfbwpcluv
+npx supabase db push
+```
+
+Migration-файлы хранятся в `supabase/migrations/`.
 
 ## Env-переменные и ключи
 

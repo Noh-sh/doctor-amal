@@ -35,6 +35,7 @@
 - `requests-and-validation.md` — отсутствие заявок в первой версии и техническая валидация локального контента.
 - `supabase-content-source.md` — первый Supabase-этап: online-источник контента страницы без заявок, оплаты, auth покупателей, заказов и медицинских данных.
 - `supabase-dashboard-setup.md` — инструкция и SQL для создания таблиц, RLS policies и seed-контента в online Supabase Dashboard.
+- `supabase/migrations/` — воспроизводимые Supabase CLI migrations для структуры базы и seed-контента.
 - `future-extension-plan.md` — путь к будущей онлайн-версии с CMS/админкой и возможной онлайн-покупкой.
 - `change-management.md` — безопасный порядок изменений после завершения этапов.
 - `implementation-checklist.md` — критерии готовности и приемочные сценарии.
