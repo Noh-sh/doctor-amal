@@ -65,6 +65,7 @@
 | 47 | Env и безопасный источник данных Supabase | Завершено | `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md` | `.env.local`, `.env.example`, data-provider Supabase с fallback на локальные данные |
 | 48 | Проектные env-названия Supabase | Завершено | `Work plans/Завершенные/048-project-env-names-for-supabase.md` | переименование env в `DOCTOR_SUPABASE_*`, описание service role как server-only переменной |
 | 49 | Supabase CLI migration для таблиц контента | Завершено | `Work plans/Завершенные/049-supabase-cli-migration.md` | migration для таблиц контента, RLS policies и seed; `supabase login`, `link`, `db push` |
+| 50 | Правила Supabase MCP access | Завершено | `Work plans/Завершенные/050-supabase-mcp-access.md` | spec для MCP inspection/read workflow, без обхода specs и CLI migrations |
 
 ## Текущий статус
 
@@ -122,6 +123,8 @@ Specs Supabase content source зафиксированы в `spec/technical-spec
 Env-переменные Supabase для проекта используют проектный префикс `DOCTOR_SUPABASE_*`. Service role key может храниться только как server-only переменная и текущим кодом не используется.
 
 Supabase CLI migration применен к online project. Таблицы контента, RLS policies и seed должны быть доступны в Supabase.
+
+Правила будущего Supabase MCP access зафиксированы в `spec/technical-specs/supabase-mcp-access.md`. Первый MCP-этап ограничен инспекцией и проверкой; изменения schema должны идти через `supabase/migrations/` и Supabase CLI.
 
 Перед следующей продуктовой работой:
 
