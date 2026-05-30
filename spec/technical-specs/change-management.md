@@ -194,6 +194,28 @@ Specs можно не менять, если изменение:
 - онлайн-покупка не добавляется вместе с CMS по умолчанию;
 - сбор данных, авторизация, база данных и серверный API описаны до реализации.
 
+### Supabase как источник контента
+
+Читать:
+
+- `spec/technical-specs/supabase-content-source.md`;
+- `spec/technical-specs/architecture.md`;
+- `spec/technical-specs/data-model.md`;
+- `spec/technical-specs/requests-and-validation.md`;
+- `spec/technical-specs/local-storage.md`;
+- `spec/feature-specs/course-purchase-link.md`;
+- `spec/feature-specs/future-online-purchase.md`.
+
+Проверить:
+
+- Supabase используется только как источник контента страницы;
+- публичный сценарий `/` не меняется;
+- данные приводятся к `TaplinkPageData`;
+- RLS включен;
+- публичный ключ имеет только разрешенное чтение опубликованного контента;
+- secret/service role key не используется во frontend-коде;
+- нет заявок, auth покупателей, заказов, online payment, медицинских данных, аналитики, админки приложения или MCP.
+
 ## Рискованные изменения
 
 Изменение считается рискованным, если оно:

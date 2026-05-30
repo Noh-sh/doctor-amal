@@ -1,6 +1,8 @@
 import { TaplinkPage } from "@/components/taplink/TaplinkPage";
-import { taplinkPageData } from "@/data/taplink-page";
+import { getTaplinkPageData } from "@/data/taplink-page-source";
 
-export default function HomePage() {
-  return <TaplinkPage data={taplinkPageData} />;
+export default async function HomePage() {
+  const data = await getTaplinkPageData();
+
+  return <TaplinkPage data={data} />;
 }
