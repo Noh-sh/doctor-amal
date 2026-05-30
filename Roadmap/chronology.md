@@ -218,6 +218,42 @@
 - Следующий шаг:
   - проверить таблицы в Supabase Dashboard и при необходимости сделать commit migration.
 
+## 2026-05-30 - Правила Supabase MCP access
+
+- План: `Work plans/Завершенные/050-supabase-mcp-access.md`
+- Статус: завершено
+- Области: `Supabase`, `MCP`, `Specs`, `Безопасность`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/README.md`
+- Сделано:
+  - создан spec `spec/technical-specs/supabase-mcp-access.md`;
+  - зафиксировано правило `spec -> supabase/migrations/ -> npx supabase db push -> MCP verification`;
+  - MCP ограничен inspection/read workflow на первом MCP-этапе;
+  - запрещен обход CLI migrations для изменения schema;
+  - запрещено добавлять MCP-токены, Supabase access token, secret key или service role key в git;
+  - новый spec добавлен в `spec/technical-specs/README.md`;
+  - новый spec добавлен в `.agents/skills/doctor-amal-specs/references/spec-map.md`.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - ручная проверка выполнена: новый spec не содержит секретов;
+  - ручная проверка выполнена: новый spec не разрешает обход `supabase/migrations/`;
+  - ручная проверка выполнена: новый spec не добавляет продуктовые функции первой версии.
+- Измененные файлы:
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/technical-specs/README.md`
+  - `spec/technical-specs/supabase-mcp-access.md`
+  - `Work plans/Завершенные/050-supabase-mcp-access.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - при необходимости отдельной задачей подключить MCP для инспекции и сверки remote Supabase project.
+
 ## 2026-05-19 - Упростить feature specs
 
 - План: `Work plans/Завершенные/034-uprostit-feature-specs.md`
