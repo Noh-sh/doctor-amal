@@ -254,6 +254,39 @@
 - Следующий шаг:
   - при необходимости отдельной задачей подключить MCP для инспекции и сверки remote Supabase project.
 
+## 2026-05-30 - Подключение Supabase MCP для инспекции
+
+- План: `Work plans/Завершенные/051-supabase-mcp-setup.md`
+- Статус: завершено
+- Области: `Supabase`, `MCP`, `Codex`, `Безопасность`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-mcp-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - Supabase MCP server добавлен в локальный Codex config;
+  - использован hosted URL `https://mcp.supabase.com/mcp` с `project_ref=dagykilvpiacfbwpcluv`, `read_only=true` и `features=database,docs`;
+  - выполнен OAuth login для MCP server `supabase`;
+  - MCP проверен через свежий ephemeral Codex-процесс без изменения файлов и базы.
+- Проверка:
+  - `codex mcp list` показывает `supabase` в статусе `enabled`;
+  - `codex mcp get supabase` показывает read-only URL с нужным project ref;
+  - через MCP подтверждены таблицы `doctor_profile`, `external_links`, `courses`, `purchase_settings`, `page_settings`;
+  - через MCP подтверждено, что RLS включен на всех пяти таблицах;
+  - через MCP подтверждена migration `20260530000000_create_taplink_content_tables`;
+  - отдельный read-only SQL-запрос к `pg_policies` был отменен на стороне MCP, поэтому имена и выражения policies через MCP не подтверждены;
+  - секреты не добавлялись в репозиторий.
+- Измененные файлы:
+  - `Work plans/Завершенные/051-supabase-mcp-setup.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - при необходимости проверить policy names/expressions через MCP read-only SQL или Supabase Dashboard.
+
 ## 2026-05-19 - Упростить feature specs
 
 - План: `Work plans/Завершенные/034-uprostit-feature-specs.md`
