@@ -27,6 +27,157 @@
   - ...
 ```
 
+## 2026-05-30 - Specs Supabase как источника контента
+
+- План: `Work plans/Завершенные/045-supabase-content-specs.md`
+- Статус: завершено
+- Области: `Specs`, `Technical specs`, `Supabase`, `Документация`
+- Specs:
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/future-extension-plan.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/requests-and-validation.md`
+  - `spec/technical-specs/local-storage.md`
+  - `spec/feature-specs/course-purchase-link.md`
+  - `spec/feature-specs/future-online-purchase.md`
+- Сделано:
+  - создан technical spec для Supabase как online-источника контента страницы;
+  - зафиксировано, что первый Supabase-этап не включает заявки, auth покупателей, заказы, онлайн-оплату, медицинские данные, аналитику, админку приложения и MCP;
+  - описаны таблицы `doctor_profile`, `external_links`, `courses`, `purchase_settings`, `page_settings`;
+  - описаны env-переменные, порядок добавления ключей, RLS и запрет secret/service role key во frontend;
+  - обновлены связанные technical specs и карта specs skill.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - `rg -n "[ \t]+$" ...` по измененным и новым документационным файлам не нашел trailing whitespace;
+  - ручная проверка выполнена: новый spec не добавляет оплату, заявки, auth покупателей, заказы, медицинские данные, аналитику, админку приложения или MCP;
+  - проверено, что публичный сценарий Taplink-страницы остается прежним.
+- Измененные файлы:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/README.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/future-extension-plan.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/045-supabase-content-specs.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после проверки перейти к подготовке online Supabase project в Supabase Dashboard.
+
+## 2026-05-30 - Подготовка online Supabase Dashboard
+
+- План: `Work plans/Завершенные/046-supabase-dashboard-setup.md`
+- Статус: завершено
+- Области: `Specs`, `Supabase`, `SQL`, `Документация`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/feature-specs/medical-content-rules.md`
+- Сделано:
+  - создана инструкция для Supabase Dashboard;
+  - добавлен SQL для таблиц `doctor_profile`, `external_links`, `courses`, `purchase_settings`, `page_settings`;
+  - добавлены RLS policies только для публичного чтения;
+  - добавлен seed текущего подтвержденного контента из `data/taplink-page.ts`;
+  - добавлены проверочные SQL-запросы и порядок получения env-ключей.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - `rg -n "[ \t]+$" ...` по измененным документационным файлам не нашел trailing whitespace;
+  - ручная проверка выполнена: SQL не содержит `drop`;
+  - ручная проверка выполнена: SQL не создает таблицы заявок, оплат, заказов, пользователей, медицинских данных или аналитики;
+  - ручная проверка выполнена: RLS включен на всех таблицах, public policies добавлены только для `select`.
+- Измененные файлы:
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/README.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/046-supabase-dashboard-setup.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после проверки выполнить SQL вручную в online Supabase Dashboard.
+
+## 2026-05-30 - Env и безопасный источник данных Supabase
+
+- План: `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md`
+- Статус: завершено
+- Области: `Frontend`, `Данные`, `Supabase`, `Env`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/requests-and-validation.md`
+  - `spec/technical-specs/local-storage.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - добавлен локальный `.env.local` с Project URL и publishable key;
+  - добавлен `.env.example` без реальных ключей;
+  - добавлен data-provider, который пробует читать публичный контент из Supabase REST API;
+  - добавлен mapper из Supabase rows в `TaplinkPageData`;
+  - сохранен fallback на локальные данные, если таблицы еще не созданы или Supabase недоступен;
+  - `app/page.tsx` подключен к новому источнику данных.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `git check-ignore -v .env.local` подтвердил, что `.env.local` игнорируется через `.gitignore`;
+  - проверено, что build проходит до создания таблиц Supabase, значит fallback на локальные данные работает.
+- Измененные файлы:
+  - `.env.example`
+  - `.env.local`
+  - `app/page.tsx`
+  - `data/taplink-page-source.ts`
+  - `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - выполнить SQL в online Supabase Dashboard или позже подключить MCP для создания таблиц.
+
+## 2026-05-30 - Проектные env-названия Supabase
+
+- План: `Work plans/Завершенные/048-project-env-names-for-supabase.md`
+- Статус: завершено
+- Области: `Env`, `Supabase`, `Документация`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - env-переменные Supabase переименованы в проектный формат `DOCTOR_SUPABASE_*`;
+  - `.env.example` получил пояснения для URL, publishable key, legacy anon key и server-only service role key;
+  - код чтения Supabase переведен на `DOCTOR_SUPABASE_URL` и `DOCTOR_SUPABASE_PUBLISHABLE_KEY`;
+  - service role key описан только как server-only переменная и не используется текущим кодом.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `git check-ignore -v .env.local` подтвердил, что `.env.local` игнорируется через `.gitignore`;
+  - проверено, что `.env.example` не содержит реальных ключей;
+  - проверено, что текущий код не использует `DOCTOR_SUPABASE_SERVICE_ROLE_KEY`.
+- Измененные файлы:
+  - `.env.example`
+  - `.env.local`
+  - `data/taplink-page-source.ts`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `Work plans/Активные/044-supabase-action-plan.md`
+  - `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md`
+  - `Work plans/Завершенные/048-project-env-names-for-supabase.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - при необходимости вручную добавить реальный service role key только в локальный `.env.local`, без использования в коде.
+
 ## 2026-05-19 - Упростить feature specs
 
 - План: `Work plans/Завершенные/034-uprostit-feature-specs.md`

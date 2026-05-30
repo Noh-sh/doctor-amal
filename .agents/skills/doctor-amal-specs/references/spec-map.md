@@ -34,6 +34,8 @@
 - `spec/technical-specs/data-model.md` — локальные модели `TaplinkPageData`, `DoctorProfile`, `Course`, `ExternalLink`, `PurchaseSettings`.
 - `spec/technical-specs/local-storage.md` — допустимые локальные данные проекта и запрет пользовательского `localStorage` в первой версии.
 - `spec/technical-specs/requests-and-validation.md` — отсутствие заявок и форм в первой версии, проверка локального контента и ссылок.
+- `spec/technical-specs/supabase-content-source.md` — первый Supabase-этап: online-источник контента страницы без изменения публичного сценария, без заявок, оплаты, auth покупателей, заказов, медицинских данных и MCP.
+- `spec/technical-specs/supabase-dashboard-setup.md` — инструкция и SQL для online Supabase Dashboard: таблицы контента, RLS policies, seed текущего контента и проверочные запросы.
 - `spec/technical-specs/change-management.md` — порядок изменения Taplink-проекта, какие specs читать перед изменением, рискованные изменения и regression checklist.
 - `spec/technical-specs/implementation-checklist.md` — чеклист реализации и приемочные сценарии одной Taplink-страницы.
 - `spec/technical-specs/future-extension-plan.md` — план будущей онлайн-версии с CMS/админкой и возможной онлайн-покупкой; не использовать для текущей реализации без подтверждения пользователя.
@@ -48,6 +50,7 @@
 - Будущая онлайн-покупка: `future-online-purchase.md`, `course-purchase-link.md`, `functional-map.md`, `global-spec.md`.
 - Архитектура и структура Next.js: `architecture.md`, `routing-and-ui.md`, `data-model.md`, `local-storage.md`, `implementation-checklist.md`.
 - Локальные данные проекта: `data-model.md`, `local-storage.md`, `requests-and-validation.md`.
+- Supabase как источник контента страницы: `supabase-content-source.md`, `supabase-dashboard-setup.md`, `architecture.md`, `data-model.md`, `requests-and-validation.md`, `future-extension-plan.md`, `course-purchase-link.md`, `future-online-purchase.md`.
 - Будущие CMS, админка, онлайн-версия или онлайн-покупка: `future-extension-plan.md`, `future-online-purchase.md`, но только для планирования, не для реализации текущей версии.
 
 ## Роли specs

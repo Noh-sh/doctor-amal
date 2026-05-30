@@ -59,6 +59,11 @@
 | 41 | Тестовая design map | Завершено | `Work plans/Завершенные/041-test-design-map.md` | создана тестовая design map для проверки визуальных решений до переноса в настоящий дизайн |
 | 42 | Реальный визуальный дизайн Taplink-страницы | Завершено | `Work plans/Завершенные/042-realnyy-vizualnyy-dizayn.md` | утвержден текущий green nutrition дизайн, подключено фото, заполнен блок `О докторе`, добавлены подтвержденные курсы и компактный UI |
 | 43 | UI design rules | Завершено | `Work plans/Завершенные/043-ui-design-rules.md` | UI-правила переведены в статус утвержденных правил первой Taplink-версии |
+| 44 | План действий перед Supabase | В работе | `Work plans/Активные/044-plan-supabase-content-source.md` | подготовлен порядок: specs, online Supabase Dashboard, env-переменные, подключение данных, проверки и deploy |
+| 45 | Specs Supabase как источника контента | Завершено | `Work plans/Завершенные/045-supabase-content-specs.md` | technical specs для Supabase content source без заявок, оплаты, auth покупателей, заказов, медицинских данных и MCP |
+| 46 | Подготовка online Supabase Dashboard | Завершено | `Work plans/Завершенные/046-supabase-dashboard-setup.md` | инструкция и SQL для таблиц контента, RLS policies, seed текущего контента и проверочных запросов |
+| 47 | Env и безопасный источник данных Supabase | Завершено | `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md` | `.env.local`, `.env.example`, data-provider Supabase с fallback на локальные данные |
+| 48 | Проектные env-названия Supabase | Завершено | `Work plans/Завершенные/048-project-env-names-for-supabase.md` | переименование env в `DOCTOR_SUPABASE_*`, описание service role как server-only переменной |
 
 ## Текущий статус
 
@@ -103,7 +108,17 @@ Technical specs переписаны под первую Taplink-версию: N
 
 Текущий визуальный вариант перенесен из тестового статуса в реальный дизайн первой Taplink-страницы. Утвержденные UI-правила находятся в `Design map/design-rules.md`.
 
-Следующий слой работы: подготовить specs для Supabase как источника контента страницы.
+Следующий слой работы: подготовить и выполнить Supabase-этап как источник контента страницы.
+
+План действий перед Supabase зафиксирован в `Work plans/Активные/044-supabase-action-plan.md`: сначала specs, затем online Supabase Dashboard, env-переменные, подключение данных, проверки и deploy.
+
+Specs Supabase content source зафиксированы в `spec/technical-specs/supabase-content-source.md`. Инструкция для online Supabase Dashboard готова в `spec/technical-specs/supabase-dashboard-setup.md`. MCP оставлен на потом.
+
+Следующий практический шаг: выполнить SQL в online Supabase Dashboard после проверки и подтверждения.
+
+Кодовый слой Supabase готовится так, чтобы сайт не ломался до создания таблиц: при недоступности Supabase используется подтвержденный локальный контент.
+
+Env-переменные Supabase для проекта используют проектный префикс `DOCTOR_SUPABASE_*`. Service role key может храниться только как server-only переменная и текущим кодом не используется.
 
 Перед следующей продуктовой работой:
 
