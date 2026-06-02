@@ -27,6 +27,39 @@
   - ...
 ```
 
+## 2026-06-02 - Закрыть старые активные планы
+
+- План: `Work plans/Завершенные/052-zakryt-starye-aktivnye-plany.md`
+- Статус: завершено
+- Области: `Work plans`, `Roadmap`, `Процесс`, `Проверка`
+- Specs:
+  - `AGENTS.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-mcp-access.md`
+- Сделано:
+  - закрыт процессный хвост после Supabase-этапов;
+  - `044-plan-supabase-content-source.md` перенесен из `Work plans/Активные/` в `Work plans/Завершенные/`;
+  - `044-supabase-action-plan.md` перенесен из `Work plans/Активные/` в `Work plans/Завершенные/` как справочный документ;
+  - обновлены статусы и результаты проверки в закрытых документах;
+  - обновлена общая дорожная карта проекта.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - `find 'Work plans/Активные' -maxdepth 1 -type f | sort` не вернул файлов;
+  - `git status --short --branch` выполнен;
+  - ручная проверка выполнена: код приложения, specs, Supabase migrations и seed не менялись.
+- Измененные файлы:
+  - `Work plans/Завершенные/044-plan-supabase-content-source.md`
+  - `Work plans/Завершенные/044-supabase-action-plan.md`
+  - `Work plans/Завершенные/052-zakryt-starye-aktivnye-plany.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - создать новый активный план для следующей практической проверки Supabase/MCP или deploy-подготовки.
+
 ## 2026-05-30 - Specs Supabase как источника контента
 
 - План: `Work plans/Завершенные/045-supabase-content-specs.md`
@@ -167,7 +200,7 @@
   - `data/taplink-page-source.ts`
   - `spec/technical-specs/supabase-content-source.md`
   - `spec/technical-specs/supabase-dashboard-setup.md`
-  - `Work plans/Активные/044-supabase-action-plan.md`
+  - `Work plans/Завершенные/044-supabase-action-plan.md`
   - `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md`
   - `Work plans/Завершенные/048-project-env-names-for-supabase.md`
   - `Roadmap/chronology.md`

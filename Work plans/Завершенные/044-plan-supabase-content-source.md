@@ -2,7 +2,7 @@
 
 ## Статус
 
-Активный.
+Завершен.
 
 ## Цель
 
@@ -76,11 +76,16 @@ git diff --check
 - Следующий шаг отделен от разработки: сначала `045-supabase-content-specs`, потом online Supabase Dashboard, env-переменные и код.
 - Уточнено, что локальный Supabase через Docker/CLI не используется на первом этапе.
 - Добавлен порядок работы с ключами: Project URL, publishable key или legacy anon key, `.env.local`, hosting env, запрет secret/service role key во frontend.
+- План закрыт как подготовительный: последующие Supabase-этапы `045`-`051` уже выполнены и проверены отдельными планами.
+- `044-supabase-action-plan.md` перенесен в завершенные как справочный документ к этому подготовительному этапу.
 
 ## Измененные файлы
 
-- `Work plans/Активные/044-plan-supabase-content-source.md`
-- `Work plans/Активные/044-supabase-action-plan.md`
+- `Work plans/Завершенные/044-plan-supabase-content-source.md`
+- `Work plans/Завершенные/044-supabase-action-plan.md`
+- `Work plans/Завершенные/052-zakryt-starye-aktivnye-plany.md`
+- `Roadmap/chronology.md`
+- `Roadmap/project-roadmap.md`
 
 ## Git после проверки
 

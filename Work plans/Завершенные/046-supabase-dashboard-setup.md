@@ -13,7 +13,7 @@
 Прочитано:
 
 - `spec/technical-specs/supabase-content-source.md`
-- `Work plans/Активные/044-supabase-action-plan.md`
+- `Work plans/Завершенные/044-supabase-action-plan.md`
 - `data/taplink-page.ts`
 - `domain/taplink.ts`
 - `spec/feature-specs/medical-content-rules.md`

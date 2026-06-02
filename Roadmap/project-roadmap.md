@@ -59,7 +59,7 @@
 | 41 | Тестовая design map | Завершено | `Work plans/Завершенные/041-test-design-map.md` | создана тестовая design map для проверки визуальных решений до переноса в настоящий дизайн |
 | 42 | Реальный визуальный дизайн Taplink-страницы | Завершено | `Work plans/Завершенные/042-realnyy-vizualnyy-dizayn.md` | утвержден текущий green nutrition дизайн, подключено фото, заполнен блок `О докторе`, добавлены подтвержденные курсы и компактный UI |
 | 43 | UI design rules | Завершено | `Work plans/Завершенные/043-ui-design-rules.md` | UI-правила переведены в статус утвержденных правил первой Taplink-версии |
-| 44 | План действий перед Supabase | В работе | `Work plans/Активные/044-plan-supabase-content-source.md` | подготовлен порядок: specs, online Supabase Dashboard, env-переменные, подключение данных, проверки и deploy |
+| 44 | План действий перед Supabase | Завершено | `Work plans/Завершенные/044-plan-supabase-content-source.md` | подготовлен порядок: specs, online Supabase Dashboard, env-переменные, подключение данных, проверки и deploy |
 | 45 | Specs Supabase как источника контента | Завершено | `Work plans/Завершенные/045-supabase-content-specs.md` | technical specs для Supabase content source без заявок, оплаты, auth покупателей, заказов, медицинских данных и MCP |
 | 46 | Подготовка online Supabase Dashboard | Завершено | `Work plans/Завершенные/046-supabase-dashboard-setup.md` | инструкция и SQL для таблиц контента, RLS policies, seed текущего контента и проверочных запросов |
 | 47 | Env и безопасный источник данных Supabase | Завершено | `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md` | `.env.local`, `.env.example`, data-provider Supabase с fallback на локальные данные |
@@ -67,6 +67,7 @@
 | 49 | Supabase CLI migration для таблиц контента | Завершено | `Work plans/Завершенные/049-supabase-cli-migration.md` | migration для таблиц контента, RLS policies и seed; `supabase login`, `link`, `db push` |
 | 50 | Правила Supabase MCP access | Завершено | `Work plans/Завершенные/050-supabase-mcp-access.md` | spec для MCP inspection/read workflow, без обхода specs и CLI migrations |
 | 51 | Подключение Supabase MCP для инспекции | Завершено | `Work plans/Завершенные/051-supabase-mcp-setup.md` | Codex Supabase MCP подключен read-only к project `dagykilvpiacfbwpcluv`, проверены таблицы, RLS status и migration |
+| 52 | Закрыть старые активные планы | Завершено | `Work plans/Завершенные/052-zakryt-starye-aktivnye-plany.md` | старые планы `044` перенесены из активных в завершенные, roadmap обновлен, активная папка очищена |
 
 ## Текущий статус
 
@@ -111,15 +112,13 @@ Technical specs переписаны под первую Taplink-версию: N
 
 Текущий визуальный вариант перенесен из тестового статуса в реальный дизайн первой Taplink-страницы. Утвержденные UI-правила находятся в `Design map/design-rules.md`.
 
-Следующий слой работы: подготовить и выполнить Supabase-этап как источник контента страницы.
+Supabase-этап как источник контента страницы подготовлен и выполнен до inspection/read MCP-слоя.
 
-План действий перед Supabase зафиксирован в `Work plans/Активные/044-supabase-action-plan.md`: сначала specs, затем online Supabase Dashboard, env-переменные, подключение данных, проверки и deploy.
+План действий перед Supabase закрыт в `Work plans/Завершенные/044-plan-supabase-content-source.md`. Справочный документ порядка работ находится в `Work plans/Завершенные/044-supabase-action-plan.md`.
 
-Specs Supabase content source зафиксированы в `spec/technical-specs/supabase-content-source.md`. Инструкция для online Supabase Dashboard готова в `spec/technical-specs/supabase-dashboard-setup.md`. MCP оставлен на потом.
+Specs Supabase content source зафиксированы в `spec/technical-specs/supabase-content-source.md`. Инструкция для online Supabase Dashboard готова в `spec/technical-specs/supabase-dashboard-setup.md`.
 
-Следующий практический шаг: выполнить SQL в online Supabase Dashboard после проверки и подтверждения.
-
-Кодовый слой Supabase готовится так, чтобы сайт не ломался до создания таблиц: при недоступности Supabase используется подтвержденный локальный контент.
+Кодовый слой Supabase подготовлен так, чтобы сайт не ломался при недоступности Supabase: используется подтвержденный локальный fallback.
 
 Env-переменные Supabase для проекта используют проектный префикс `DOCTOR_SUPABASE_*`. Service role key может храниться только как server-only переменная и текущим кодом не используется.
 
@@ -128,6 +127,8 @@ Supabase CLI migration применен к online project. Таблицы кон
 Правила будущего Supabase MCP access зафиксированы в `spec/technical-specs/supabase-mcp-access.md`. Первый MCP-этап ограничен инспекцией и проверкой; изменения schema должны идти через `supabase/migrations/` и Supabase CLI.
 
 Supabase MCP подключен в локальном Codex config как read-only inspection server для project `dagykilvpiacfbwpcluv`. Через MCP подтверждены таблицы первого Supabase-этапа, RLS status и migration `20260530000000_create_taplink_content_tables`.
+
+Старые активные планы Supabase закрыты, `Work plans/Активные/` очищена от завершенных задач.
 
 Перед следующей продуктовой работой:
 
