@@ -27,6 +27,48 @@
   - ...
 ```
 
+## 2026-06-02 - Начать подготовку админки и Auth для редактирования контента
+
+- План: `Work plans/Завершенные/053-start-admin-auth-content-editing.md`
+- Статус: завершено
+- Области: `Specs`, `User stories`, `Technical specs`, `Admin`, `Auth`, `Supabase`, `Проверка`
+- Specs:
+  - `spec/technical-specs/future-extension-plan.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/supabase-content-source.md`
+- Сделано:
+  - создан feature spec будущей админки для редактирования контента доктором;
+  - создан user stories spec для сценариев доктора как редактора контента;
+  - создан technical spec для Supabase Auth, роли доктора и будущих RLS write policies;
+  - подтвержден минимальный вариант: только доктор, email/password, публикация сразу после сохранения;
+  - зафиксировано, что фото редактируется через админку только при необходимости и после отдельного технического описания;
+  - зафиксировано, что медицинское предупреждение, журнал изменений, черновики, роль менеджера, покупатели, заявки, оплата, медицинские анкеты и аналитика не входят в первый admin/Auth этап;
+  - обновлены README specs, карта specs, future plan, change-management и implementation checklist.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - выполнен поиск по новым admin/Auth specs на ограничения по оплате, заявкам, покупателям, медицинским анкетам и аналитике;
+  - `git status --short --branch` выполнен;
+  - ручная проверка выполнена: код приложения, Supabase users, RLS policies, migrations и seed не менялись.
+- Измененные файлы:
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/user-stories/README.md`
+  - `spec/user-stories/admin-user-stories.md`
+  - `spec/technical-specs/README.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/future-extension-plan.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `Work plans/Завершенные/053-start-admin-auth-content-editing.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - создать отдельный план реализации Supabase Auth и RLS write policies для админки.
+
 ## 2026-06-02 - Закрыть старые активные планы
 
 - План: `Work plans/Завершенные/052-zakryt-starye-aktivnye-plany.md`
