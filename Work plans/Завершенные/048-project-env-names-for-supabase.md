@@ -71,7 +71,7 @@ git diff --check
 - `data/taplink-page-source.ts`
 - `spec/technical-specs/supabase-content-source.md`
 - `spec/technical-specs/supabase-dashboard-setup.md`
-- `Work plans/Активные/044-supabase-action-plan.md`
+- `Work plans/Завершенные/044-supabase-action-plan.md`
 - `Work plans/Завершенные/047-supabase-env-and-safe-data-source.md`
 - `Work plans/Завершенные/048-project-env-names-for-supabase.md`
 - `Roadmap/chronology.md`
