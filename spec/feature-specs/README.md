@@ -48,6 +48,7 @@ Feature specs должны раскрывать эти требования по
 4. `external-links.md` — внешние кнопки и поведение ссылок.
 5. `medical-content-rules.md` — медицинские ограничения пользовательских текстов.
 6. `future-online-purchase.md` — будущая онлайн-покупка, не входящая в первую локальную версию.
+7. `admin-content-editing.md` — будущая админка для редактирования контента доктором, не входящая в первую локальную версию.
 
 На текущем этапе созданы:
 
@@ -57,8 +58,11 @@ Feature specs должны раскрывать эти требования по
 - `external-links.md`;
 - `medical-content-rules.md`;
 - `future-online-purchase.md`.
+- `admin-content-editing.md`.
 
 Все feature specs из текущего списка созданы.
+
+`admin-content-editing.md` относится к будущей онлайн-версии с админкой. Его нельзя использовать как основание для немедленной реализации без связанных user stories, technical specs и отдельного work plan.
 
 ## Правила написания feature specs
 

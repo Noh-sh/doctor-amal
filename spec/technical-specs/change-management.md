@@ -183,6 +183,9 @@ Specs можно не менять, если изменение:
 Читать:
 
 - `spec/technical-specs/future-extension-plan.md`;
+- `spec/feature-specs/admin-content-editing.md`;
+- `spec/user-stories/admin-user-stories.md`;
+- `spec/technical-specs/admin-auth-and-access.md`;
 - `spec/feature-specs/future-online-purchase.md`;
 - `spec/global-spec.md`;
 - `spec/functional-map.md`.
@@ -191,6 +194,8 @@ Specs можно не менять, если изменение:
 
 - будущая функция не переносится в первую локальную версию без подтверждения;
 - CMS/админка не добавляется без новых specs;
+- админка редактирования контента ограничена доктором, email/password входом и подтвержденными контентными полями;
+- auth покупателей, заявки, онлайн-оплата, медицинские анкеты, аналитика, черновики и журнал изменений не добавляются вместе с первым admin/Auth этапом;
 - онлайн-покупка не добавляется вместе с CMS по умолчанию;
 - сбор данных, авторизация, база данных и серверный API описаны до реализации.
 

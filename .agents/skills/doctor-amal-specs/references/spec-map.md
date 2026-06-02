@@ -15,6 +15,7 @@
 - `spec/user-stories/core-user-stories.md` — основные сценарии: первое знакомство, блок `О докторе`, блок `Курсы`, раскрытие курса, кнопка `Купить`, внешние платформы и медицинские ограничения.
 - `spec/user-stories/edge-case-stories.md` — исключительные ситуации: неподтвержденные URL, отсутствие Telegram-ссылки менеджера, неподтвержденные курсы и цены, недоступность внешней платформы, ожидание оплаты внутри проекта, ожидание медицинской помощи и старого формата сайта.
 - `spec/user-stories/journey-checklist.md` — проверочный список пользовательских путей одной Taplink-страницы.
+- `spec/user-stories/admin-user-stories.md` — будущие user stories доктора как редактора контента через админку, без auth покупателей, оплаты, заявок и медицинских данных.
 
 ## Feature specs новой Taplink-версии
 
@@ -25,6 +26,7 @@
 - `spec/feature-specs/external-links.md` — внешние кнопки `Telegram`, `WhatsApp`, `YouTube`, `Instagram`, подтвержденные URL и состояние без ссылки.
 - `spec/feature-specs/medical-content-rules.md` — медицинские ограничения пользовательских текстов, запрет обещаний результата, диагностики, схем лечения и персональных рекомендаций.
 - `spec/feature-specs/future-online-purchase.md` — будущая онлайн-покупка, не входящая в первую локальную версию.
+- `spec/feature-specs/admin-content-editing.md` — будущая админка для редактирования контента доктором: профиль, курсы, цены, ссылки и Telegram менеджера.
 
 ## Technical specs
 
@@ -37,6 +39,7 @@
 - `spec/technical-specs/supabase-content-source.md` — первый Supabase-этап: online-источник контента страницы без изменения публичного сценария, без заявок, оплаты, auth покупателей, заказов, медицинских данных и MCP.
 - `spec/technical-specs/supabase-dashboard-setup.md` — инструкция и SQL для online Supabase Dashboard: таблицы контента, RLS policies, seed текущего контента и проверочные запросы.
 - `spec/technical-specs/supabase-mcp-access.md` — правила будущего MCP-доступа к Supabase: только инспекция и проверка на первом MCP-этапе, без обхода specs и CLI migrations.
+- `spec/technical-specs/admin-auth-and-access.md` — будущая админка: Supabase Auth email/password, доступ только для доктора и RLS write policies для контентных таблиц.
 - `supabase/migrations/` — Supabase CLI migrations для воспроизводимого создания таблиц, RLS policies и seed-контента.
 - `spec/technical-specs/change-management.md` — порядок изменения Taplink-проекта, какие specs читать перед изменением, рискованные изменения и regression checklist.
 - `spec/technical-specs/implementation-checklist.md` — чеклист реализации и приемочные сценарии одной Taplink-страницы.
@@ -54,6 +57,7 @@
 - Локальные данные проекта: `data-model.md`, `local-storage.md`, `requests-and-validation.md`.
 - Supabase как источник контента страницы: `supabase-content-source.md`, `supabase-dashboard-setup.md`, `architecture.md`, `data-model.md`, `requests-and-validation.md`, `future-extension-plan.md`, `course-purchase-link.md`, `future-online-purchase.md`.
 - Supabase MCP access: `supabase-mcp-access.md`, `supabase-content-source.md`, `supabase-dashboard-setup.md`, `change-management.md`.
+- Админка и Auth для редактирования контента: `admin-content-editing.md`, `admin-user-stories.md`, `admin-auth-and-access.md`, `future-extension-plan.md`, `change-management.md`, `supabase-content-source.md`.
 - Будущие CMS, админка, онлайн-версия или онлайн-покупка: `future-extension-plan.md`, `future-online-purchase.md`, но только для планирования, не для реализации текущей версии.
 
 ## Роли specs

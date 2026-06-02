@@ -68,6 +68,7 @@
 | 50 | Правила Supabase MCP access | Завершено | `Work plans/Завершенные/050-supabase-mcp-access.md` | spec для MCP inspection/read workflow, без обхода specs и CLI migrations |
 | 51 | Подключение Supabase MCP для инспекции | Завершено | `Work plans/Завершенные/051-supabase-mcp-setup.md` | Codex Supabase MCP подключен read-only к project `dagykilvpiacfbwpcluv`, проверены таблицы, RLS status и migration |
 | 52 | Закрыть старые активные планы | Завершено | `Work plans/Завершенные/052-zakryt-starye-aktivnye-plany.md` | старые планы `044` перенесены из активных в завершенные, roadmap обновлен, активная папка очищена |
+| 53 | Подготовка админки и Auth для редактирования контента | Завершено | `Work plans/Завершенные/053-start-admin-auth-content-editing.md` | specs будущей админки: только доктор, email/password, редактирование контента, без покупателей, заявок, оплаты, медицинских анкет и аналитики |
 
 ## Текущий статус
 
@@ -129,6 +130,8 @@ Supabase CLI migration применен к online project. Таблицы кон
 Supabase MCP подключен в локальном Codex config как read-only inspection server для project `dagykilvpiacfbwpcluv`. Через MCP подтверждены таблицы первого Supabase-этапа, RLS status и migration `20260530000000_create_taplink_content_tables`.
 
 Старые активные планы Supabase закрыты, `Work plans/Активные/` очищена от завершенных задач.
+
+Подготовлены specs будущей админки и Auth. Минимальный подтвержденный вариант: контент редактирует только доктор, вход через email/password, изменения публикуются сразу после сохранения, редактируются профильные тексты, курсы, цены, внешние ссылки и Telegram-ссылка менеджера. Фото доктора редактируется через админку только при необходимости и после отдельного технического описания. Медицинское предупреждение, журнал изменений, черновики, роль менеджера, покупатели, заявки, оплата, медицинские анкеты и аналитика не входят в первый admin/Auth этап.
 
 Перед следующей продуктовой работой:
 

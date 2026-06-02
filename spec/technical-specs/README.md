@@ -36,6 +36,7 @@
 - `supabase-content-source.md` — первый Supabase-этап: online-источник контента страницы без заявок, оплаты, auth покупателей, заказов и медицинских данных.
 - `supabase-dashboard-setup.md` — инструкция и SQL для создания таблиц, RLS policies и seed-контента в online Supabase Dashboard.
 - `supabase-mcp-access.md` — правила будущего MCP-доступа к Supabase: inspection-first, без обхода specs и CLI migrations.
+- `admin-auth-and-access.md` — требования будущей админки: Supabase Auth, доступ только для доктора, RLS для записи контента и границы без покупателей, оплаты, заявок и медицинских данных.
 - `supabase/migrations/` — воспроизводимые Supabase CLI migrations для структуры базы и seed-контента.
 - `future-extension-plan.md` — путь к будущей онлайн-версии с CMS/админкой и возможной онлайн-покупкой.
 - `change-management.md` — безопасный порядок изменений после завершения этапов.
