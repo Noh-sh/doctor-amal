@@ -27,6 +27,38 @@
   - ...
 ```
 
+## 2026-06-03 - Online-проверка админки и кеша
+
+- План: `Work plans/Завершенные/059-online-proverka-admin-i-kesha.md`
+- Статус: завершено
+- Области: `Frontend`, `Admin`, `Supabase`, `UI`, `Кеш`, `Проверка`
+- Specs:
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - проверен свежий dev log после очистки `.next/dev`; новых warning `Multiple GoTrueClient instances` не найдено;
+  - для админки добавлен локальный feedback успешного сохранения;
+  - после успешного сохранения кнопка конкретной формы показывает `Сохранено` с круглой галочкой;
+  - индикатор сбрасывается через 3 секунды;
+  - бизнес-сценарий админки, RLS, Auth, migrations, env-переменные и публичная страница `/` не изменены.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - build output подтвердил route `/` с `Revalidate 30s`;
+  - `git diff --check` выполнен без ошибок;
+  - свежий `.next/dev/logs/next-development.log` не содержит новых warning `Multiple GoTrueClient instances`.
+- Измененные файлы:
+  - `components/admin/AdminContentEditor.tsx`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/059-online-proverka-admin-i-kesha.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после deploy проверить в online `/admin`, что при сохранении формы появляется `Сохранено` с галочкой.
+
 ## 2026-06-03 - Сократить delay обновления контента
 
 - План: `Work plans/Завершенные/058-sokratit-delay-obnovleniya-kontenta.md`

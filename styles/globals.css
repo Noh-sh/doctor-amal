@@ -212,6 +212,10 @@ h2 {
 }
 
 .admin-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   min-height: 44px;
   border: 1px solid var(--accent);
   border-radius: 8px;
@@ -221,6 +225,34 @@ h2 {
   font: inherit;
   font-weight: 800;
   padding: 10px 14px;
+}
+
+.admin-button-saved,
+.admin-button-saved:hover {
+  border-color: rgba(47, 138, 66, 0.3);
+  background: var(--accent-dark);
+  color: #ffffff;
+}
+
+.admin-save-check {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.admin-save-check::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  transform: rotate(45deg);
 }
 
 .admin-button:hover {

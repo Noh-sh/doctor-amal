@@ -77,6 +77,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isReloading, setIsReloading] = useState(false);
   const [savingKey, setSavingKey] = useState<string | null>(null);
+  const [savedKey, setSavedKey] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<Feedback>(null);
   const [loadError, setLoadError] = useState("");
   const [profileForm, setProfileForm] = useState<ProfileForm | null>(null);
@@ -112,9 +113,42 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
     void loadContent("initial");
   }, []);
 
-  async function afterSave(text: string) {
+  useEffect(() => {
+    if (!savedKey) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setSavedKey(null);
+    }, 3000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [savedKey]);
+
+  async function afterSave(text: string, key: string) {
     await loadContent("reload");
     setFeedback({ tone: "success", text });
+    setSavedKey(key);
+  }
+
+  function renderSaveButton(key: string, label: string) {
+    const isSaving = savingKey === key;
+    const isSaved = savedKey === key;
+
+    return (
+      <button className={isSaved ? "admin-button admin-button-saved" : "admin-button"} disabled={isSaving} type="submit">
+        {isSaving ? "Сохраняем..." : null}
+        {!isSaving && isSaved ? (
+          <>
+            <span className="admin-save-check" aria-hidden="true" />
+            Сохранено
+          </>
+        ) : null}
+        {!isSaving && !isSaved ? label : null}
+      </button>
+    );
   }
 
   async function handleProfileSubmit(event: FormEvent<HTMLFormElement>) {
@@ -126,6 +160,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
     }
 
     setSavingKey("profile");
+    setSavedKey(null);
     setFeedback(null);
 
     try {
@@ -138,7 +173,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
         healthTopics: splitList(profileForm.healthTopics),
         helpFormats: splitList(profileForm.helpFormats)
       });
-      await afterSave("Профиль сохранен.");
+      await afterSave("Профиль сохранен.", "profile");
     } catch (error) {
       setFeedback({ tone: "error", text: readableError(error) });
     } finally {
@@ -155,11 +190,12 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
     }
 
     setSavingKey(`course:${course.id}`);
+    setSavedKey(null);
     setFeedback(null);
 
     try {
       await updateCourse(supabase, course.id, course);
-      await afterSave("Курс сохранен.");
+      await afterSave("Курс сохранен.", `course:${course.id}`);
     } catch (error) {
       setFeedback({ tone: "error", text: readableError(error) });
     } finally {
@@ -176,11 +212,12 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
     }
 
     setSavingKey(`link:${link.id}`);
+    setSavedKey(null);
     setFeedback(null);
 
     try {
       await updateExternalLink(supabase, link.id, link);
-      await afterSave("Внешняя ссылка сохранена.");
+      await afterSave("Внешняя ссылка сохранена.", `link:${link.id}`);
     } catch (error) {
       setFeedback({ tone: "error", text: readableError(error) });
     } finally {
@@ -201,11 +238,12 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
     }
 
     setSavingKey("purchase");
+    setSavedKey(null);
     setFeedback(null);
 
     try {
       await updatePurchaseSettings(supabase, purchaseForm);
-      await afterSave("Настройки покупки сохранены.");
+      await afterSave("Настройки покупки сохранены.", "purchase");
     } catch (error) {
       setFeedback({ tone: "error", text: readableError(error) });
     } finally {
@@ -319,9 +357,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
           Тексты не должны обещать лечение, выздоровление или гарантированный результат.
         </div>
 
-        <button className="admin-button" disabled={savingKey === "profile"} type="submit">
-          {savingKey === "profile" ? "Сохраняем..." : "Сохранить профиль"}
-        </button>
+        {renderSaveButton("profile", "Сохранить профиль")}
       </form>
 
       <section className="admin-editor-section" aria-labelledby="admin-courses-title">
@@ -378,9 +414,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
               <span>Показывать курс на публичной странице</span>
             </label>
 
-            <button className="admin-button" disabled={savingKey === `course:${course.id}`} type="submit">
-              {savingKey === `course:${course.id}` ? "Сохраняем..." : "Сохранить курс"}
-            </button>
+            {renderSaveButton(`course:${course.id}`, "Сохранить курс")}
           </form>
         ))}
       </section>
@@ -422,9 +456,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
               <span>Ссылка активна</span>
             </label>
 
-            <button className="admin-button" disabled={savingKey === `link:${link.id}`} type="submit">
-              {savingKey === `link:${link.id}` ? "Сохраняем..." : "Сохранить ссылку"}
-            </button>
+            {renderSaveButton(`link:${link.id}`, "Сохранить ссылку")}
           </form>
         ))}
       </section>
@@ -453,9 +485,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
           />
         </label>
 
-        <button className="admin-button" disabled={savingKey === "purchase"} type="submit">
-          {savingKey === "purchase" ? "Сохраняем..." : "Сохранить покупку"}
-        </button>
+        {renderSaveButton("purchase", "Сохранить покупку")}
       </form>
     </div>
   );
