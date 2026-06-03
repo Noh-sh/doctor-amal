@@ -40,7 +40,7 @@ export function TaplinkPage({ data }: TaplinkPageProps) {
       </section>
 
       <div className="taplink-actions" aria-label="Кнопки первой версии">
-        <details className="taplink-action-group">
+        <details className="taplink-action-group" suppressHydrationWarning>
           <summary className="taplink-button taplink-button-internal">
             <span className="button-main">
               <span className="button-icon button-icon-doctor" aria-hidden="true" />
@@ -63,7 +63,7 @@ export function TaplinkPage({ data }: TaplinkPageProps) {
           </section>
         </details>
 
-        <details className="taplink-action-group">
+        <details className="taplink-action-group" suppressHydrationWarning>
           <summary className="taplink-button taplink-button-internal">
             <span className="button-main">
               <span className="button-icon button-icon-courses" aria-hidden="true" />

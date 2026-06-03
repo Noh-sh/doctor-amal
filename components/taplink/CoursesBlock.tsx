@@ -38,7 +38,7 @@ export function CoursesBlock({ courses, panelId, purchase }: CoursesBlockProps) 
       <h2 className="visually-hidden" id="courses-title">Курсы</h2>
       <div className="course-accordion">
         {courses.map((course) => (
-          <details className="course-item" key={course.id}>
+          <details className="course-item" key={course.id} suppressHydrationWarning>
             <summary>
               <span className="course-title">
                 <span className="course-title-icon" aria-hidden="true" />

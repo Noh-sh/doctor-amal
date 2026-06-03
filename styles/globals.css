@@ -133,10 +133,12 @@ h2 {
 }
 
 .admin-page {
+  width: min(1080px, calc(100% - 32px));
   min-height: calc(100vh - 72px);
   display: grid;
-  align-items: center;
-  padding: 18px 0;
+  align-items: start;
+  margin: 0 auto;
+  padding: 18px 0 42px;
 }
 
 .admin-panel {
@@ -185,7 +187,8 @@ h2 {
   font-weight: 700;
 }
 
-.admin-field input {
+.admin-field input,
+.admin-field textarea {
   min-height: 44px;
   width: 100%;
   border: 1px solid var(--line-strong);
@@ -197,7 +200,13 @@ h2 {
   outline: none;
 }
 
-.admin-field input:focus {
+.admin-field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.admin-field input:focus,
+.admin-field textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(47, 138, 66, 0.12);
 }
@@ -244,6 +253,12 @@ h2 {
   font-size: 14px;
 }
 
+.admin-message-success {
+  border-color: rgba(47, 138, 66, 0.22);
+  background: rgba(245, 255, 242, 0.9);
+  color: var(--accent-dark);
+}
+
 .admin-status {
   display: flex;
   align-items: center;
@@ -262,6 +277,60 @@ h2 {
   height: 9px;
   border-radius: 50%;
   background: var(--accent);
+}
+
+.admin-editor {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-editor-section,
+.admin-subform {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.58);
+  padding: 16px;
+}
+
+.admin-subform {
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.admin-subform h3 {
+  font-size: 18px;
+}
+
+.admin-section-header {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-note {
+  border: 1px solid rgba(47, 138, 66, 0.16);
+  border-radius: 8px;
+  background: var(--secondary-soft);
+  color: var(--muted);
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.admin-check {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-check input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
 }
 
 .taplink-page,
@@ -776,7 +845,6 @@ h2 {
   align-items: center;
   gap: 8px;
   min-width: 0;
-  text-transform: uppercase;
 }
 
 .course-title-icon {
