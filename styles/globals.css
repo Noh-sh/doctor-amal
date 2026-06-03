@@ -132,6 +132,138 @@ h2 {
   padding: 26px 0 46px;
 }
 
+.admin-page {
+  min-height: calc(100vh - 72px);
+  display: grid;
+  align-items: center;
+  padding: 18px 0;
+}
+
+.admin-panel {
+  display: grid;
+  gap: 18px;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--glass-strong);
+  padding: 22px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+.admin-shell {
+  align-content: start;
+}
+
+.admin-panel-header {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-eyebrow {
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.admin-muted {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.admin-form,
+.admin-field {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-field {
+  gap: 6px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-field input {
+  min-height: 44px;
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--text);
+  font: inherit;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.admin-field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(47, 138, 66, 0.12);
+}
+
+.admin-button {
+  min-height: 44px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: 10px 14px;
+}
+
+.admin-button:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.admin-button:disabled {
+  cursor: not-allowed;
+  border-color: var(--line);
+  background: var(--surface-muted);
+  color: var(--disabled);
+}
+
+.admin-button-secondary {
+  background: var(--surface);
+  color: var(--accent-dark);
+}
+
+.admin-button-secondary:hover {
+  color: #ffffff;
+}
+
+.admin-message {
+  border: 1px solid rgba(138, 47, 47, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 247, 247, 0.88);
+  color: #7a2626;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.admin-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(47, 138, 66, 0.2);
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 .taplink-page,
 .page-section {
   display: grid;
