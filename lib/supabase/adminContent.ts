@@ -62,11 +62,13 @@ type ExternalLinkRow = {
 
 type CourseRow = {
   id: string;
+  slug: string | null;
   title: string | null;
   description: string | null;
   price_display_text: string | null;
   price_is_confirmed: boolean | null;
   is_active: boolean | null;
+  sort_order: number | null;
 };
 
 type PurchaseSettingsRow = {
@@ -97,6 +99,8 @@ export type CourseUpdate = {
   priceIsConfirmed: boolean;
   isActive: boolean;
 };
+
+export type CourseCreate = CourseUpdate;
 
 export type PurchaseSettingsUpdate = {
   managerTelegramUrl: string;
@@ -130,6 +134,27 @@ function toNullableText(value: string) {
   const trimmed = value.trim();
 
   return trimmed.length > 0 ? trimmed : null;
+}
+
+function slugify(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function createCourseKeys(title: string) {
+  const suffix = Date.now().toString(36);
+  const id = `course-${suffix}`;
+  const slugBase = slugify(title);
+
+  return {
+    id,
+    slug: slugBase ? `${slugBase}-${suffix}` : id
+  };
 }
 
 function mapDoctorProfile(row: DoctorProfileRow): AdminDoctorProfile {
@@ -193,7 +218,7 @@ export async function fetchAdminContent(supabase: SupabaseClient): Promise<Admin
       .returns<ExternalLinkRow[]>(),
     supabase
       .from("courses")
-      .select("id,title,description,price_display_text,price_is_confirmed,is_active")
+      .select("id,slug,title,description,price_display_text,price_is_confirmed,is_active,sort_order")
       .order("sort_order", { ascending: true })
       .returns<CourseRow[]>(),
     supabase
@@ -276,6 +301,37 @@ export async function updateCourse(supabase: SupabaseClient, id: string, input: 
       is_active: input.isActive
     })
     .eq("id", id);
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function createCourse(supabase: SupabaseClient, input: CourseCreate) {
+  const { id, slug } = createCourseKeys(input.title);
+  const { data: latestCourse, error: latestCourseError } = await supabase
+    .from("courses")
+    .select("sort_order")
+    .order("sort_order", { ascending: false })
+    .limit(1)
+    .maybeSingle<Pick<CourseRow, "sort_order">>();
+
+  if (latestCourseError) {
+    throw latestCourseError;
+  }
+
+  const sortOrder = typeof latestCourse?.sort_order === "number" ? latestCourse.sort_order + 1 : 0;
+  const { error } = await supabase.from("courses").insert({
+    id,
+    slug,
+    title: input.title.trim(),
+    description: input.description.trim(),
+    price_display_text: input.priceDisplayText.trim(),
+    price_is_confirmed: input.priceIsConfirmed,
+    purchase_label: "Купить",
+    is_active: input.isActive,
+    sort_order: sortOrder
+  });
 
   if (error) {
     throw error;
