@@ -27,6 +27,46 @@
   - ...
 ```
 
+## 2026-06-03 - Supabase Auth и RLS для админки
+
+- План: `Work plans/Завершенные/054-plan-admin-auth-rls.md`
+- Статус: завершено
+- Области: `Supabase`, `Auth`, `RLS`, `Migrations`, `Security`, `Проверка`
+- Specs:
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/user-stories/admin-user-stories.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-mcp-access.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - создана migration для `admin_users`, функции `is_doctor_admin()` и RLS policies админского доступа;
+  - создана корректирующая migration для ограничения write grants у `anon` и `authenticated`;
+  - migrations применены к online Supabase project через Supabase CLI;
+  - write policies добавлены только для `doctor_profile`, `external_links`, `courses`, `purchase_settings`;
+  - write policy для `page_settings` не добавлялась;
+  - владелец проекта создал Supabase Auth user доктора через Dashboard;
+  - в `admin_users` добавлена активная запись с ролью `doctor_admin`.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `npx supabase migration list` подтвердил совпадение local и remote migrations `20260530000000`, `20260603000000`, `20260603001000`;
+  - MCP подтвердил таблицу `admin_users`, RLS status, policies и `active_doctor_admins = 1`;
+  - MCP подтвердил, что `anon` не имеет update grants, а `authenticated` имеет update только на разрешенные контентные колонки;
+  - ручная проверка выполнена: migrations не содержат `drop`, не создают покупателей, заявки, оплату, заказы, медицинские анкеты или аналитику;
+  - пароль доктора не записывался в репозиторий.
+- Измененные файлы:
+  - `supabase/migrations/20260603000000_create_admin_access_policies.sql`
+  - `supabase/migrations/20260603001000_restrict_admin_update_grants.sql`
+  - `Work plans/Завершенные/054-plan-admin-auth-rls.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - создать отдельный план для UI админки: `/admin`, вход email/password и формы редактирования разрешенных контентных полей.
+
 ## 2026-06-02 - Начать подготовку админки и Auth для редактирования контента
 
 - План: `Work plans/Завершенные/053-start-admin-auth-content-editing.md`
