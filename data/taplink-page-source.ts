@@ -90,7 +90,7 @@ async function readTable<T>(table: string, query = "select=*"): Promise<T[]> {
       apikey: SUPABASE_KEY
     },
     next: {
-      revalidate: 300
+      revalidate: 30
     }
   });
 
