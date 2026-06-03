@@ -8,6 +8,7 @@ import {
   type AdminDoctorProfile,
   type AdminExternalLink,
   type AdminPurchaseSettings,
+  createCourse,
   fetchAdminContent,
   updateCourse,
   updateDoctorProfile,
@@ -35,6 +36,7 @@ type ProfileForm = {
 };
 
 type CourseForm = AdminCourse;
+type NewCourseForm = Omit<CourseForm, "id">;
 type ExternalLinkForm = AdminExternalLink;
 type PurchaseForm = AdminPurchaseSettings;
 
@@ -65,6 +67,16 @@ function hasText(value: string) {
   return value.trim().length > 0;
 }
 
+function createEmptyCourseForm(): NewCourseForm {
+  return {
+    title: "",
+    description: "",
+    priceDisplayText: "",
+    priceIsConfirmed: false,
+    isActive: true
+  };
+}
+
 function readableError(error: unknown) {
   if (error instanceof Error && error.message.includes("violates check constraint")) {
     return "Данные не прошли проверку Supabase. Проверьте обязательные поля и активные ссылки.";
@@ -82,6 +94,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   const [loadError, setLoadError] = useState("");
   const [profileForm, setProfileForm] = useState<ProfileForm | null>(null);
   const [courseForms, setCourseForms] = useState<CourseForm[]>([]);
+  const [newCourseForm, setNewCourseForm] = useState<NewCourseForm>(() => createEmptyCourseForm());
   const [externalLinkForms, setExternalLinkForms] = useState<ExternalLinkForm[]>([]);
   const [purchaseForm, setPurchaseForm] = useState<PurchaseForm | null>(null);
 
@@ -203,6 +216,29 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
     }
   }
 
+  async function handleNewCourseSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!hasText(newCourseForm.title) || !hasText(newCourseForm.description) || !hasText(newCourseForm.priceDisplayText)) {
+      setFeedback({ tone: "error", text: "Название, описание и цена нового курса не должны быть пустыми." });
+      return;
+    }
+
+    setSavingKey("course:new");
+    setSavedKey(null);
+    setFeedback(null);
+
+    try {
+      await createCourse(supabase, newCourseForm);
+      setNewCourseForm(createEmptyCourseForm());
+      await afterSave("Новый курс добавлен.", "course:new");
+    } catch (error) {
+      setFeedback({ tone: "error", text: readableError(error) });
+    } finally {
+      setSavingKey(null);
+    }
+  }
+
   async function handleExternalLinkSubmit(event: FormEvent<HTMLFormElement>, link: ExternalLinkForm) {
     event.preventDefault();
 
@@ -253,6 +289,10 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
 
   function updateCourseForm(id: string, patch: Partial<CourseForm>) {
     setCourseForms((current) => current.map((course) => (course.id === id ? { ...course, ...patch } : course)));
+  }
+
+  function updateNewCourseForm(patch: Partial<NewCourseForm>) {
+    setNewCourseForm((current) => ({ ...current, ...patch }));
   }
 
   function updateExternalLinkForm(id: number, patch: Partial<ExternalLinkForm>) {
@@ -363,8 +403,60 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
       <section className="admin-editor-section" aria-labelledby="admin-courses-title">
         <div className="admin-section-header">
           <h2 id="admin-courses-title">Курсы</h2>
-          <p className="admin-muted">Можно редактировать только существующие курсы. Добавление и удаление не включены.</p>
+          <p className="admin-muted">Можно добавить новый курс или скрыть существующий без удаления из Supabase.</p>
         </div>
+
+        <form className="admin-subform" onSubmit={handleNewCourseSubmit}>
+          <h3>Новый курс</h3>
+
+          <label className="admin-field">
+            <span>Название курса</span>
+            <input
+              required
+              value={newCourseForm.title}
+              onChange={(event) => updateNewCourseForm({ title: event.target.value })}
+            />
+          </label>
+
+          <label className="admin-field">
+            <span>Описание</span>
+            <textarea
+              required
+              rows={4}
+              value={newCourseForm.description}
+              onChange={(event) => updateNewCourseForm({ description: event.target.value })}
+            />
+          </label>
+
+          <label className="admin-field">
+            <span>Цена текстом</span>
+            <input
+              required
+              value={newCourseForm.priceDisplayText}
+              onChange={(event) => updateNewCourseForm({ priceDisplayText: event.target.value })}
+            />
+          </label>
+
+          <label className="admin-check">
+            <input
+              checked={newCourseForm.priceIsConfirmed}
+              type="checkbox"
+              onChange={(event) => updateNewCourseForm({ priceIsConfirmed: event.target.checked })}
+            />
+            <span>Цена подтверждена</span>
+          </label>
+
+          <label className="admin-check">
+            <input
+              checked={newCourseForm.isActive}
+              type="checkbox"
+              onChange={(event) => updateNewCourseForm({ isActive: event.target.checked })}
+            />
+            <span>Показывать курс на публичной странице</span>
+          </label>
+
+          {renderSaveButton("course:new", "Добавить курс")}
+        </form>
 
         {courseForms.map((course) => (
           <form className="admin-subform" key={course.id} onSubmit={(event) => void handleCourseSubmit(event, course)}>

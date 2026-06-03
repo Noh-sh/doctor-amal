@@ -27,6 +27,47 @@
   - ...
 ```
 
+## 2026-06-03 - Реализация добавления курсов в админке
+
+- План: `Work plans/Завершенные/061-realizaciya-dobavleniya-kursov-v-adminke.md`
+- Статус: завершено
+- Области: `Frontend`, `Admin`, `Supabase`, `RLS`, `UI`, `Проверка`
+- Specs:
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - добавлена migration `20260603003000_add_admin_course_insert_policy.sql`;
+  - для `courses` добавлен `insert` grant и `insert` policy только для активного `doctor_admin`;
+  - `delete` для курсов не добавлен;
+  - добавлен helper `createCourse`;
+  - `createCourse` формирует `id`, `slug`, `sort_order` и `purchase_label = Купить`;
+  - в `/admin` добавлена форма `Новый курс`;
+  - после добавления список курсов в админке перезагружается;
+  - скрытие курса остается через `is_active = false` / checkbox `Показывать курс на публичной странице`.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - поиск по `insert`, `delete`, `createCourse`, `sort_order`, `purchase_label`, `slug` подтвердил границы реализации;
+  - `npx supabase db push` применил migration к remote Supabase;
+  - `npx supabase migration list` подтвердил совпадение local и remote migrations до `20260603003000`;
+  - dev-сервер показал `GET /admin 200` и `GET / 200`;
+  - свежий dev log не содержит warning `Multiple GoTrueClient instances`;
+  - владелец проекта вручную проверил добавление курса через `/admin`.
+- Измененные файлы:
+  - `components/admin/AdminContentEditor.tsx`
+  - `lib/supabase/adminContent.ts`
+  - `supabase/migrations/20260603003000_add_admin_course_insert_policy.sql`
+  - `Work plans/Завершенные/061-realizaciya-dobavleniya-kursov-v-adminke.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после deploy проверить создание активного и неактивного курса в online `/admin`.
+
 ## 2026-06-03 - Specs добавления курсов в админке
 
 - План: `Work plans/Завершенные/060-specs-dobavlenie-kursov-v-adminke.md`
