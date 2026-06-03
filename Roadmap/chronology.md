@@ -27,6 +27,40 @@
   - ...
 ```
 
+## 2026-06-03 - Specs добавления курсов в админке
+
+- План: `Work plans/Завершенные/060-specs-dobavlenie-kursov-v-adminke.md`
+- Статус: завершено
+- Области: `Specs`, `Admin`, `Supabase`, `RLS`, `Проверка`
+- Specs:
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - добавление нового курса через админку описано как отдельная подтвержденная функция;
+  - зафиксированы поля нового курса: название, описание, цена текстом, подтверждение цены и активность;
+  - описаны технические правила `id`, `slug`, `purchase_label = Купить` и `sort_order` после последнего существующего курса;
+  - зафиксировано, что для создания курса нужна отдельная `insert` policy для `courses`, доступная только активному `doctor_admin`;
+  - зафиксировано, что `delete` для курсов не добавляется;
+  - удаление в пользовательском смысле реализуется как скрытие курса через `is_active = false`, без пустого блока на публичной странице.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - поиск по `insert`, `sort_order`, `slug`, `delete`, `is_active` подтвердил новые правила в specs;
+  - ручная проверка specs подтвердила, что не добавлены оплата, заявки, покупатели, отдельные страницы курсов, черновики, журнал изменений или физическое удаление курсов.
+- Измененные файлы:
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `Work plans/Завершенные/060-specs-dobavlenie-kursov-v-adminke.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - создать отдельный план реализации: migration `insert` policy для `courses`, admin UI создания курса и проверки RLS.
+
 ## 2026-06-03 - Online-проверка админки и кеша
 
 - План: `Work plans/Завершенные/059-online-proverka-admin-i-kesha.md`
