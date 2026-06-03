@@ -27,6 +27,51 @@
   - ...
 ```
 
+## 2026-06-03 - UI входа в админку
+
+- План: `Work plans/Завершенные/055-plan-admin-login-ui.md`
+- Статус: завершено
+- Области: `Frontend`, `Admin`, `Auth`, `Supabase`, `UI`, `Проверка`
+- Specs:
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/user-stories/admin-user-stories.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - установлен `@supabase/supabase-js`;
+  - создан route `/admin`;
+  - добавлен browser Supabase client;
+  - реализована форма входа email/password;
+  - добавлена проверка активной роли `doctor_admin` через `admin_users`;
+  - добавлен отказ доступа без показа админской оболочки;
+  - добавлен logout;
+  - добавлена защищенная оболочка админки без форм редактирования;
+  - публичная страница `/` не получила ссылку на `/admin`.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - HTTP-проверка показала `200 OK` для `/`;
+  - HTTP-проверка показала `200 OK` для `/admin`;
+  - проверено, что HTML `/` не содержит `/admin`, `Админка` или `Вход в админку`;
+  - проверено, что service role key и пароль доктора не добавлены в код;
+  - владелец проекта вручную проверил вход доктора через email/password и подтвердил, что `/admin` работает.
+- Измененные файлы:
+  - `package.json`
+  - `package-lock.json`
+  - `app/admin/page.tsx`
+  - `components/admin/AdminAccess.tsx`
+  - `lib/supabase/browserClient.ts`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/055-plan-admin-login-ui.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - создать отдельный план для форм редактирования контента в админке.
+
 ## 2026-06-03 - Supabase Auth и RLS для админки
 
 - План: `Work plans/Завершенные/054-plan-admin-auth-rls.md`
