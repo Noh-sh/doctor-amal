@@ -27,6 +27,63 @@
   - ...
 ```
 
+## 2026-06-03 - Сократить delay обновления контента
+
+- План: `Work plans/Завершенные/058-sokratit-delay-obnovleniya-kontenta.md`
+- Статус: завершено
+- Области: `Frontend`, `Supabase`, `Кеш`, `Проверка`
+- Specs:
+  - `spec/technical-specs/admin-auth-and-access.md`
+- Сделано:
+  - delay обновления публичной страницы после изменений в админке сокращен с 300 до 30 секунд;
+  - мгновенный сброс кеша после сохранения не добавлен;
+  - Supabase Auth, RLS, migrations, env-переменные и публичный пользовательский сценарий не изменены.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - build output показал для route `/` значение `Revalidate 30s`;
+  - `git diff --check` выполнен без ошибок;
+  - поиск подтвердил `revalidate: 30` в `data/taplink-page-source.ts`.
+- Измененные файлы:
+  - `data/taplink-page-source.ts`
+  - `Work plans/Завершенные/058-sokratit-delay-obnovleniya-kontenta.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после deploy проверить, что изменение курса из `/admin` появляется на публичной странице в течение примерно 30 секунд.
+
+## 2026-06-03 - Исправить повторный Supabase browser client
+
+- План: `Work plans/Завершенные/057-ispravit-povtorniy-supabase-browser-client.md`
+- Статус: завершено
+- Области: `Frontend`, `Admin`, `Supabase`, `Auth`, `Проверка`
+- Specs:
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - browser Supabase client сделан переиспользуемым через cache на `globalThis`;
+  - auth `storageKey` явно фиксируется по project ref из Supabase URL;
+  - повторный вызов helper для того же `storageKey` возвращает существующий client и не создает новый `GoTrueClient`;
+  - сценарий `/admin`, вход email/password, проверка `doctor_admin`, logout и публичная страница `/` не изменены.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - поиск `rg -n "createBrowserSupabaseClient|createClient" lib components app` подтвердил, что `createClient` вызывается только в `lib/supabase/browserClient.ts`;
+  - dev-сервер был запущен на `http://localhost:3000`; browser warning после HMR пришел из уже открытого browser context со старым экземпляром client, поэтому чистую ручную проверку нужно делать после полной перезагрузки вкладки.
+- Измененные файлы:
+  - `lib/supabase/browserClient.ts`
+  - `Work plans/Завершенные/057-ispravit-povtorniy-supabase-browser-client.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - открыть `/admin` в обновленной вкладке браузера и убедиться, что warning `Multiple GoTrueClient instances` больше не появляется.
+
 ## 2026-06-03 - Редактор контента в админке
 
 - План: `Work plans/Завершенные/056-plan-admin-content-editor.md`
