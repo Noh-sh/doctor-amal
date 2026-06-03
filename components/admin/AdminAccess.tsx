@@ -2,6 +2,7 @@
 
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
+import { AdminContentEditor } from "@/components/admin/AdminContentEditor";
 import { createBrowserSupabaseClient } from "@/lib/supabase/browserClient";
 
 type AdminAccessProps = {
@@ -174,18 +175,19 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
     );
   }
 
-  if (accessState === "signed_in") {
+  if (accessState === "signed_in" && supabase) {
     return (
       <section className="admin-panel admin-shell" aria-label="Админка">
         <div className="admin-panel-header">
           <p className="admin-eyebrow">Doctor Amal</p>
           <h1>Админка</h1>
-          <p className="admin-muted">Вход выполнен. Редактирование контента будет добавлено следующим этапом.</p>
+          <p className="admin-muted">Редактирование контента публичной страницы.</p>
         </div>
         <div className="admin-status" role="status">
           <span className="admin-status-dot" aria-hidden="true" />
           Доступ доктора подтвержден
         </div>
+        <AdminContentEditor supabase={supabase} />
         <button className="admin-button admin-button-secondary" type="button" onClick={handleLogout}>
           Выйти
         </button>

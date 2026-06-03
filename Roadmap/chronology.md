@@ -27,6 +27,52 @@
   - ...
 ```
 
+## 2026-06-03 - Редактор контента в админке
+
+- План: `Work plans/Завершенные/056-plan-admin-content-editor.md`
+- Статус: завершено
+- Области: `Frontend`, `Admin`, `Supabase`, `RLS`, `UI`, `Проверка`
+- Specs:
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/user-stories/admin-user-stories.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - добавлен `SELECT`-доступ для активного `doctor_admin` к редактируемым таблицам контента;
+  - migration применена к remote Supabase;
+  - реализован helper загрузки и сохранения admin content;
+  - после входа `/admin` показывает редактор профиля, курсов, внешних ссылок и Telegram-ссылки менеджера;
+  - сохранение выполняется через Supabase browser client под сессией доктора и RLS;
+  - не добавлены покупатели, заявки, оплата, аналитика, черновики, журнал изменений, загрузка фото, `page_settings.medical_notice`, добавление или удаление курсов;
+  - исправлен hydration warning для публичных `details`;
+  - убран принудительный uppercase у названия курса на публичной странице.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - Supabase MCP подтвердил migration и `SELECT` policies для `doctor_admin`;
+  - HTTP-проверка показала `200 OK` для `/` и `/admin`;
+  - HTML `/` не содержит `/admin`, `Админка` или `Вход в админку`;
+  - проверено, что service role key не используется во frontend-коде;
+  - проверено, что админка не использует `page_settings`, `.insert()` или `.delete()`;
+  - владелец проекта вручную проверил изменение цены курса и переход кнопки `Купить` в Telegram к менеджеру.
+- Измененные файлы:
+  - `Work plans/Завершенные/056-plan-admin-content-editor.md`
+  - `components/admin/AdminAccess.tsx`
+  - `components/admin/AdminContentEditor.tsx`
+  - `components/taplink/CoursesBlock.tsx`
+  - `components/taplink/TaplinkPage.tsx`
+  - `lib/supabase/adminContent.ts`
+  - `styles/globals.css`
+  - `supabase/migrations/20260603002000_add_admin_content_select_policies.sql`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: выполнен
+  - push: выполнен
+- Следующий шаг:
+  - после отдельного плана можно добавить создание новых курсов через админку.
+
 ## 2026-06-03 - UI входа в админку
 
 - План: `Work plans/Завершенные/055-plan-admin-login-ui.md`
