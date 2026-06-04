@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 };
 
 export default function AdminPage() {
-  const supabaseUrl = process.env.DOCTOR_SUPABASE_URL ?? null;
-  const supabaseKey = process.env.DOCTOR_SUPABASE_PUBLISHABLE_KEY ?? process.env.DOCTOR_SUPABASE_ANON_KEY ?? null;
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.DOCTOR_SUPABASE_URL ?? null;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? null;
 
   return (
     <div className="admin-page">

@@ -257,6 +257,7 @@ RLS должен оставаться включенным на таблицах
 
 - использовать service role key во frontend-коде;
 - добавлять secret key в `NEXT_PUBLIC_*`;
+- добавлять `DOCTOR_SUPABASE_SERVICE_ROLE_KEY` в browser/client Supabase;
 - давать write-доступ роли `anon`;
 - давать write-доступ любому `authenticated` пользователю без проверки `admin_users`;
 - хранить пароль доктора в таблицах приложения;

@@ -27,6 +27,164 @@
   - ...
 ```
 
+## 2026-06-04 - Правильная Supabase env-схема
+
+- План: `Work plans/Завершенные/066-pravilnaya-supabase-env-schema.md`
+- Статус: завершено
+- Области: `Env`, `Supabase`, `Next.js`, `Frontend`, `Admin`, `Specs`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - specs обновлены под чистую схему Next.js + Supabase;
+  - `.env.example` содержит только `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `DOCTOR_SUPABASE_URL` и `DOCTOR_SUPABASE_SERVICE_ROLE_KEY`;
+  - legacy `DOCTOR_SUPABASE_PUBLISHABLE_KEY` и `DOCTOR_SUPABASE_ANON_KEY` убраны из `.env.example`;
+  - публичная страница и `/admin` больше не читают legacy ключи;
+  - service role key остается server-only и не используется кодом.
+- Проверка:
+  - `rg -n "NEXT_PUBLIC_SUPABASE|DOCTOR_SUPABASE|DOCTOR_SUPABASE_ANON_KEY|DOCTOR_SUPABASE_PUBLISHABLE_KEY|process\\.env" .env.example app data lib spec/technical-specs` выполнен успешно;
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `.env.example`
+  - `app/admin/page.tsx`
+  - `data/taplink-page-source.ts`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `Work plans/Завершенные/066-pravilnaya-supabase-env-schema.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - вручную привести `.env.local` к той же схеме, если в нем остались legacy-переменные.
+
+## 2026-06-04 - Сократить `.env.example`
+
+- План: `Work plans/Завершенные/065-sokratit-env-example.md`
+- Статус: завершено
+- Области: `Env`, `Supabase`, `Документация`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+- Сделано:
+  - из `.env.example` убраны лишние описания;
+  - оставлены `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `DOCTOR_SUPABASE_URL`, legacy fallback и `DOCTOR_SUPABASE_SERVICE_ROLE_KEY`;
+  - сохранено короткое предупреждение, что service role key нельзя добавлять в `NEXT_PUBLIC_*`.
+- Проверка:
+  - `rg -n "NEXT_PUBLIC_SUPABASE|DOCTOR_SUPABASE" .env.example` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `.env.example`
+  - `Work plans/Завершенные/065-sokratit-env-example.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - при необходимости перенести значения из `.env.local` в новую короткую структуру.
+
+## 2026-06-04 - `NEXT_PUBLIC` env для Supabase
+
+- План: `Work plans/Завершенные/064-next-public-supabase-env.md`
+- Статус: завершено
+- Области: `Env`, `Supabase`, `Next.js`, `Frontend`, `Admin`, `Specs`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - specs обновлены под подтвержденную env-схему;
+  - `.env.example` теперь содержит `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `DOCTOR_SUPABASE_URL` и `DOCTOR_SUPABASE_SERVICE_ROLE_KEY`;
+  - публичная страница читает `NEXT_PUBLIC_SUPABASE_URL` и `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` как приоритетные значения;
+  - `/admin` читает новую public env-пару как приоритетную;
+  - `DOCTOR_SUPABASE_URL`, `DOCTOR_SUPABASE_PUBLISHABLE_KEY` и `DOCTOR_SUPABASE_ANON_KEY` оставлены fallback, чтобы старая локальная настройка не ломалась;
+  - service role key не подключен к коду и остается server-only secret.
+- Проверка:
+  - `rg -n "NEXT_PUBLIC_SUPABASE|DOCTOR_SUPABASE|process\\.env" .env.example app data lib spec/technical-specs` выполнен успешно;
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `.env.example`
+  - `app/admin/page.tsx`
+  - `data/taplink-page-source.ts`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `Work plans/Завершенные/064-next-public-supabase-env.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - заполнить `.env.local` по новой схеме и перезапустить dev-сервер.
+
+## 2026-06-04 - Уточнить `NEXT_PUBLIC` в `.env.example`
+
+- План: `Work plans/Завершенные/063-utochnit-next-public-v-env-example.md`
+- Статус: завершено
+- Области: `Env`, `Supabase`, `Next.js`, `Документация`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+- Сделано:
+  - в `.env.example` добавлено явное пояснение, что public Supabase key и `NEXT_PUBLIC_*` - разные вещи;
+  - раздел env для публичных ключей Supabase переименован в `Public Supabase keys без NEXT_PUBLIC`;
+  - для `DOCTOR_SUPABASE_PUBLISHABLE_KEY` и `DOCTOR_SUPABASE_ANON_KEY` уточнено, что имена намеренно не начинаются с `NEXT_PUBLIC_`;
+  - для service role сохранен server-only статус без `NEXT_PUBLIC`.
+- Проверка:
+  - `rg -n "NEXT_PUBLIC|public|server-only|DOCTOR_SUPABASE" .env.example` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `.env.example`
+  - `Work plans/Завершенные/063-utochnit-next-public-v-env-example.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - использовать в `.env.local` только `DOCTOR_SUPABASE_*` имена из шаблона.
+
+## 2026-06-04 - Расписать `.env.example`
+
+- План: `Work plans/Завершенные/062-raspisat-env-example.md`
+- Статус: завершено
+- Области: `Env`, `Supabase`, `Документация`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-dashboard-setup.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - `.env.example` переписан как подробный локальный шаблон;
+  - описано, что реальные значения нужно хранить в `.env.local`;
+  - расписаны `DOCTOR_SUPABASE_URL`, `DOCTOR_SUPABASE_PUBLISHABLE_KEY` и legacy fallback `DOCTOR_SUPABASE_ANON_KEY`;
+  - сохранено описание `DOCTOR_SUPABASE_SERVICE_ROLE_KEY` как server-only переменной, которую текущий код не использует;
+  - добавлены явные запреты на `NEXT_PUBLIC_*` secrets и реальные значения в git/чат/specs/work plans/roadmap.
+- Проверка:
+  - `rg -n "DOCTOR_SUPABASE_|NEXT_PUBLIC_|SERVICE_ROLE|process\\.env" .env.example data app lib spec/technical-specs` выполнен успешно;
+  - поиск подтвердил соответствие `.env.example` текущему коду и specs;
+  - `npm run build` выполнен успешно.
+- Измененные файлы:
+  - `.env.example`
+  - `Work plans/Завершенные/062-raspisat-env-example.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - при локальной настройке скопировать нужные значения из Supabase Dashboard в `.env.local`.
+
 ## 2026-06-03 - Реализация добавления курсов в админке
 
 - План: `Work plans/Завершенные/061-realizaciya-dobavleniya-kursov-v-adminke.md`
