@@ -234,21 +234,16 @@ Migration-файлы хранятся в `supabase/migrations/`.
 Для публичного чтения нужны:
 
 ```env
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=...
 DOCTOR_SUPABASE_URL=...
-DOCTOR_SUPABASE_PUBLISHABLE_KEY=...
-```
-
-Если конкретный Supabase project использует legacy keys, допустим вариант:
-
-```env
-DOCTOR_SUPABASE_URL=...
-DOCTOR_SUPABASE_ANON_KEY=...
+DOCTOR_SUPABASE_SERVICE_ROLE_KEY=...
 ```
 
 Правила:
 
-- предпочтительно использовать `DOCTOR_SUPABASE_PUBLISHABLE_KEY`, если он доступен;
-- legacy `DOCTOR_SUPABASE_ANON_KEY` допустим, если dashboard показывает legacy anon key;
+- `NEXT_PUBLIC_SUPABASE_URL` и `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` используются как основная публичная env-пара для browser/client Supabase;
+- `DOCTOR_SUPABASE_URL` сохраняется как server-side/project env;
 - `.env.local` создается локально и не коммитится;
 - hosting env-переменные добавляются после локальной проверки подключения;
 - secret key или service role key нельзя добавлять в `NEXT_PUBLIC_*`;

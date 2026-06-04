@@ -46,8 +46,8 @@ type PurchaseSettingsRow = {
   inactive_text: string | null;
 };
 
-const SUPABASE_URL = process.env.DOCTOR_SUPABASE_URL;
-const SUPABASE_KEY = process.env.DOCTOR_SUPABASE_PUBLISHABLE_KEY ?? process.env.DOCTOR_SUPABASE_ANON_KEY;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.DOCTOR_SUPABASE_URL;
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
 function hasSupabaseEnv() {
   return Boolean(SUPABASE_URL && SUPABASE_KEY);
