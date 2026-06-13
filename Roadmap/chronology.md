@@ -27,6 +27,35 @@
   - ...
 ```
 
+## 2026-06-13 - Ошибки входа и сессии админки
+
+- План: `Work plans/Завершенные/077-oshibki-vhoda-i-sessii-adminki.md`
+- Статус: завершено
+- Области: `Admin`, `Auth`, `Ошибки`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - обработаны неожиданные ошибки `auth.getSession()`;
+  - обработаны неожиданные ошибки `auth.signInWithPassword()`;
+  - `isSubmitting` сбрасывается после любой попытки входа;
+  - добавлен безопасный выход без раскрытия технических деталей;
+  - модель доступа, Supabase schema/RLS, migrations и публичная страница не менялись.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `components/admin/AdminAccess.tsx`
+  - `Work plans/Завершенные/077-oshibki-vhoda-i-sessii-adminki.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - продолжить этап надежности данных и ошибок: проверить публичный fallback/empty/partial-data сценарии.
+
 ## 2026-06-13 - Защита от параллельного сохранения в админке
 
 - План: `Work plans/Завершенные/076-zaschita-ot-parallelnogo-sohraneniya.md`
