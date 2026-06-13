@@ -27,6 +27,35 @@
   - ...
 ```
 
+## 2026-06-13 - Валидация публичных URL из Supabase
+
+- План: `Work plans/Завершенные/078-validaciya-publichnyh-url-iz-supabase.md`
+- Статус: завершено
+- Области: `Публичная страница`, `Supabase`, `Данные`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - внешние ссылки из Supabase активируются только при валидном `http` или `https` URL;
+  - невалидный или пустой внешний URL превращается в `null`;
+  - `manager_telegram_url` активирует покупку только для валидных Telegram URL с host `t.me` или `telegram.me`;
+  - автоматическое исправление URL, UTM, новые платформы, migrations и Supabase данные не добавлялись.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `data/taplink-page-source.ts`
+  - `Work plans/Завершенные/078-validaciya-publichnyh-url-iz-supabase.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - продолжить этап надежности: проверить remaining empty/partial-data сценарии публичной страницы.
+
 ## 2026-06-13 - Ошибки входа и сессии админки
 
 - План: `Work plans/Завершенные/077-oshibki-vhoda-i-sessii-adminki.md`
