@@ -33,6 +33,14 @@ async function checkDoctorAdminAccess(supabase: SupabaseClient, session: Session
   return Boolean(data?.role === "doctor_admin" && data.is_active);
 }
 
+async function safeSignOut(supabase: SupabaseClient) {
+  try {
+    await supabase.auth.signOut();
+  } catch {
+    // Ошибка выхода не должна показывать технические детали или ломать форму входа.
+  }
+}
+
 export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,20 +67,20 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
     let isMounted = true;
 
     async function checkCurrentSession() {
-      const {
-        data: { session }
-      } = await client.auth.getSession();
-
-      if (!isMounted) {
-        return;
-      }
-
-      if (!session) {
-        setAccessState("signed_out");
-        return;
-      }
-
       try {
+        const {
+          data: { session }
+        } = await client.auth.getSession();
+
+        if (!isMounted) {
+          return;
+        }
+
+        if (!session) {
+          setAccessState("signed_out");
+          return;
+        }
+
         const hasAccess = await checkDoctorAdminAccess(client, session);
 
         if (!isMounted) {
@@ -80,17 +88,17 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
         }
 
         if (!hasAccess) {
-          await client.auth.signOut();
+          await safeSignOut(client);
         }
 
         setAccessState(hasAccess ? "signed_in" : "denied");
         setMessage(hasAccess ? "" : "У этой учетной записи нет доступа к админке.");
       } catch {
-        await client.auth.signOut();
+        await safeSignOut(client);
 
         if (isMounted) {
-          setAccessState("denied");
-          setMessage("Не удалось проверить доступ к админке.");
+          setAccessState("signed_out");
+          setMessage("Не удалось проверить текущую сессию. Войдите снова.");
         }
       }
     }
@@ -123,23 +131,22 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
     setIsSubmitting(true);
     setMessage("");
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
-
-    if (error || !data.session) {
-      setIsSubmitting(false);
-      setAccessState("signed_out");
-      setMessage("Неверный email или пароль.");
-      return;
-    }
-
     try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error || !data.session) {
+        setAccessState("signed_out");
+        setMessage("Неверный email или пароль.");
+        return;
+      }
+
       const hasAccess = await checkDoctorAdminAccess(supabase, data.session);
 
       if (!hasAccess) {
-        await supabase.auth.signOut();
+        await safeSignOut(supabase);
         setAccessState("denied");
         setMessage("У этой учетной записи нет доступа к админке.");
         return;
@@ -148,9 +155,9 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
       setAccessState("signed_in");
       setPassword("");
     } catch {
-      await supabase.auth.signOut();
-      setAccessState("denied");
-      setMessage("Не удалось проверить доступ к админке.");
+      await safeSignOut(supabase);
+      setAccessState("signed_out");
+      setMessage("Не удалось выполнить вход. Проверьте подключение и попробуйте еще раз.");
     } finally {
       setIsSubmitting(false);
     }
@@ -158,7 +165,7 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
 
   async function handleLogout() {
     if (supabase) {
-      await supabase.auth.signOut();
+      await safeSignOut(supabase);
     }
 
     setAccessState("signed_out");
