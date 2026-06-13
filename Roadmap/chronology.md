@@ -27,6 +27,33 @@
   - ...
 ```
 
+## 2026-06-13 - Accessibility feedback админки
+
+- План: `Work plans/Завершенные/073-accessibility-feedback-adminki.md`
+- Статус: завершено
+- Области: `Admin`, `Accessibility`, `Frontend`, `Проверка`
+- Specs:
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - error feedback в admin editor теперь объявляется через `role="alert"`;
+  - success feedback остается `role="status"`;
+  - логика сохранения, формы, auth flow и Supabase операции не менялись.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `components/admin/AdminContentEditor.tsx`
+  - `Work plans/Завершенные/073-accessibility-feedback-adminki.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - проверить remote Supabase/RLS и восстановить MCP auth или выполнить другой разрешенный read-only способ проверки.
+
 ## 2026-06-13 - Настроить quality gate lint и typecheck
 
 - План: `Work plans/Завершенные/072-nastroit-quality-gate-lint-typecheck.md`

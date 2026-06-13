@@ -319,7 +319,10 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   return (
     <div className="admin-editor" aria-busy={isReloading || Boolean(savingKey)}>
       {feedback ? (
-        <p className={feedback.tone === "success" ? "admin-message admin-message-success" : "admin-message"} role="status">
+        <p
+          className={feedback.tone === "success" ? "admin-message admin-message-success" : "admin-message"}
+          role={feedback.tone === "success" ? "status" : "alert"}
+        >
           {feedback.text}
         </p>
       ) : null}
