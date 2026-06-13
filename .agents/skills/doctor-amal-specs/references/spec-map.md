@@ -5,45 +5,45 @@
 ## Базовый контекст
 
 - `spec/global-spec.md` — обзор проекта, методология, основные компоненты, технические требования, цели и границы ответственности.
-- `spec/functional-map.md` — роли, пользовательские пути, точки взаимодействия, основные функции, границы первой локальной версии и будущие направления.
+- `spec/functional-map.md` — роли, пользовательские пути, точки взаимодействия, основные функции, границы текущей online-версии и будущие направления.
 - `spec/feature-specs/README.md` — актуальная карта feature specs новой Taplink-версии и статус старых feature specs.
 
 ## Пользовательские сценарии
 
-- `spec/user-stories/README.md` — назначение user stories первой Taplink-версии, источники, формат и правило использования.
-- `spec/user-stories/personas.md` — персоны пользователей одной Taplink-страницы и будущего владельца проекта.
+- `spec/user-stories/README.md` — назначение user stories текущей Taplink-версии, источники, формат и правило использования.
+- `spec/user-stories/personas.md` — персоны пользователей одной Taplink-страницы и доктора как редактора контента.
 - `spec/user-stories/core-user-stories.md` — основные сценарии: первое знакомство, блок `О докторе`, блок `Курсы`, раскрытие курса, кнопка `Купить`, внешние платформы и медицинские ограничения.
 - `spec/user-stories/edge-case-stories.md` — исключительные ситуации: неподтвержденные URL, отсутствие Telegram-ссылки менеджера, неподтвержденные курсы и цены, недоступность внешней платформы, ожидание оплаты внутри проекта, ожидание медицинской помощи и старого формата сайта.
 - `spec/user-stories/journey-checklist.md` — проверочный список пользовательских путей одной Taplink-страницы.
-- `spec/user-stories/admin-user-stories.md` — будущие user stories доктора как редактора контента через админку, без auth покупателей, оплаты, заявок и медицинских данных.
+- `spec/user-stories/admin-user-stories.md` — текущие user stories доктора как редактора контента через админку, без auth покупателей, оплаты, заявок и медицинских данных.
 
 ## Feature specs новой Taplink-версии
 
 - `spec/feature-specs/README.md` — карта актуальных feature specs новой Taplink-версии.
 - `spec/feature-specs/doctor-block.md` — блок `О докторе`, допустимые данные, действия пользователя и медицинские ограничения.
-- `spec/feature-specs/courses-block.md` — блок `Курсы`, структура курса, цена, раскрытие курса и ограничения первой версии.
+- `spec/feature-specs/courses-block.md` — блок `Курсы`, структура курса, цена, раскрытие курса и ограничения текущей версии.
 - `spec/feature-specs/course-purchase-link.md` — кнопка `Купить`, переход в Telegram к менеджеру, состояние без ссылки и ограничения без оплаты и сбора данных.
 - `spec/feature-specs/external-links.md` — внешние кнопки `Telegram`, `WhatsApp`, `YouTube`, `Instagram`, подтвержденные URL и состояние без ссылки.
 - `spec/feature-specs/medical-content-rules.md` — медицинские ограничения пользовательских текстов, запрет обещаний результата, диагностики, схем лечения и персональных рекомендаций.
-- `spec/feature-specs/future-online-purchase.md` — будущая онлайн-покупка, не входящая в первую локальную версию.
-- `spec/feature-specs/admin-content-editing.md` — будущая админка для редактирования контента доктором: профиль, курсы, цены, ссылки и Telegram менеджера.
+- `spec/feature-specs/future-online-purchase.md` — будущая онлайн-покупка, не входящая в текущую версию.
+- `spec/feature-specs/admin-content-editing.md` — текущая админка для редактирования контента доктором: профиль, курсы, цены, ссылки и Telegram менеджера.
 
 ## Technical specs
 
-- `spec/technical-specs/README.md` — назначение technical specs первой Taplink-версии, источники требований, обязательный стек и ограничения.
-- `spec/technical-specs/architecture.md` — Next.js + TypeScript архитектура одной Taplink-страницы, слои, данные, Client/Server Components, ограничения.
-- `spec/technical-specs/routing-and-ui.md` — единственный публичный маршрут `/`, структура страницы, блоки, кнопки, раскрытие курса, UI-состояния и доступность.
-- `spec/technical-specs/data-model.md` — локальные модели `TaplinkPageData`, `DoctorProfile`, `Course`, `ExternalLink`, `PurchaseSettings`.
-- `spec/technical-specs/local-storage.md` — допустимые локальные данные проекта и запрет пользовательского `localStorage` в первой версии.
-- `spec/technical-specs/requests-and-validation.md` — отсутствие заявок и форм в первой версии, проверка локального контента и ссылок.
-- `spec/technical-specs/supabase-content-source.md` — первый Supabase-этап: online-источник контента страницы без изменения публичного сценария, без заявок, оплаты, auth покупателей, заказов, медицинских данных и MCP.
+- `spec/technical-specs/README.md` — назначение technical specs текущей Taplink-версии, источники требований, обязательный стек и ограничения.
+- `spec/technical-specs/architecture.md` — Next.js + TypeScript архитектура публичной страницы и защищенной админки, слои, данные, Client/Server Components и ограничения.
+- `spec/technical-specs/routing-and-ui.md` — публичный маршрут `/`, защищенный маршрут `/admin`, структура страницы, блоки, кнопки, раскрытие курса, UI-состояния и доступность.
+- `spec/technical-specs/data-model.md` — Supabase-модели и локальный fallback для `TaplinkPageData`, `DoctorProfile`, `Course`, `ExternalLink`, `PurchaseSettings`.
+- `spec/technical-specs/local-storage.md` — локальный fallback и запрет пользовательского `localStorage` в текущей версии.
+- `spec/technical-specs/requests-and-validation.md` — отсутствие публичных заявок и форм, а также валидация контента в админке.
+- `spec/technical-specs/supabase-content-source.md` — текущий online-источник контента страницы без заявок, оплаты, auth покупателей, заказов и медицинских данных.
 - `spec/technical-specs/supabase-dashboard-setup.md` — инструкция и SQL для online Supabase Dashboard: таблицы контента, RLS policies, seed текущего контента и проверочные запросы.
-- `spec/technical-specs/supabase-mcp-access.md` — правила будущего MCP-доступа к Supabase: только инспекция и проверка на первом MCP-этапе, без обхода specs и CLI migrations.
-- `spec/technical-specs/admin-auth-and-access.md` — будущая админка: Supabase Auth email/password, доступ только для доктора и RLS write policies для контентных таблиц.
+- `spec/technical-specs/supabase-mcp-access.md` — правила текущего read-only MCP-доступа к Supabase: инспекция и проверка без обхода specs и CLI migrations.
+- `spec/technical-specs/admin-auth-and-access.md` — текущая админка: Supabase Auth email/password, доступ только для доктора и RLS write policies для контентных таблиц.
 - `supabase/migrations/` — Supabase CLI migrations для воспроизводимого создания таблиц, RLS policies и seed-контента.
 - `spec/technical-specs/change-management.md` — порядок изменения Taplink-проекта, какие specs читать перед изменением, рискованные изменения и regression checklist.
-- `spec/technical-specs/implementation-checklist.md` — чеклист реализации и приемочные сценарии одной Taplink-страницы.
-- `spec/technical-specs/future-extension-plan.md` — план будущей онлайн-версии с CMS/админкой и возможной онлайн-покупкой; не использовать для текущей реализации без подтверждения пользователя.
+- `spec/technical-specs/implementation-checklist.md` — чеклист реализации и приемочные сценарии публичной страницы и админки.
+- `spec/technical-specs/future-extension-plan.md` — план будущих функций сверх текущих Supabase и админки; не использовать для текущей реализации без подтверждения пользователя.
 
 ## Как выбирать specs по задаче
 
@@ -54,11 +54,11 @@
 - Медицинские ограничения текстов: `medical-content-rules.md`, `doctor-block.md`, `courses-block.md`, `functional-map.md`.
 - Будущая онлайн-покупка: `future-online-purchase.md`, `course-purchase-link.md`, `functional-map.md`, `global-spec.md`.
 - Архитектура и структура Next.js: `architecture.md`, `routing-and-ui.md`, `data-model.md`, `local-storage.md`, `implementation-checklist.md`.
-- Локальные данные проекта: `data-model.md`, `local-storage.md`, `requests-and-validation.md`.
+- Данные проекта и локальный fallback: `data-model.md`, `local-storage.md`, `requests-and-validation.md`.
 - Supabase как источник контента страницы: `supabase-content-source.md`, `supabase-dashboard-setup.md`, `architecture.md`, `data-model.md`, `requests-and-validation.md`, `future-extension-plan.md`, `course-purchase-link.md`, `future-online-purchase.md`.
 - Supabase MCP access: `supabase-mcp-access.md`, `supabase-content-source.md`, `supabase-dashboard-setup.md`, `change-management.md`.
-- Админка и Auth для редактирования контента: `admin-content-editing.md`, `admin-user-stories.md`, `admin-auth-and-access.md`, `future-extension-plan.md`, `change-management.md`, `supabase-content-source.md`.
-- Будущие CMS, админка, онлайн-версия или онлайн-покупка: `future-extension-plan.md`, `future-online-purchase.md`, но только для планирования, не для реализации текущей версии.
+- Админка и Auth для редактирования контента: `admin-content-editing.md`, `admin-user-stories.md`, `admin-auth-and-access.md`, `change-management.md`, `supabase-content-source.md`.
+- Будущие расширения админки, новые роли, загрузка фото, удаление курсов или онлайн-покупка: `future-extension-plan.md`, `future-online-purchase.md`, но только для планирования, не для реализации текущей версии.
 
 ## Роли specs
 

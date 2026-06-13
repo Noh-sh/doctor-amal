@@ -82,8 +82,19 @@
 | 64 | `NEXT_PUBLIC` env для Supabase | Завершено | `Work plans/Завершенные/064-next-public-supabase-env.md` | добавлены `NEXT_PUBLIC_SUPABASE_URL` и `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` как основная public env-пара, `DOCTOR_SUPABASE_*` сохранены как server-side/fallback |
 | 65 | Сократить `.env.example` | Завершено | `Work plans/Завершенные/065-sokratit-env-example.md` | из `.env.example` убраны лишние пояснения, оставлен короткий список Supabase env |
 | 66 | Правильная Supabase env-схема | Завершено | `Work plans/Завершенные/066-pravilnaya-supabase-env-schema.md` | `.env.example` и код приведены к чистой схеме `NEXT_PUBLIC_SUPABASE_*` + server-only `DOCTOR_SUPABASE_SERVICE_ROLE_KEY`, legacy fallback убран |
+| 67 | Актуализация и уточнение specs | Завершено | `Work plans/Завершенные/067-aktualizaciya-i-utochnenie-specs.md` | specs приведены к текущей online-версии с Supabase и `/admin`; текущие решения отделены от будущих функций |
 
 ## Текущий статус
+
+Текущая версия Doctor Amal реализована как online Next.js Taplink-страница `/` с Supabase как основным источником контента и локальным fallback.
+
+Защищенная админка `/admin` использует Supabase Auth. Активный `doctor_admin` может редактировать разрешенные профильные тексты, внешние ссылки, Telegram-ссылку менеджера, существующие курсы и создавать новые курсы. Физическое удаление курсов, загрузка фото, управление Auth users, новые роли, заявки, auth покупателей и онлайн-оплата не входят в текущую версию.
+
+Актуальные specs приведены к фактической реализации. Они однозначно фиксируют маршруты, accordion-поведение, открытие внешних ссылок в новой вкладке, обязательность полей, права доступа, migrations-first работу с Supabase и read-only назначение MCP.
+
+Перед следующей продуктовой работой нужно свериться с актуальными specs и создать новый активный план. Новые функции сначала требуют подтверждения и обновления specs.
+
+## Архивный статус до актуализации specs
 
 Начат пересмотр проекта под новую концепцию Taplink-страницы.
 
