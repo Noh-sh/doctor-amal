@@ -151,7 +151,11 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
     const isSaved = savedKey === key;
 
     return (
-      <button className={isSaved ? "admin-button admin-button-saved" : "admin-button"} disabled={isSaving} type="submit">
+      <button
+        className={isSaved ? "admin-button admin-button-saved" : "admin-button"}
+        disabled={Boolean(savingKey)}
+        type="submit"
+      >
         {isSaving ? "Сохраняем..." : null}
         {!isSaving && isSaved ? (
           <>
@@ -166,6 +170,10 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
 
   async function handleProfileSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (savingKey) {
+      return;
+    }
 
     if (!profileForm || !hasText(profileForm.displayName)) {
       setFeedback({ tone: "error", text: "Имя доктора не должно быть пустым." });
@@ -197,6 +205,10 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   async function handleCourseSubmit(event: FormEvent<HTMLFormElement>, course: CourseForm) {
     event.preventDefault();
 
+    if (savingKey) {
+      return;
+    }
+
     if (!hasText(course.title) || !hasText(course.description) || !hasText(course.priceDisplayText)) {
       setFeedback({ tone: "error", text: "Название, описание и цена курса не должны быть пустыми." });
       return;
@@ -218,6 +230,10 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
 
   async function handleNewCourseSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (savingKey) {
+      return;
+    }
 
     if (!hasText(newCourseForm.title) || !hasText(newCourseForm.description) || !hasText(newCourseForm.priceDisplayText)) {
       setFeedback({ tone: "error", text: "Название, описание и цена нового курса не должны быть пустыми." });
@@ -242,6 +258,10 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   async function handleExternalLinkSubmit(event: FormEvent<HTMLFormElement>, link: ExternalLinkForm) {
     event.preventDefault();
 
+    if (savingKey) {
+      return;
+    }
+
     if (link.isEnabled && !hasText(link.url)) {
       setFeedback({ tone: "error", text: `Для активной ссылки ${link.label} нужен URL.` });
       return;
@@ -263,6 +283,10 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
 
   async function handlePurchaseSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (savingKey) {
+      return;
+    }
 
     if (!purchaseForm) {
       return;
