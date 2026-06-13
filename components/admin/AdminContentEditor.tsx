@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useCallback, useEffect, useState } from "react";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import {
   type AdminContent,
@@ -98,7 +98,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   const [externalLinkForms, setExternalLinkForms] = useState<ExternalLinkForm[]>([]);
   const [purchaseForm, setPurchaseForm] = useState<PurchaseForm | null>(null);
 
-  async function loadContent(mode: "initial" | "reload" = "reload") {
+  const loadContent = useCallback(async (mode: "initial" | "reload" = "reload") => {
     if (mode === "initial") {
       setIsLoading(true);
     } else {
@@ -120,11 +120,11 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
       setIsLoading(false);
       setIsReloading(false);
     }
-  }
+  }, [supabase]);
 
   useEffect(() => {
     void loadContent("initial");
-  }, []);
+  }, [loadContent]);
 
   useEffect(() => {
     if (!savedKey) {
