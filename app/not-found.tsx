@@ -6,7 +6,7 @@ export default function NotFound() {
       <p className="eyebrow">404</p>
       <h1>Страница не найдена</h1>
       <p className="lead">
-        В первой версии Doctor Amal есть только главная Taplink-страница. Вернитесь на главную,
+        В текущей версии Doctor Amal есть только главная Taplink-страница. Вернитесь на главную,
         чтобы выбрать нужный блок или внешнюю платформу.
       </p>
       <div className="actions">

@@ -27,6 +27,39 @@
   - ...
 ```
 
+## 2026-06-13 - Исправить терминологию текущей версии
+
+- План: `Work plans/Завершенные/071-ispravit-terminologiyu-tekuschey-versii.md`
+- Статус: завершено
+- Области: `UI`, `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - в UI заменены остаточные формулировки `первая версия`;
+  - в актуальных specs/user stories заменена устаревшая терминология `локальная страница`;
+  - поведение приложения, маршруты, данные и бизнес-правила не менялись.
+- Проверка:
+  - поиск по старым формулировкам выполнен без совпадений в актуальных файлах;
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `app/not-found.tsx`
+  - `components/taplink/TaplinkPage.tsx`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/user-stories/`
+  - `Work plans/Завершенные/071-ispravit-terminologiyu-tekuschey-versii.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - настроить quality gate: lint, typecheck, `tsconfig.tsbuildinfo` и единую проверочную команду.
+
 ## 2026-06-13 - Технический аудит текущей версии
 
 - План: `Work plans/Завершенные/070-tehnicheskiy-audit-tekuschey-versii.md`
