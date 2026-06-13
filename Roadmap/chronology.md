@@ -27,6 +27,38 @@
   - ...
 ```
 
+## 2026-06-05 - Актуализация и уточнение specs
+
+- План: `Work plans/Завершенные/067-aktualizaciya-i-utochnenie-specs.md`
+- Статус: завершено
+- Области: `Specs`, `Supabase`, `Admin`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/`
+  - `spec/technical-specs/`
+  - `spec/user-stories/`
+- Сделано:
+  - актуальные specs приведены к фактически реализованной online-версии с Supabase и `/admin`;
+  - зафиксированы точные маршруты, accordion-поведение, открытие внешних ссылок, обязательность полей и права `doctor_admin`;
+  - текущая реализация отделена от будущих функций;
+  - карта repo skill обновлена под актуальные specs.
+- Проверка:
+  - поиски устаревших и неоднозначных формулировок выполнены без совпадений;
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/`
+  - `Work plans/Завершенные/067-aktualizaciya-i-utochnenie-specs.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - использовать актуальные specs как источник правды перед следующей продуктовой задачей.
+
 ## 2026-06-04 - Правильная Supabase env-схема
 
 - План: `Work plans/Завершенные/066-pravilnaya-supabase-env-schema.md`

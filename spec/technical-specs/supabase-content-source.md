@@ -127,7 +127,7 @@ UI-компоненты не должны знать, пришли данные 
 - `description` — описание курса;
 - `price_display_text` — цена текстом;
 - `price_is_confirmed` — подтверждена ли цена;
-- `purchase_label` — текст кнопки, в первой версии `Купить`;
+- `purchase_label` — текст кнопки, в текущей версии `Купить`;
 - `is_active` — показывать ли курс;
 - `sort_order` — порядок отображения;
 - `updated_at` — техническая дата обновления.
@@ -199,25 +199,11 @@ UI-компоненты не должны знать, пришли данные 
 
 Если одно из этих требований появится позже, сначала нужны отдельные specs.
 
-## Online Supabase Dashboard и CLI migrations
+## Supabase CLI migrations
 
-Первый этап готовится сразу в online Supabase Dashboard.
+Источник правды по структуре remote Supabase — файлы в `supabase/migrations/`.
 
-После уточнения процесса допускается Supabase CLI без локального Docker, чтобы сохранить структуру базы в git через migration-файлы.
-
-Локальный Supabase через Docker на этом этапе не используется.
-
-Порядок подготовки:
-
-1. Создать Supabase project.
-2. Создать таблицы первого этапа через SQL Editor, Table Editor или Supabase CLI migration.
-3. Включить RLS на всех таблицах.
-4. Добавить policies только для публичного чтения опубликованного контента.
-5. Добавить тестовые записи подтвержденного контента.
-6. Проверить, что публичный ключ не дает прав на запись.
-7. Получить Project URL и публичный ключ.
-
-Рекомендуемый CLI-путь:
+Все изменения schema, RLS, grants и policies проходят через порядок:
 
 ```bash
 npx supabase login
@@ -225,13 +211,13 @@ npx supabase link --project-ref dagykilvpiacfbwpcluv
 npx supabase db push
 ```
 
-Migration-файлы хранятся в `supabase/migrations/`.
+SQL Editor допускается только для безопасных диагностических `select` и ручной проверки. Изменение структуры через SQL Editor без соответствующей migration запрещено.
 
 ## Env-переменные и ключи
 
 Ключи добавляются после создания online Supabase project и до написания Supabase client в коде.
 
-Для публичного чтения нужны:
+Текущая env-схема проекта:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=...
@@ -259,7 +245,7 @@ DOCTOR_SUPABASE_SERVICE_ROLE_KEY=...
 - публичная policy разрешает только `select`;
 - публичная policy должна ограничивать чтение опубликованными или активными rows;
 - публичные `insert`, `update`, `delete` запрещены;
-- запись выполняется только владельцем проекта через Supabase Dashboard на первом этапе;
+- активный `doctor_admin` может выполнять только разрешенные RLS/grants операции из `admin-auth-and-access.md`;
 - приложение не должно использовать service role key во frontend-коде.
 
 Минимальная логика чтения:
