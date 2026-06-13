@@ -27,6 +27,101 @@
   - ...
 ```
 
+## 2026-06-13 - Исправить терминологию текущей версии
+
+- План: `Work plans/Завершенные/071-ispravit-terminologiyu-tekuschey-versii.md`
+- Статус: завершено
+- Области: `UI`, `Specs`, `Документация`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - в UI заменены остаточные формулировки `первая версия`;
+  - в актуальных specs/user stories заменена устаревшая терминология `локальная страница`;
+  - поведение приложения, маршруты, данные и бизнес-правила не менялись.
+- Проверка:
+  - поиск по старым формулировкам выполнен без совпадений в актуальных файлах;
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `app/not-found.tsx`
+  - `components/taplink/TaplinkPage.tsx`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/user-stories/`
+  - `Work plans/Завершенные/071-ispravit-terminologiyu-tekuschey-versii.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - настроить quality gate: lint, typecheck, `tsconfig.tsbuildinfo` и единую проверочную команду.
+
+## 2026-06-13 - Технический аудит текущей версии
+
+- План: `Work plans/Завершенные/070-tehnicheskiy-audit-tekuschey-versii.md`
+- Статус: завершено
+- Области: `Аудит`, `Frontend`, `Admin`, `Supabase`, `Проверка`
+- Specs:
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+- Сделано:
+  - код сверено с текущими specs и implementation checklist;
+  - проверены маршруты `/`, `/admin`, 404, loading и error;
+  - проверены публичные компоненты, admin flow, data layer и Supabase env usage;
+  - findings классифицированы по severity;
+  - подготовлен список следующих bugfix-планов.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `npx tsc --noEmit` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `npm run lint` выявил нерабочий lint script;
+  - MCP-проверка remote Supabase/RLS не выполнена из-за `OAuth authorization required`.
+- Измененные файлы:
+  - `Work plans/Завершенные/070-tehnicheskiy-audit-tekuschey-versii.md`
+  - `Work plans/Завершенные/069-etap-0-chistaya-bazovaya-tochka.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - создать отдельный bugfix-план для устаревших формулировок `первая версия` и `локальная страница`.
+
+## 2026-06-13 - Этап 0: чистая базовая точка
+
+- План: `Work plans/Завершенные/069-etap-0-chistaya-bazovaya-tochka.md`
+- Статус: завершено
+- Области: `Git`, `Проверка`, `Specs`, `Планирование`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - создана ветка `quality/to-10-baseline`;
+  - изменения specs `067` и планы `068/069` разделены на отдельные commit;
+  - ветка отправлена на GitHub и затем смержена в `main` через PR #39;
+  - от обновленного `main` создана ветка `quality/technical-audit`.
+- Проверка:
+  - `npm run build` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `.env.local` не отслеживается git;
+  - реальные Supabase secret keys в проверенных файлах не обнаружены.
+- Измененные файлы:
+  - `Work plans/Завершенные/069-etap-0-chistaya-bazovaya-tochka.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: `a17e744`
+  - push: выполнен в ветку `quality/to-10-baseline`
+- Следующий шаг:
+  - выполнить технический аудит текущей версии.
+
 ## 2026-06-05 - Актуализация и уточнение specs
 
 - План: `Work plans/Завершенные/067-aktualizaciya-i-utochnenie-specs.md`

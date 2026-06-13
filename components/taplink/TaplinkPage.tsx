@@ -39,7 +39,7 @@ export function TaplinkPage({ data }: TaplinkPageProps) {
         </div>
       </section>
 
-      <div className="taplink-actions" aria-label="Кнопки первой версии">
+      <div className="taplink-actions" aria-label="Кнопки текущей версии">
         <details className="taplink-action-group" suppressHydrationWarning>
           <summary className="taplink-button taplink-button-internal">
             <span className="button-main">
