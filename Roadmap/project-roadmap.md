@@ -89,6 +89,8 @@
 | 71 | Терминология текущей версии | Завершено | `Work plans/Завершенные/071-ispravit-terminologiyu-tekuschey-versii.md` | из UI и актуальных specs убраны остаточные формулировки старого локального этапа без изменения поведения |
 | 72 | Quality gate lint и typecheck | Завершено | `Work plans/Завершенные/072-nastroit-quality-gate-lint-typecheck.md` | настроены `lint`, `typecheck`, `quality`, ESLint config, защита от `tsbuildinfo` и production audit без уязвимостей |
 | 73 | Accessibility feedback админки | Завершено | `Work plans/Завершенные/073-accessibility-feedback-adminki.md` | error feedback в admin editor объявляется через `role="alert"`, success остается `role="status"` |
+| 74 | Проверка remote Supabase и RLS | Завершено | `Work plans/Завершенные/074-proverka-remote-supabase-rls.md` | local/remote migrations совпадают, RLS включен и policies ожидаемые; найден лишний `TRUNCATE` privilege у `anon`/`authenticated` |
+| 75 | Отозвать лишний TRUNCATE privilege | Завершено | `Work plans/Завершенные/075-otozvat-truncate-grants.md` | добавлена и применена migration `20260613000000`; `TRUNCATE` у `anon`/`authenticated` на контентных таблицах отозван |
 
 ## Текущий статус
 
@@ -100,7 +102,7 @@
 
 Перед следующей продуктовой работой нужно свериться с актуальными specs и создать новый активный план. Новые функции сначала требуют подтверждения и обновления specs.
 
-Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Устаревшие формулировки старого локального этапа исправлены. Quality gate настроен: `lint`, `typecheck`, `quality` и production audit проходят. Accessibility feedback админки исправлен. Следующий отдельный этап: проверка remote Supabase/RLS.
+Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Устаревшие формулировки старого локального этапа исправлены. Quality gate настроен: `lint`, `typecheck`, `quality` и production audit проходят. Accessibility feedback админки исправлен. Remote Supabase/RLS проверены: migrations совпадают, RLS включен, policies ожидаемые. Лишний `TRUNCATE` privilege у `anon` и `authenticated` на контентных таблицах отозван отдельной migration и проверен на remote.
 
 ## Архивный статус до актуализации specs
 

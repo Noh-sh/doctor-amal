@@ -27,6 +27,70 @@
   - ...
 ```
 
+## 2026-06-13 - Отозвать лишний TRUNCATE privilege
+
+- План: `Work plans/Завершенные/075-otozvat-truncate-grants.md`
+- Статус: завершено
+- Области: `Supabase`, `RLS`, `Security`, `Migration`
+- Specs:
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-mcp-access.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - добавлена migration `20260613000000_revoke_content_truncate_grants.sql`;
+  - migration применена к remote Supabase через `npx supabase db push`;
+  - `TRUNCATE` отозван у `anon` и `authenticated` на контентных таблицах;
+  - RLS policies, данные, Auth users и UI не менялись.
+- Проверка:
+  - `npx supabase migration list` подтвердил совпадение local и remote migrations;
+  - `npx supabase db query --linked` подтвердил `TRUNCATE = false`;
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `supabase/migrations/20260613000000_revoke_content_truncate_grants.sql`
+  - `Work plans/Завершенные/075-otozvat-truncate-grants.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - зафиксировать изменения `074` и `075` в commit после подтверждения пользователя.
+
+## 2026-06-13 - Проверка remote Supabase и RLS
+
+- План: `Work plans/Завершенные/074-proverka-remote-supabase-rls.md`
+- Статус: завершено
+- Области: `Supabase`, `RLS`, `Security`, `Проверка`
+- Specs:
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-mcp-access.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - проверено совпадение local и remote migrations;
+  - через read-only `supabase db query --linked` проверены RLS, policies и grants;
+  - подтверждено, что `.env.local` и `supabase/.temp/` не отслеживаются git;
+  - подтверждено, что service role key не используется в текущем коде.
+- Найдено:
+  - `anon` и `authenticated` имеют лишний `TRUNCATE` privilege на контентных таблицах;
+  - нужен отдельный bugfix-plan с migration для отзыва `TRUNCATE`.
+- Проверка:
+  - `npx supabase migration list` выполнен успешно;
+  - `npx supabase db query --linked` выполнен успешно;
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `Work plans/Завершенные/074-proverka-remote-supabase-rls.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - исправить лишний `TRUNCATE` privilege отдельным migration-планом.
+
 ## 2026-06-13 - Accessibility feedback админки
 
 - План: `Work plans/Завершенные/073-accessibility-feedback-adminki.md`
