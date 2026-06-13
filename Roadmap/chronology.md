@@ -27,6 +27,34 @@
   - ...
 ```
 
+## 2026-06-13 - Защита от параллельного сохранения в админке
+
+- План: `Work plans/Завершенные/076-zaschita-ot-parallelnogo-sohraneniya.md`
+- Статус: завершено
+- Области: `Admin`, `Надежность`, `Ошибки`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - все кнопки сохранения в admin editor блокируются, пока выполняется любое сохранение;
+  - повторная отправка формы через Enter во время сохранения игнорируется;
+  - тексты, формы, Supabase helpers, RLS, migrations и бизнес-логика не менялись.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `components/admin/AdminContentEditor.tsx`
+  - `Work plans/Завершенные/076-zaschita-ot-parallelnogo-sohraneniya.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - продолжить этап надежности данных и ошибок отдельными проверками или bugfix-планами.
+
 ## 2026-06-13 - Отозвать лишний TRUNCATE privilege
 
 - План: `Work plans/Завершенные/075-otozvat-truncate-grants.md`

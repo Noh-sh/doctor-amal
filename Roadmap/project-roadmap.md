@@ -91,6 +91,7 @@
 | 73 | Accessibility feedback админки | Завершено | `Work plans/Завершенные/073-accessibility-feedback-adminki.md` | error feedback в admin editor объявляется через `role="alert"`, success остается `role="status"` |
 | 74 | Проверка remote Supabase и RLS | Завершено | `Work plans/Завершенные/074-proverka-remote-supabase-rls.md` | local/remote migrations совпадают, RLS включен и policies ожидаемые; найден лишний `TRUNCATE` privilege у `anon`/`authenticated` |
 | 75 | Отозвать лишний TRUNCATE privilege | Завершено | `Work plans/Завершенные/075-otozvat-truncate-grants.md` | добавлена и применена migration `20260613000000`; `TRUNCATE` у `anon`/`authenticated` на контентных таблицах отозван |
+| 76 | Защита от параллельного сохранения | Завершено | `Work plans/Завершенные/076-zaschita-ot-parallelnogo-sohraneniya.md` | admin editor блокирует параллельные сохранения и повторный submit через Enter во время активного сохранения |
 
 ## Текущий статус
 
@@ -102,7 +103,7 @@
 
 Перед следующей продуктовой работой нужно свериться с актуальными specs и создать новый активный план. Новые функции сначала требуют подтверждения и обновления specs.
 
-Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Устаревшие формулировки старого локального этапа исправлены. Quality gate настроен: `lint`, `typecheck`, `quality` и production audit проходят. Accessibility feedback админки исправлен. Remote Supabase/RLS проверены: migrations совпадают, RLS включен, policies ожидаемые. Лишний `TRUNCATE` privilege у `anon` и `authenticated` на контентных таблицах отозван отдельной migration и проверен на remote.
+Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Устаревшие формулировки старого локального этапа исправлены. Quality gate настроен: `lint`, `typecheck`, `quality` и production audit проходят. Accessibility feedback админки исправлен. Remote Supabase/RLS проверены: migrations совпадают, RLS включен, policies ожидаемые. Лишний `TRUNCATE` privilege у `anon` и `authenticated` на контентных таблицах отозван отдельной migration и проверен на remote. В админке добавлена защита от параллельных сохранений.
 
 ## Архивный статус до актуализации specs
 
