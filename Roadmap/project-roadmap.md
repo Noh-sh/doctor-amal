@@ -87,6 +87,7 @@
 | 69 | Чистая базовая точка | Завершено | `Work plans/Завершенные/069-etap-0-chistaya-bazovaya-tochka.md` | изменения `067` и планы `068/069` проверены, разделены на commit и смержены в `main` через PR #39 |
 | 70 | Технический аудит текущей версии | Завершено | `Work plans/Завершенные/070-tehnicheskiy-audit-tekuschey-versii.md` | код сверено со specs; critical/high дефектов не найдено; подготовлены следующие bugfix-планы |
 | 71 | Терминология текущей версии | Завершено | `Work plans/Завершенные/071-ispravit-terminologiyu-tekuschey-versii.md` | из UI и актуальных specs убраны остаточные формулировки старого локального этапа без изменения поведения |
+| 72 | Quality gate lint и typecheck | Завершено | `Work plans/Завершенные/072-nastroit-quality-gate-lint-typecheck.md` | настроены `lint`, `typecheck`, `quality`, ESLint config, защита от `tsbuildinfo` и production audit без уязвимостей |
 
 ## Текущий статус
 
@@ -98,7 +99,7 @@
 
 Перед следующей продуктовой работой нужно свериться с актуальными specs и создать новый активный план. Новые функции сначала требуют подтверждения и обновления specs.
 
-Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Устаревшие формулировки старого локального этапа исправлены. Следующие улучшения идут отдельными bugfix-планами: quality gate, accessibility feedback и проверка remote Supabase/RLS.
+Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Устаревшие формулировки старого локального этапа исправлены. Quality gate настроен: `lint`, `typecheck`, `quality` и production audit проходят. Следующие улучшения идут отдельными bugfix-планами: accessibility feedback и проверка remote Supabase/RLS.
 
 ## Архивный статус до актуализации specs
 

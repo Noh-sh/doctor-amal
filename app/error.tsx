@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 type ErrorPageProps = {
   reset: () => void;
 };
@@ -16,9 +18,9 @@ export default function ErrorPage({ reset }: ErrorPageProps) {
         <button className="button" onClick={reset} type="button">
           Попробовать снова
         </button>
-        <a className="button button-secondary" href="/">
+        <Link className="button button-secondary" href="/">
           На главную
-        </a>
+        </Link>
       </div>
       <div className="notice">
         Технические детали ошибки не показываются пользователю. Информация на странице носит

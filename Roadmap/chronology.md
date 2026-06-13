@@ -27,6 +27,46 @@
   - ...
 ```
 
+## 2026-06-13 - Настроить quality gate lint и typecheck
+
+- План: `Work plans/Завершенные/072-nastroit-quality-gate-lint-typecheck.md`
+- Статус: завершено
+- Области: `Quality Gate`, `Lint`, `TypeScript`, `Security`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - добавлены `eslint`, `eslint-config-next` и `eslint.config.mjs`;
+  - `npm run lint` заменен с `next lint` на `eslint .`;
+  - добавлены `npm run typecheck` и `npm run quality`;
+  - `*.tsbuildinfo` добавлен в `.gitignore`;
+  - исправлены lint findings в `app/error.tsx` и `AdminContentEditor`;
+  - transitive `postcss` закреплен через npm override на `8.5.10` для закрытия moderate audit finding.
+- Проверка:
+  - `npm run lint` выполнен успешно;
+  - `npm run typecheck` выполнен успешно;
+  - `npm run quality` выполнен успешно;
+  - `npm audit --omit=dev --cache /private/tmp/doctor-amal-npm-cache` выполнен успешно: `found 0 vulnerabilities`;
+  - `npm ls postcss` подтвердил `postcss@8.5.10 overridden`;
+  - `git diff --check` выполнен без ошибок;
+  - `tsconfig.tsbuildinfo` не появляется в рабочем дереве.
+- Измененные файлы:
+  - `.gitignore`
+  - `eslint.config.mjs`
+  - `package.json`
+  - `package-lock.json`
+  - `app/error.tsx`
+  - `components/admin/AdminContentEditor.tsx`
+  - `Work plans/Завершенные/072-nastroit-quality-gate-lint-typecheck.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - исправить accessibility feedback админки отдельным планом.
+
 ## 2026-06-13 - Исправить терминологию текущей версии
 
 - План: `Work plans/Завершенные/071-ispravit-terminologiyu-tekuschey-versii.md`
