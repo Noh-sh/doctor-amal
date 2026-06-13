@@ -83,6 +83,9 @@
 | 65 | Сократить `.env.example` | Завершено | `Work plans/Завершенные/065-sokratit-env-example.md` | из `.env.example` убраны лишние пояснения, оставлен короткий список Supabase env |
 | 66 | Правильная Supabase env-схема | Завершено | `Work plans/Завершенные/066-pravilnaya-supabase-env-schema.md` | `.env.example` и код приведены к чистой схеме `NEXT_PUBLIC_SUPABASE_*` + server-only `DOCTOR_SUPABASE_SERVICE_ROLE_KEY`, legacy fallback убран |
 | 67 | Актуализация и уточнение specs | Завершено | `Work plans/Завершенные/067-aktualizaciya-i-utochnenie-specs.md` | specs приведены к текущей online-версии с Supabase и `/admin`; текущие решения отделены от будущих функций |
+| 68 | Мастер-план до 10/10 | В работе | `Work plans/Активные/068-master-plan-do-10-iz-10.md` | задана шкала качества и последовательность этапов: аудит, quality gate, RLS, надежность, UI/accessibility и production |
+| 69 | Чистая базовая точка | Завершено | `Work plans/Завершенные/069-etap-0-chistaya-bazovaya-tochka.md` | изменения `067` и планы `068/069` проверены, разделены на commit и смержены в `main` через PR #39 |
+| 70 | Технический аудит текущей версии | Завершено | `Work plans/Завершенные/070-tehnicheskiy-audit-tekuschey-versii.md` | код сверено со specs; critical/high дефектов не найдено; подготовлены следующие bugfix-планы |
 
 ## Текущий статус
 
@@ -93,6 +96,8 @@
 Актуальные specs приведены к фактической реализации. Они однозначно фиксируют маршруты, accordion-поведение, открытие внешних ссылок в новой вкладке, обязательность полей, права доступа, migrations-first работу с Supabase и read-only назначение MCP.
 
 Перед следующей продуктовой работой нужно свериться с актуальными specs и создать новый активный план. Новые функции сначала требуют подтверждения и обновления specs.
+
+Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Следующие улучшения идут отдельными bugfix-планами: устаревшие формулировки, quality gate, accessibility feedback и проверка remote Supabase/RLS.
 
 ## Архивный статус до актуализации specs
 
