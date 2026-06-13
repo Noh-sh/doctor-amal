@@ -80,6 +80,38 @@ function toExternalLabel(platform: ExternalPlatform, label: string | null): Exte
   return fallbackLabels[platform];
 }
 
+function toValidHttpUrl(value: string | null): string | null {
+  if (!value) {
+    return null;
+  }
+
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return null;
+  }
+
+  try {
+    const url = new URL(trimmed);
+
+    return url.protocol === "https:" || url.protocol === "http:" ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
+function toValidTelegramUrl(value: string | null): string | null {
+  const url = toValidHttpUrl(value);
+
+  if (!url) {
+    return null;
+  }
+
+  const hostname = new URL(url).hostname.toLowerCase();
+
+  return hostname === "t.me" || hostname === "telegram.me" ? url : null;
+}
+
 async function readTable<T>(table: string, query = "select=*"): Promise<T[]> {
   if (!SUPABASE_URL || !SUPABASE_KEY) {
     return [];
@@ -118,7 +150,7 @@ function mapSupabaseData({
     .filter((link) => isExternalPlatform(link.platform))
     .map((link) => {
       const platform = link.platform as ExternalPlatform;
-      const url = link.url && link.url.trim().length > 0 ? link.url : null;
+      const url = toValidHttpUrl(link.url);
 
       return {
         platform,
@@ -143,7 +175,7 @@ function mapSupabaseData({
     }));
 
   const purchase: PurchaseSettings = {
-    managerTelegramUrl: purchaseSettings.manager_telegram_url,
+    managerTelegramUrl: toValidTelegramUrl(purchaseSettings.manager_telegram_url),
     inactiveText: purchaseSettings.inactive_text
   };
 
