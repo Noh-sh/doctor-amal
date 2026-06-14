@@ -27,6 +27,35 @@
   - ...
 ```
 
+## 2026-06-13 - Полный набор внешних кнопок при partial-data
+
+- План: `Work plans/Завершенные/079-polnyy-nabor-vneshnih-knopok-pri-partial-data.md`
+- Статус: завершено
+- Области: `Публичная страница`, `Supabase`, `Данные`, `Fallback`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - публичная страница всегда получает полный набор внешних кнопок `Telegram`, `WhatsApp`, `YouTube`, `Instagram`;
+  - Supabase rows переопределяют данные только для известных платформ;
+  - отсутствующая строка платформы остается видимой неактивной кнопкой из локального безопасного fallback;
+  - невалидный URL не активирует кнопку.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `data/taplink-page-source.ts`
+  - `Work plans/Завершенные/079-polnyy-nabor-vneshnih-knopok-pri-partial-data.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - завершить текущий этап надежности или перейти к UI/responsive/accessibility-приемке после проверки статуса.
+
 ## 2026-06-13 - Валидация публичных URL из Supabase
 
 - План: `Work plans/Завершенные/078-validaciya-publichnyh-url-iz-supabase.md`
