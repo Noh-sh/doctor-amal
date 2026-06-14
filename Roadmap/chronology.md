@@ -27,6 +27,37 @@
   - ...
 ```
 
+## 2026-06-14 - UI responsive accessibility приемка
+
+- План: `Work plans/Завершенные/080-ui-responsive-accessibility-priemka.md`
+- Статус: завершено
+- Области: `UI`, `Accessibility`, `Responsive`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `Design map/design-rules.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+- Сделано:
+  - проверены публичные компоненты `/`, `/admin` и `styles/globals.css` на явные keyboard/focus/disabled/overflow риски;
+  - добавлен явный `focus-visible` для `.taplink-button`, `.button`, `.admin-button`;
+  - продуктовый сценарий, маршруты, тексты, данные, Supabase и business rules не менялись.
+- Ограничение:
+  - полная screenshot-приемка ширин `360`, `390`, `768`, `1024`, `1440` не выполнена, потому что в проекте нет Playwright/browser tooling.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `styles/globals.css`
+  - `Work plans/Завершенные/080-ui-responsive-accessibility-priemka.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - решить, добавлять ли инструмент визуальной проверки или выполнить ручную browser-приемку, затем закрывать этап UI.
+
 ## 2026-06-13 - Полный набор внешних кнопок при partial-data
 
 - План: `Work plans/Завершенные/079-polnyy-nabor-vneshnih-knopok-pri-partial-data.md`

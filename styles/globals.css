@@ -728,6 +728,13 @@ h2 {
   color: #ffffff;
 }
 
+.taplink-button:focus-visible,
+.button:focus-visible,
+.admin-button:focus-visible {
+  outline: 2px solid rgba(47, 102, 89, 0.42);
+  outline-offset: 3px;
+}
+
 .taplink-action-group[open] > .taplink-button:hover {
   background: var(--accent-dark);
   color: #ffffff;
