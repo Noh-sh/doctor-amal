@@ -112,6 +112,31 @@ function toValidTelegramUrl(value: string | null): string | null {
   return hostname === "t.me" || hostname === "telegram.me" ? url : null;
 }
 
+function mapExternalLinks(rows: ExternalLinkRow[]): ExternalLink[] {
+  const linksByPlatform = new Map<ExternalPlatform, ExternalLink>(
+    taplinkPageData.externalLinks.map((link) => [link.platform, link])
+  );
+
+  for (const row of rows) {
+    if (!isExternalPlatform(row.platform)) {
+      continue;
+    }
+
+    const platform = row.platform;
+    const url = toValidHttpUrl(row.url);
+
+    linksByPlatform.set(platform, {
+      platform,
+      label: toExternalLabel(platform, row.label),
+      url,
+      isEnabled: Boolean(row.is_enabled && url),
+      inactiveText: row.inactive_text
+    });
+  }
+
+  return taplinkPageData.externalLinks.map((link) => linksByPlatform.get(link.platform) ?? link);
+}
+
 async function readTable<T>(table: string, query = "select=*"): Promise<T[]> {
   if (!SUPABASE_URL || !SUPABASE_KEY) {
     return [];
@@ -146,20 +171,7 @@ function mapSupabaseData({
   courses: CourseRow[];
   purchaseSettings: PurchaseSettingsRow;
 }): TaplinkPageData {
-  const mappedExternalLinks: ExternalLink[] = externalLinks
-    .filter((link) => isExternalPlatform(link.platform))
-    .map((link) => {
-      const platform = link.platform as ExternalPlatform;
-      const url = toValidHttpUrl(link.url);
-
-      return {
-        platform,
-        label: toExternalLabel(platform, link.label),
-        url,
-        isEnabled: Boolean(link.is_enabled && url),
-        inactiveText: link.inactive_text
-      };
-    });
+  const mappedExternalLinks = mapExternalLinks(externalLinks);
 
   const mappedCourses: Course[] = courses
     .filter((course) => course.title && course.description && course.price_display_text)
@@ -196,7 +208,7 @@ function mapSupabaseData({
       helpFormats: asStringArray(doctorProfile.help_formats)
     },
     medicalNotice: pageSettings.medical_notice || taplinkPageData.medicalNotice,
-    externalLinks: mappedExternalLinks.length > 0 ? mappedExternalLinks : taplinkPageData.externalLinks,
+    externalLinks: mappedExternalLinks,
     courses: mappedCourses,
     purchase
   };
