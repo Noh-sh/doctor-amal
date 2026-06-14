@@ -95,6 +95,7 @@
 | 77 | Ошибки входа и сессии админки | Завершено | `Work plans/Завершенные/077-oshibki-vhoda-i-sessii-adminki.md` | неожиданные ошибки `getSession` и `signInWithPassword` показывают понятный feedback и не оставляют UI в зависшем состоянии |
 | 78 | Валидация публичных URL из Supabase | Завершено | `Work plans/Завершенные/078-validaciya-publichnyh-url-iz-supabase.md` | невалидные внешние URL и Telegram URL из Supabase не становятся активными ссылками публичной страницы |
 | 79 | Полный набор внешних кнопок при partial-data | Завершено | `Work plans/Завершенные/079-polnyy-nabor-vneshnih-knopok-pri-partial-data.md` | публичная страница всегда получает 4 внешние кнопки; отсутствующие Supabase rows остаются видимыми неактивными кнопками |
+| 80 | UI responsive accessibility приемка | Завершено | `Work plans/Завершенные/080-ui-responsive-accessibility-priemka.md` | добавлен явный `focus-visible` для основных публичных и admin-кнопок; screenshot-приемка требует отдельного browser/tooling шага |
 
 ## Текущий статус
 
@@ -106,7 +107,7 @@
 
 Перед следующей продуктовой работой нужно свериться с актуальными specs и создать новый активный план. Новые функции сначала требуют подтверждения и обновления specs.
 
-Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Устаревшие формулировки старого локального этапа исправлены. Quality gate настроен: `lint`, `typecheck`, `quality` и production audit проходят. Accessibility feedback админки исправлен. Remote Supabase/RLS проверены: migrations совпадают, RLS включен, policies ожидаемые. Лишний `TRUNCATE` privilege у `anon` и `authenticated` на контентных таблицах отозван отдельной migration и проверен на remote. В админке добавлена защита от параллельных сохранений и обработка неожиданных ошибок входа/сессии. На публичной странице невалидные URL из Supabase больше не становятся активными ссылками, а неполные `external_links` не скрывают внешние кнопки текущей версии.
+Технический аудит текущей версии завершен. Critical/high дефектов не найдено. Устаревшие формулировки старого локального этапа исправлены. Quality gate настроен: `lint`, `typecheck`, `quality` и production audit проходят. Accessibility feedback админки исправлен. Remote Supabase/RLS проверены: migrations совпадают, RLS включен, policies ожидаемые. Лишний `TRUNCATE` privilege у `anon` и `authenticated` на контентных таблицах отозван отдельной migration и проверен на remote. В админке добавлена защита от параллельных сохранений и обработка неожиданных ошибок входа/сессии. На публичной странице невалидные URL из Supabase больше не становятся активными ссылками, а неполные `external_links` не скрывают внешние кнопки текущей версии. Начат UI/accessibility этап: добавлен явный keyboard focus для основных кнопок; полная screenshot-приемка требует отдельного browser/tooling шага.
 
 ## Архивный статус до актуализации specs
 
