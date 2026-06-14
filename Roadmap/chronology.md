@@ -27,6 +27,39 @@
   - ...
 ```
 
+## 2026-06-14 - Visual responsive проверка
+
+- План: `Work plans/Завершенные/081-visual-responsive-proverka.md`
+- Статус: завершено
+- Области: `UI`, `Responsive`, `Accessibility`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `Work plans/Завершенные/080-ui-responsive-accessibility-priemka.md`
+  - `Design map/design-rules.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+- Сделано:
+  - через временный `npx playwright@latest` сняты screenshots `/` и `/admin` на ширинах `360`, `390`, `768`, `1024`, `1440`;
+  - `package.json` и `package-lock.json` не менялись;
+  - `/` визуально проверена без явных перекрытий и горизонтального скролла;
+  - `/admin` проверена после появления формы входа `.admin-form`;
+  - UI bugfix не потребовался.
+- Артефакты проверки:
+  - screenshots сохранены в `/private/tmp/doctor-amal-visual/`.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `Work plans/Завершенные/081-visual-responsive-proverka.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к production/deploy/rollback checklist этапу.
+
 ## 2026-06-14 - UI responsive accessibility приемка
 
 - План: `Work plans/Завершенные/080-ui-responsive-accessibility-priemka.md`
