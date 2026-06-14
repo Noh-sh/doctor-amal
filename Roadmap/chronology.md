@@ -27,6 +27,40 @@
   - ...
 ```
 
+## 2026-06-14 - Production и эксплуатация
+
+- План: `Work plans/Завершенные/082-production-i-ekspluataciya.md`
+- Статус: завершено
+- Области: `Production`, `Deploy`, `Rollback`, `Security`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/supabase-mcp-access.md`
+- Сделано:
+  - локальный quality gate и production build прошли;
+  - проверено, что `.env.local` и `supabase/.temp/` не отслеживаются git;
+  - проверено, что service role key не используется в коде;
+  - описаны deploy checklist, rollback и восстановление admin-доступа;
+  - production URL и Vercel env scopes зафиксированы как ручной блокер без записи секретов.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `git ls-files '.env*' 'supabase/.temp/*'` показывает только `.env.example`;
+  - поиск env/secret usage выполнен без нахождения service role key в коде.
+- Измененные файлы:
+  - `Work plans/Завершенные/082-production-i-ekspluataciya.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - финальная приемка 10/10 с учетом ручного production/Vercel блокера.
+
 ## 2026-06-14 - Visual responsive проверка
 
 - План: `Work plans/Завершенные/081-visual-responsive-proverka.md`
