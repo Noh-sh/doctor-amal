@@ -27,6 +27,69 @@
   - ...
 ```
 
+## 2026-06-16 - Восстановить Supabase MCP
+
+- План: `Work plans/Завершенные/084-vosstanovit-supabase-mcp.md`
+- Статус: завершено
+- Области: `Codex`, `Supabase`, `MCP`, `Проверка`
+- Specs:
+  - `spec/technical-specs/supabase-mcp-access.md`
+  - `Work plans/Завершенные/051-supabase-mcp-setup.md`
+  - `Work plans/Завершенные/083-dopolnitelnaya-proverka-codex-okruzheniya.md`
+- Сделано:
+  - заново добавлен MCP server `supabase` в глобальную конфигурацию Codex;
+  - выполнена авторизация `codex mcp login supabase`;
+  - подтвержден read-only URL с `project_ref=dagykilvpiacfbwpcluv`;
+  - write-операции через MCP не выполнялись;
+  - секреты, токены и ключи не записывались в проект.
+- Проверка:
+  - `codex mcp list` показывает `supabase` в статусе `enabled`;
+  - `codex mcp get supabase` показывает `read_only=true` и `features=database,docs`;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `Work plans/Завершенные/084-vosstanovit-supabase-mcp.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - если авторизация MCP снова истечет, повторить `codex mcp login supabase`.
+
+## 2026-06-16 - Дополнительная проверка Codex-окружения
+
+- План: `Work plans/Завершенные/083-dopolnitelnaya-proverka-codex-okruzheniya.md`
+- Статус: завершено
+- Области: `Codex`, `Окружение`, `MCP`, `Проверка`
+- Specs:
+  - `AGENTS.md`
+  - `.agents/skills/doctor-amal-specs/SKILL.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/technical-specs/change-management.md`
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+- Сделано:
+  - проверены проектные инструкции, repo skill, локальная структура и active work plans;
+  - выполнен `npm run quality`;
+  - проверены tracked env-файлы и `.gitignore`;
+  - проверена глобальная Codex-конфигурация без вывода секретов;
+  - проверены технические агрегаты Codex logs без содержимого разговоров;
+  - выявлено, что Supabase MCP сейчас не настроен в `codex mcp list`, хотя ранее был зафиксирован в roadmap;
+  - выявлены внешние warnings Codex plugin/skills loader и `401 Unauthorized` при прогреве featured plugins cache.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `git ls-files '.env*' 'supabase/.temp/*'` показывает только `.env.example`;
+  - `codex mcp list` выполнен и показал отсутствие настроенных MCP servers.
+- Измененные файлы:
+  - `Work plans/Завершенные/083-dopolnitelnaya-proverka-codex-okruzheniya.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - при необходимости заново подключить Supabase MCP и проверить `codex mcp list`, не записывая токены и секреты в проект.
+
 ## 2026-06-14 - Production и эксплуатация
 
 - План: `Work plans/Завершенные/082-production-i-ekspluataciya.md`
