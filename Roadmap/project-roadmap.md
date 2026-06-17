@@ -101,6 +101,7 @@
 | 83 | Дополнительная проверка Codex-окружения | Завершено | `Work plans/Завершенные/083-dopolnitelnaya-proverka-codex-okruzheniya.md` | проверены project instructions, quality gate, tracked env, Codex config и warnings вне проекта |
 | 84 | Восстановить Supabase MCP | Завершено | `Work plans/Завершенные/084-vosstanovit-supabase-mcp.md` | Supabase MCP заново подключен в read-only режиме для project `dagykilvpiacfbwpcluv` |
 | 85 | Production URL и Vercel-проверка | Завершено | `Work plans/Завершенные/085-production-url-i-vercel-proverka.md` | основной production domain `doctor-amal.vercel.app` проверен после переноса Vercel env и redeploy; Supabase-контент на production подтвержден |
+| 86 | Проверка соответствия планов 070-082 | Завершено | `Work plans/Завершенные/086-proverka-sootvetstviya-planov-070-082.md` | подтверждено, что работа из планов `070-082` не выглядит потерянной или откатанной; critical/high расхождений не найдено |
 
 ## Текущий статус
 
@@ -117,6 +118,8 @@
 Дополнительная проверка Codex-окружения выполнена 2026-06-16. Проект Doctor Amal не выглядит причиной нестабильной работы Codex: `npm run quality` проходит, tracked env-секретов нет, конфликтующих локальных инструкций не найдено. Найдены внешние причины риска: в текущей глобальной Codex-конфигурации `codex mcp list` не показывает Supabase MCP, хотя раньше он был зафиксирован как подключенный; также есть предупреждения Codex plugin/skills loader и `401 Unauthorized` при прогреве featured plugins cache. При необходимости Supabase MCP нужно подключить заново без записи токенов и секретов в проект.
 
 Supabase MCP восстановлен 2026-06-16. `codex mcp list` показывает server `supabase` в статусе `enabled`, а `codex mcp get supabase` подтверждает URL с `project_ref=dagykilvpiacfbwpcluv`, `read_only=true` и `features=database,docs`. MCP остается только read-only inspection layer; при истечении авторизации нужно повторить `codex mcp login supabase`.
+
+Проверка соответствия планов `070-082` выполнена 2026-06-17. Фактическое состояние проекта совпадает с завершенными этапами: quality gate, admin bugfixes, URL validation, partial-data fallback, focus-visible, migration revoke truncate, Supabase RLS/grants и production domain подтверждены. Признаков отката работы, выполненной до проблем с Codex, не найдено. Вход доктора и тестовое сохранение production-контента остаются отдельной ручной проверкой после восстановления пароля.
 
 ## Архивный статус до актуализации specs
 

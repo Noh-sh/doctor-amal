@@ -27,6 +27,42 @@
   - ...
 ```
 
+## 2026-06-17 - Проверка соответствия планов 070-082
+
+- План: `Work plans/Завершенные/086-proverka-sootvetstviya-planov-070-082.md`
+- Статус: завершено
+- Области: `Аудит`, `Quality`, `Supabase`, `Production`, `Проверка`
+- Specs:
+  - `AGENTS.md`
+  - `.agents/skills/doctor-amal-specs/SKILL.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - сверены завершенные планы `070-082` с текущим состоянием проекта;
+  - проверены scripts, `.gitignore`, admin components, data layer, CSS focus states, migrations, RLS и production domain;
+  - подтверждено, что работа из планов `070-082` не выглядит потерянной или откатанной;
+  - write-операции в Supabase и изменение production-контента не выполнялись.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `git ls-files '.env*' 'supabase/.temp/*'` показывает только `.env.example`;
+  - `npm audit --omit=dev --cache /private/tmp/doctor-amal-npm-cache` выполнен успешно: `found 0 vulnerabilities`;
+  - Supabase MCP read-only проверка подтвердила remote migrations, RLS и отсутствие `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE` grants у `anon`/`authenticated` на контентных таблицах;
+  - `https://doctor-amal.vercel.app/` возвращает `HTTP 200`, `/admin` возвращает `HTTP 200`, `/proverka-404` возвращает `HTTP 404`.
+- Ограничение проверки:
+  - вход доктора и тестовое сохранение production-контента не проверялись из-за забытого пароля и отсутствия отдельного подтверждения на изменение production-контента.
+- Измененные файлы:
+  - `Work plans/Завершенные/086-proverka-sootvetstviya-planov-070-082.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - при необходимости восстановить пароль доктора через Supabase Auth и отдельно проверить вход/сохранение в production `/admin`.
+
 ## 2026-06-17 - Production URL и Vercel-проверка
 
 - План: `Work plans/Завершенные/085-production-url-i-vercel-proverka.md`
