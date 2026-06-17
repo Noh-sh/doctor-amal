@@ -11,6 +11,7 @@ type AdminAccessProps = {
 };
 
 type AccessState = "checking" | "signed_out" | "signed_in" | "denied" | "config_error";
+type AuthView = "sign_in" | "password_recovery";
 
 type AdminUserRow = {
   role: string;
@@ -44,9 +45,12 @@ async function safeSignOut(supabase: SupabaseClient) {
 export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [recoveryEmail, setRecoveryEmail] = useState("");
+  const [authView, setAuthView] = useState<AuthView>("sign_in");
   const [accessState, setAccessState] = useState<AccessState>("checking");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRecoverySubmitting, setIsRecoverySubmitting] = useState(false);
 
   const supabase = useMemo(() => {
     if (!supabaseUrl || !supabaseKey) {
@@ -163,6 +167,37 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
     }
   }
 
+  async function handlePasswordRecovery(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!supabase) {
+      setAccessState("config_error");
+      setMessage("Настройки входа временно недоступны.");
+      return;
+    }
+
+    setIsRecoverySubmitting(true);
+    setMessage("");
+
+    try {
+      const redirectTo = `${window.location.origin}/admin/reset-password`;
+      const { error } = await supabase.auth.resetPasswordForEmail(recoveryEmail, {
+        redirectTo
+      });
+
+      if (error) {
+        setMessage("Не удалось отправить письмо восстановления. Проверьте подключение и попробуйте еще раз.");
+        return;
+      }
+
+      setMessage("Если email зарегистрирован, ссылка для восстановления отправлена.");
+    } catch {
+      setMessage("Не удалось отправить письмо восстановления. Проверьте подключение и попробуйте еще раз.");
+    } finally {
+      setIsRecoverySubmitting(false);
+    }
+  }
+
   async function handleLogout() {
     if (supabase) {
       await safeSignOut(supabase);
@@ -198,6 +233,56 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
         <button className="admin-button admin-button-secondary" type="button" onClick={handleLogout}>
           Выйти
         </button>
+      </section>
+    );
+  }
+
+  if (authView === "password_recovery") {
+    return (
+      <section className="admin-panel" aria-label="Восстановление пароля">
+        <div className="admin-panel-header">
+          <p className="admin-eyebrow">Doctor Amal</p>
+          <h1>Восстановление пароля</h1>
+          <p className="admin-muted">Введите email доктора. Если email зарегистрирован, Supabase отправит ссылку для восстановления.</p>
+        </div>
+
+        <form className="admin-form" onSubmit={handlePasswordRecovery}>
+          <label className="admin-field">
+            <span>Email</span>
+            <input
+              autoComplete="email"
+              inputMode="email"
+              name="email"
+              required
+              type="email"
+              value={recoveryEmail}
+              onChange={(event) => setRecoveryEmail(event.target.value)}
+            />
+          </label>
+
+          {message ? (
+            <p
+              className={message.startsWith("Если email") ? "admin-message admin-message-success" : "admin-message"}
+              role={message.startsWith("Если email") ? "status" : "alert"}
+            >
+              {message}
+            </p>
+          ) : null}
+
+          <button className="admin-button" disabled={isRecoverySubmitting || accessState === "config_error"} type="submit">
+            {isRecoverySubmitting ? "Отправляем..." : "Отправить ссылку для восстановления"}
+          </button>
+          <button
+            className="admin-button admin-button-secondary"
+            type="button"
+            onClick={() => {
+              setAuthView("sign_in");
+              setMessage("");
+            }}
+          >
+            Вернуться ко входу
+          </button>
+        </form>
       </section>
     );
   }
@@ -244,6 +329,17 @@ export function AdminAccess({ supabaseUrl, supabaseKey }: AdminAccessProps) {
 
         <button className="admin-button" disabled={isSubmitting || accessState === "config_error"} type="submit">
           {isSubmitting ? "Проверяем..." : "Войти"}
+        </button>
+        <button
+          className="admin-link-button"
+          type="button"
+          onClick={() => {
+            setRecoveryEmail(email);
+            setAuthView("password_recovery");
+            setMessage("");
+          }}
+        >
+          Забыли пароль?
         </button>
       </form>
     </section>

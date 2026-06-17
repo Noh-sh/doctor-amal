@@ -1,0 +1,253 @@
+# План 087: Разбор замечаний ментора по specs
+
+## Статус
+
+Активен.
+
+## Цель
+
+Сверить замечания ментора с текущими specs после последних изменений, отделить уже закрытые пункты от оставшихся gaps и начать первый подтвержденный gap: легкое восстановление пароля администратора из `/admin`.
+
+## Подтверждение specs
+
+Основание:
+
+- `AGENTS.md`;
+- `.agents/skills/doctor-amal-specs/SKILL.md`;
+- `.agents/skills/doctor-amal-specs/references/spec-map.md`;
+- `spec/global-spec.md`;
+- `spec/technical-specs/admin-auth-and-access.md`;
+- `spec/technical-specs/supabase-content-source.md`;
+- `spec/feature-specs/admin-content-editing.md`;
+- `spec/feature-specs/medical-content-rules.md`;
+- `spec/technical-specs/change-management.md`.
+
+Подтверждено:
+
+- замечания ментора относятся к актуальности specs и могут быть разобраны без изменения продуктового кода;
+- specs должны описывать текущую online-версию с Supabase и `/admin`;
+- владелец проекта подтвердил новый сценарий: доктор должен иметь простой способ восстановить пароль из `/admin`, без доступа к Supabase Dashboard;
+- допустимо уточнять specs, если уточнение описывает уже существующее поведение и не добавляет новую функцию.
+
+Вне specs:
+
+- изменение Supabase Auth settings;
+- изменение production-контента;
+- изменение RLS/migrations;
+- удаление дублирующего Vercel project.
+
+## Что делаем
+
+1. Сопоставить каждое замечание ментора с текущими specs.
+2. Разделить пункты на `сделано`, `частично сделано`, `не сделано`.
+3. Для незакрытых пунктов составить порядок доработки.
+4. Обновить specs для подтвержденного сценария восстановления пароля.
+5. Только после specs перейти к реализации UI восстановления пароля отдельной частью работы.
+
+## Что не делаем
+
+- Не меняем продуктовый код до обновления specs.
+- Не добавляем восстановление пароля в код до фиксации требований.
+- Не меняем секреты, env, Supabase или Vercel.
+- Не выполняем commit/push без отдельной просьбы.
+
+## Результат первичной сверки
+
+### 1. `global-spec.md` устарел
+
+Статус: уже сделано.
+
+Текущий `spec/global-spec.md` уже описывает:
+
+- текущую online web-страницу в формате Taplink;
+- online Next.js-приложение;
+- Supabase как хранилище публичного контента;
+- публичный маршрут `/`;
+- защищенную админку `/admin`;
+- редактирование контента активным `doctor_admin`;
+- отсутствие auth покупателей, личного кабинета, сбора данных публичного пользователя и онлайн-оплаты;
+- старые функции вроде каталога, заявок, оплаты, загрузки фото и управления Auth users как то, что не входит в текущую версию.
+
+Вывод: критичное замечание ментора уже закрыто поздними изменениями.
+
+### 2. Восстановление пароля admin
+
+Статус: подтверждено как новое требование, specs нужно обновить до реализации.
+
+Найдено:
+
+- `admin-auth-and-access.md` описывает вход email/password и запрет хранить пароль в таблицах приложения;
+- планы `085/086` фиксируют, что пароль забыт и восстановление нужно делать через Supabase Auth;
+- отдельного spec-раздела с безопасным порядком восстановления доступа сейчас нет.
+
+Нужно доработать specs:
+
+- описать UI `Забыли пароль?` на `/admin`;
+- описать, что доктор вводит email и получает письмо восстановления через Supabase Auth;
+- описать отдельный экран/состояние для ввода нового пароля после перехода по recovery link;
+- описать нейтральный feedback, который не раскрывает, существует ли email;
+- указать, что восстановление доступно только для Auth user доктора и не создает регистрацию покупателей;
+- запретить записывать пароль, recovery-ссылки, email/UUID и токены в git/specs/work plans/roadmap;
+- описать, что доктор видит в приложении при неверном пароле.
+
+### 3. Если Supabase недоступен
+
+Статус: частично сделано.
+
+Найдено:
+
+- `supabase-content-source.md` описывает fallback на подтвержденные локальные данные и запрет stack trace;
+- `local-storage.md` и `architecture.md` фиксируют локальный fallback;
+- код действительно использует `taplinkPageData`, если Supabase env отсутствует или запросы не сработали;
+- specs не дают достаточно явного пользовательского описания: cache, сообщение об ошибке, частичная работа сайта, поведение `/admin`.
+
+Нужно доработать specs:
+
+- публичная `/` при недоступном Supabase показывает локальный подтвержденный fallback без технической ошибки;
+- отдельное сообщение об ошибке посетителю не показывается, если fallback доступен;
+- при partial-data недостающие внешние кнопки остаются видимыми и неактивными;
+- `/admin` при недоступном Supabase/Auth показывает понятное русское сообщение и не показывает формы редактирования.
+
+### 4. Проверка медицинского контента через admin
+
+Статус: частично сделано.
+
+Найдено:
+
+- `medical-content-rules.md` содержит правила медицинских текстов;
+- `admin-auth-and-access.md` говорит, что описание курса не должно явно нарушать medical content rules;
+- `admin-content-editing.md` запрещает редактировать медицинское предупреждение через админку;
+- не описано, кто отвечает за проверку текста при редактировании через `/admin`, является ли это ручной ответственностью доктора и нужен ли checklist.
+
+Нужно доработать specs:
+
+- указать, что медицинская проверка admin-контента является ручной ответственностью доктора/владельца проекта;
+- добавить короткий checklist перед сохранением медицински значимого текста;
+- зафиксировать, что текущая админка не выполняет автоматическую медицинскую модерацию;
+- указать, что публикация после сохранения возможна только для текста, который доктор считает проверенным по `medical-content-rules.md`.
+
+### 5. Когда изменения появляются на сайте
+
+Статус: в основном сделано, но нужно унифицировать формулировки.
+
+Найдено:
+
+- `admin-auth-and-access.md` уже говорит: `revalidate: 30`, изменения могут появиться примерно через 30 секунд;
+- roadmap и планы `058/059/085/086` также фиксируют примерно 30 секунд;
+- `admin-content-editing.md` все еще использует более общую формулировку `после обновления данных и кеша`.
+
+Нужно доработать specs:
+
+- заменить общие формулировки в `admin-content-editing.md` на понятное правило: после сохранения данные публикуются сразу в Supabase, а публичная страница может обновиться примерно в течение 30 секунд;
+- уточнить, что мгновенный сброс кеша после сохранения не входит в текущую версию.
+
+## Предлагаемый порядок доработки
+
+1. Закрыть password recovery spec-gap в `admin-auth-and-access.md`, `admin-content-editing.md` и `routing-and-ui.md`.
+2. Уточнить fallback/error behavior при недоступном Supabase в `supabase-content-source.md`, `architecture.md` и admin specs.
+3. Уточнить manual medical content review для admin-редактирования в `medical-content-rules.md` и `admin-content-editing.md`.
+4. Унифицировать правило публикации и кеша в `admin-content-editing.md`.
+5. Выполнить `rg`-проверку формулировок и `git diff --check`.
+
+## Текущий этап
+
+Этап 1: specs для восстановления пароля.
+
+Планируемые файлы:
+
+- `spec/technical-specs/admin-auth-and-access.md`;
+- `spec/feature-specs/admin-content-editing.md`;
+- `spec/technical-specs/routing-and-ui.md`.
+
+Критерии готовности этапа:
+
+- specs описывают простой recovery-flow без доступа доктора к Supabase Dashboard;
+- specs не добавляют регистрацию, auth покупателей, новые роли или управление Auth users через UI;
+- specs фиксируют безопасный нейтральный feedback;
+- `git diff --check` проходит.
+
+## Результат этапа 1
+
+Выполнено:
+
+- `spec/technical-specs/admin-auth-and-access.md` обновлен:
+  - восстановление пароля доктора включено в границу текущей админки;
+  - описан flow `Забыли пароль?` через Supabase Auth email;
+  - зафиксирован нейтральный feedback без раскрытия существования email;
+  - запрещено записывать recovery token, recovery URL, email доктора, UUID Auth user и секреты в git/specs/work plans/roadmap;
+  - добавлены проверки password recovery.
+- `spec/feature-specs/admin-content-editing.md` обновлен:
+  - описан пользовательский сценарий восстановления пароля со страницы `/admin`;
+  - уточнено, что это не добавляет регистрацию, покупателей, личный кабинет или новые роли;
+  - правило публикации унифицировано: Supabase сохраняет сразу, публичная страница обновляется примерно в течение 30 секунд.
+- `spec/technical-specs/routing-and-ui.md` обновлен:
+  - добавлен служебный route `/admin/reset-password`;
+  - описаны UI-состояния `Забыли пароль?`, отправка recovery email и экран задания нового пароля;
+  - запрещен вывод stack trace, recovery token, email и служебных деталей.
+
+Проверка:
+
+```bash
+rg -n "Забыли пароль|восстановлен|reset-password|recovery|Если email зарегистрирован|30 секунд|revalidate: 30|Auth users|личный кабинет" spec/technical-specs/admin-auth-and-access.md spec/feature-specs/admin-content-editing.md spec/technical-specs/routing-and-ui.md "Work plans/Активные/087-razbor-zamechaniy-mentora-po-specs.md"
+git diff --check
+```
+
+Результат:
+
+- нужные формулировки найдены в specs;
+- `git diff --check` выполнен без ошибок;
+- продуктовый код пока не менялся.
+
+Следующий этап:
+
+- реализовать UI восстановления пароля в `/admin` и route `/admin/reset-password` по обновленным specs.
+
+## Результат этапа 2
+
+Выполнено:
+
+- В `/admin` добавлено состояние восстановления пароля:
+  - кнопка `Забыли пароль?`;
+  - форма email;
+  - отправка recovery email через `supabase.auth.resetPasswordForEmail`;
+  - redirect на `/admin/reset-password`;
+  - нейтральный success feedback `Если email зарегистрирован, ссылка для восстановления отправлена.`;
+  - ошибки показываются без технических деталей.
+- Добавлен route `/admin/reset-password`.
+- Добавлен компонент `AdminPasswordReset`:
+  - принимает recovery session из URL hash или `code`;
+  - задает новую сессию Supabase Auth;
+  - проверяет новый пароль и подтверждение;
+  - сохраняет новый пароль через `supabase.auth.updateUser`;
+  - после успешной смены пароля выполняет sign out и предлагает вернуться ко входу.
+- Добавлен стиль `.admin-link-button` и focus-visible для recovery-действия.
+
+Проверка:
+
+```bash
+npm run quality
+git diff --check
+rg -n "Забыли пароль|resetPasswordForEmail|updateUser|reset-password|Если email зарегистрирован|recovery|admin-link-button" app components styles spec "Work plans/Активные/087-razbor-zamechaniy-mentora-po-specs.md"
+```
+
+Результат:
+
+- `npm run quality` выполнен успешно;
+- production build сгенерировал `/`, `/_not-found`, `/admin`, `/admin/reset-password`;
+- `git diff --check` выполнен без ошибок;
+- service role key не добавлялся и не используется.
+
+Ограничение:
+
+- реальная отправка recovery email и переход по письму должны быть проверены на production после merge и корректной настройки Supabase Auth redirect URLs.
+
+## Измененные файлы
+
+- `Work plans/Активные/087-razbor-zamechaniy-mentora-po-specs.md`
+- `spec/technical-specs/admin-auth-and-access.md`
+- `spec/feature-specs/admin-content-editing.md`
+- `spec/technical-specs/routing-and-ui.md`
+- `components/admin/AdminAccess.tsx`
+- `components/admin/AdminPasswordReset.tsx`
+- `app/admin/reset-password/page.tsx`
+- `styles/globals.css`
