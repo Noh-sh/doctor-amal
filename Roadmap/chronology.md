@@ -27,6 +27,43 @@
   - ...
 ```
 
+## 2026-06-17 - Production URL и Vercel-проверка
+
+- План: `Work plans/Завершенные/085-production-url-i-vercel-proverka.md`
+- Статус: завершено
+- Области: `Production`, `Vercel`, `Supabase`, `Проверка`
+- Specs:
+  - `Work plans/Активные/068-master-plan-do-10-iz-10.md`
+  - `Work plans/Завершенные/082-production-i-ekspluataciya.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - проверен основной production domain `https://doctor-amal.vercel.app`;
+  - выявлен дублирующий Vercel project `doctor-amal-j7m5`, где уже были env variables;
+  - env variables перенесены владельцем проекта в основной Vercel project `doctor-amal`;
+  - выполнен redeploy основного project;
+  - подтверждено, что основной production domain читает Supabase env и показывает активную Telegram-ссылку покупки;
+  - секреты и значения env не записывались в проект.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - `git ls-files '.env*' 'supabase/.temp/*'` показывает только `.env.example`;
+  - `https://doctor-amal.vercel.app/` возвращает `HTTP 200`;
+  - `https://doctor-amal.vercel.app/admin` возвращает `HTTP 200`;
+  - `https://doctor-amal.vercel.app/proverka-404` возвращает `HTTP 404`;
+  - на главной найдены `Купить` и Telegram-ссылка `t.me/ux_bp`, что подтверждает применение Supabase env.
+- Ограничение проверки:
+  - вход доктора и тестовое сохранение production-контента не выполнялись, потому что владелец проекта забыл пароль и не давал отдельного подтверждения на изменение production-контента.
+- Измененные файлы:
+  - `Work plans/Завершенные/085-production-url-i-vercel-proverka.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - при необходимости восстановить пароль доктора через Supabase Auth и вручную проверить сохранение разрешенного контента в production `/admin`.
+
 ## 2026-06-16 - Восстановить Supabase MCP
 
 - План: `Work plans/Завершенные/084-vosstanovit-supabase-mcp.md`
