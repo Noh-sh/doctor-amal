@@ -85,6 +85,30 @@ function readableError(error: unknown) {
   return "Не удалось сохранить изменения. Проверьте данные и попробуйте еще раз.";
 }
 
+async function revalidatePublicPage(supabase: SupabaseClient) {
+  const {
+    data: { session },
+    error
+  } = await supabase.auth.getSession();
+
+  if (error || !session?.access_token) {
+    return false;
+  }
+
+  try {
+    const response = await fetch("/admin/revalidate", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${session.access_token}`
+      }
+    });
+
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
 export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isReloading, setIsReloading] = useState(false);
@@ -141,8 +165,15 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   }, [savedKey]);
 
   async function afterSave(text: string, key: string) {
+    const isPublicPageRevalidated = await revalidatePublicPage(supabase);
+
     await loadContent("reload");
-    setFeedback({ tone: "success", text });
+    setFeedback({
+      tone: isPublicPageRevalidated ? "success" : "error",
+      text: isPublicPageRevalidated
+        ? `${text} Публичная страница обновлена.`
+        : `${text} Не удалось мгновенно обновить публичную страницу. Она может обновиться примерно в течение 30 секунд.`
+    });
     setSavedKey(key);
   }
 
