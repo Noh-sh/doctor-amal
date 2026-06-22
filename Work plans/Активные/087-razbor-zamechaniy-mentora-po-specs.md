@@ -251,3 +251,66 @@ rg -n "Забыли пароль|resetPasswordForEmail|updateUser|reset-password
 - `components/admin/AdminPasswordReset.tsx`
 - `app/admin/reset-password/page.tsx`
 - `styles/globals.css`
+
+## Текущий этап после восстановления пароля
+
+Этап 3: уточнить specs для поведения при недоступном Supabase/Auth.
+
+Планируемые файлы:
+
+- `spec/technical-specs/supabase-content-source.md`;
+- `spec/technical-specs/architecture.md`;
+- `spec/technical-specs/local-storage.md`;
+- `spec/feature-specs/admin-content-editing.md`;
+- `spec/technical-specs/admin-auth-and-access.md`;
+- `spec/technical-specs/routing-and-ui.md`.
+
+Критерии готовности этапа:
+
+- specs явно описывают, что публичная `/` при недоступном Supabase показывает подтвержденный локальный fallback без технической ошибки для посетителя;
+- specs явно описывают, что при partial-data внешние кнопки текущей версии остаются видимыми, а недостающие или невалидные URL делают их неактивными;
+- specs явно описывают, что `/admin` при недоступном Supabase/Auth показывает понятное русское сообщение и не показывает формы редактирования;
+- уточнения не добавляют новые маршруты, заявки, auth покупателей, оплату, новые роли или изменения RLS/migrations;
+- `git diff --check` проходит.
+
+## Результат этапа 3
+
+Выполнено:
+
+- `spec/technical-specs/supabase-content-source.md` обновлен:
+  - публичная `/` при недоступном Supabase, отсутствии env или обязательных rows использует подтвержденный локальный fallback;
+  - посетителю не показываются технические ошибки Supabase, stack trace, env-ключи, policies или служебные детали;
+  - partial-data приводится к безопасной модели: внешние кнопки текущей версии остаются видимыми, недостающие или невалидные URL делают их неактивными;
+  - добавлены ручные проверки fallback и partial-data.
+- `spec/technical-specs/architecture.md` обновлен:
+  - data layer обязан быть устойчивым к ожидаемым сбоям Supabase на публичной странице;
+  - админка не подменяет Supabase локальным fallback при записи;
+  - недоступность Supabase/Auth не открывает формы редактирования.
+- `spec/technical-specs/local-storage.md` обновлен:
+  - локальный fallback закреплен только за публичной страницей `/`;
+  - fallback не хранит пользовательские данные и не используется для admin-сохранений.
+- `spec/feature-specs/admin-content-editing.md` обновлен:
+  - при недоступном Supabase/Auth доктор видит понятный feedback;
+  - формы редактирования не показываются до успешной проверки сессии и роли `doctor_admin`.
+- `spec/technical-specs/admin-auth-and-access.md` обновлен:
+  - защищенный маршрут не показывает редактор при недоступной проверке Auth или `admin_users`;
+  - неуспешное сохранение не считается публикацией.
+- `spec/technical-specs/routing-and-ui.md` обновлен:
+  - добавлены UI-состояния для публичного fallback, partial-data и admin-недоступности.
+
+Проверка:
+
+```bash
+rg -n "Supabase недоступ|Supabase/Auth недоступ|локальный fallback|partial-data|формы редактирования|stack trace|doctor_admin|Ссылка будет добавлена позже|Покупка временно недоступна" spec/technical-specs/supabase-content-source.md spec/technical-specs/architecture.md spec/technical-specs/local-storage.md spec/feature-specs/admin-content-editing.md spec/technical-specs/admin-auth-and-access.md spec/technical-specs/routing-and-ui.md "Work plans/Активные/087-razbor-zamechaniy-mentora-po-specs.md"
+git diff --check
+```
+
+Результат:
+
+- нужные формулировки найдены в specs;
+- `git diff --check` выполнен без ошибок;
+- продуктовый код, migrations, Supabase data, RLS и env не менялись.
+
+Следующий этап:
+
+- уточнить manual medical content review для admin-редактирования в `medical-content-rules.md` и `admin-content-editing.md`.
