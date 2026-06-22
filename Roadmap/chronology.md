@@ -27,6 +27,50 @@
   - ...
 ```
 
+## 2026-06-22 - Мгновенное обновление публичной страницы после сохранения
+
+- План: `Work plans/Завершенные/089-mgnovennoe-obnovlenie-publichnoy-stranicy.md`
+- Статус: завершено
+- Области: `Админка`, `Next.js`, `Supabase Auth`, `Кеш`, `Проверка`
+- Specs:
+  - `AGENTS.md`
+  - `.agents/skills/doctor-amal-specs/SKILL.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/technical-specs/change-management.md`
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/routing-and-ui.md`
+- Сделано:
+  - specs обновлены под подтвержденное поведение: после сохранения в `/admin` публичная страница `/` должна обновляться сразу или почти сразу;
+  - добавлен защищенный `POST /admin/revalidate`;
+  - route проверяет bearer token, Supabase Auth user и активную роль `doctor_admin`;
+  - route вызывает `revalidatePath("/")`;
+  - `AdminContentEditor` вызывает revalidation только после успешного Supabase-сохранения;
+  - при ошибке revalidation сохранение не откатывается, доктор видит понятный feedback и обычный `revalidate: 30` остается fallback;
+  - service role key во frontend не используется;
+  - заявки, оплата, auth покупателей, новые роли, RLS/migrations и webhook не добавлялись.
+- Проверка:
+  - `rg -n "revalidation|revalidatePath|/admin/revalidate|doctor_admin|service role|revalidate: 30|сразу или почти сразу" app components spec "Work plans/Завершенные/089-mgnovennoe-obnovlenie-publichnoy-stranicy.md"` выполнен;
+  - `git diff --check` выполнен без ошибок;
+  - `npm run quality` выполнен успешно;
+  - production build показывает `ƒ /admin/revalidate`.
+- Измененные файлы:
+  - `Work plans/Завершенные/089-mgnovennoe-obnovlenie-publichnoy-stranicy.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `components/admin/AdminContentEditor.tsx`
+  - `app/admin/revalidate/route.ts`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - подготовить commit и PR ветки `feature/admin-instant-cache-revalidation`.
+
 ## 2026-06-22 - Обновить авторизацию Supabase MCP
 
 - План: `Work plans/Завершенные/088-obnovit-avtorizaciyu-supabase-mcp.md`
