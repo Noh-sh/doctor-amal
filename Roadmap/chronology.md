@@ -27,6 +27,44 @@
   - ...
 ```
 
+## 2026-06-22 - Разбор замечаний ментора по specs
+
+- План: `Work plans/Завершенные/087-razbor-zamechaniy-mentora-po-specs.md`
+- Статус: завершено
+- Области: `Specs`, `Админка`, `Supabase`, `Auth`, `Кеш`, `Проверка`
+- Specs:
+  - `AGENTS.md`
+  - `.agents/skills/doctor-amal-specs/SKILL.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/global-spec.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/feature-specs/medical-content-rules.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - сверены замечания ментора с текущими specs;
+  - подтверждено, что `global-spec.md` уже описывает текущую online Taplink-версию с Supabase и `/admin`;
+  - закрыт gap восстановления пароля администратора: specs и UI `/admin`/`/admin/reset-password`;
+  - уточнено поведение при недоступном Supabase/Auth: публичный fallback, partial-data и admin error state;
+  - уточнена ручная медицинская проверка текстов, редактируемых через `/admin`;
+  - унифицировано правило публикации и кеша;
+  - отдельным планом `089` подтверждено и реализовано мгновенное или почти мгновенное обновление `/` через защищенный `POST /admin/revalidate`;
+  - открытых gaps из первичной сверки не осталось.
+- Проверка:
+  - `rg -n "Забыли пароль|reset-password|Supabase недоступ|partial-data|Проверка текстов через админку|revalidatePath|/admin/revalidate|после обновления данных и кеша|мгновенный сброс кеша|doctor_admin" spec app components "Work plans/Завершенные/089-mgnovennoe-obnovlenie-publichnoy-stranicy.md"` выполнен;
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `Work plans/Завершенные/087-razbor-zamechaniy-mentora-po-specs.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перейти к итоговой приемке мастер-плана `068` и оценке текущей версии до 10/10.
+
 ## 2026-06-22 - Мгновенное обновление публичной страницы после сохранения
 
 - План: `Work plans/Завершенные/089-mgnovennoe-obnovlenie-publichnoy-stranicy.md`
