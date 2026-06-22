@@ -27,6 +27,82 @@
   - ...
 ```
 
+## 2026-06-22 - Подтвердить финальные 10 из 10
+
+- План: `Work plans/Завершенные/091-podtverdit-finalnye-10-iz-10.md`
+- Статус: завершено
+- Области: `Финальная приемка`, `Production`, `Админка`, `Roadmap`
+- Specs:
+  - `AGENTS.md`
+  - `Work plans/Завершенные/068-master-plan-do-10-iz-10.md`
+  - `Work plans/Завершенные/090-finalnaya-priemka-10-iz-10.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - зафиксировано подтверждение владельца проекта, что production `/admin` работает;
+  - зафиксировано подтверждение безопасного тестового сохранения разрешенного контента;
+  - зафиксировано подтверждение обновления публичной `/` после сохранения;
+  - остаточный риск плана `090` закрыт;
+  - итоговая оценка текущей версии поднята до `10/10`.
+- Проверка:
+  - ручная production-проверка выполнена владельцем проекта;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `Work plans/Завершенные/091-podtverdit-finalnye-10-iz-10.md`
+  - `Work plans/Завершенные/068-master-plan-do-10-iz-10.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перед новой продуктовой работой создать новый активный план и свериться с актуальными specs.
+
+## 2026-06-22 - Финальная приемка текущей версии до 10 из 10
+
+- План: `Work plans/Завершенные/090-finalnaya-priemka-10-iz-10.md`
+- Статус: завершено
+- Области: `Финальная приемка`, `Quality`, `Production`, `Supabase`, `Roadmap`
+- Specs:
+  - `AGENTS.md`
+  - `.agents/skills/doctor-amal-specs/SKILL.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `Work plans/Завершенные/068-master-plan-do-10-iz-10.md`
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/change-management.md`
+- Сделано:
+  - сверены активные планы: после закрытия `090` активным остается только мастер-план `068`;
+  - проверены routes в `app/`: `/`, `/admin`, `/admin/reset-password`, `/admin/revalidate`, 404/error/loading/layout;
+  - проверено отсутствие неподтвержденных публичных routes старой версии;
+  - выполнен `npm run quality`;
+  - выполнен `npm audit --omit=dev`;
+  - через Supabase MCP read-only проверены remote migrations и RLS;
+  - проверены tracked env/secrets;
+  - проверены production `/`, `/admin`, 404 и анонимный `POST /admin/revalidate`;
+  - выставлена финальная оценка `9.5/10`.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `npm audit --omit=dev --cache /private/tmp/doctor-amal-npm-cache` вернул `found 0 vulnerabilities`;
+  - Supabase MCP показал 6 remote migrations и `rls_enabled: true` на текущих таблицах;
+  - `curl -I https://doctor-amal.vercel.app/` вернул `HTTP 200`;
+  - `curl -I https://doctor-amal.vercel.app/admin` вернул `HTTP 200`;
+  - `curl -I https://doctor-amal.vercel.app/proverka-404` вернул `HTTP 404`;
+  - `curl -i -X POST https://doctor-amal.vercel.app/admin/revalidate` вернул `HTTP 401`;
+  - `git diff --check` выполнен без ошибок.
+- Остаточный риск:
+  - production login/save/revalidation с реальной учетной записью доктора не проверялся без credentials и отдельного подтверждения на изменение production-контента.
+- Измененные файлы:
+  - `Work plans/Завершенные/090-finalnaya-priemka-10-iz-10.md`
+  - `Work plans/Завершенные/068-master-plan-do-10-iz-10.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - выполнить ручную production-проверку входа доктора, безопасного сохранения и мгновенного обновления `/`, чтобы поднять оценку до `10/10`.
+
 ## 2026-06-22 - Разбор замечаний ментора по specs
 
 - План: `Work plans/Завершенные/087-razbor-zamechaniy-mentora-po-specs.md`
