@@ -27,6 +27,41 @@
   - ...
 ```
 
+## 2026-06-22 - Обновить авторизацию Supabase MCP
+
+- План: `Work plans/Завершенные/088-obnovit-avtorizaciyu-supabase-mcp.md`
+- Статус: завершено
+- Области: `Codex`, `Supabase`, `MCP`, `Проверка`
+- Specs:
+  - `AGENTS.md`
+  - `.agents/skills/doctor-amal-specs/SKILL.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/technical-specs/supabase-mcp-access.md`
+  - `Work plans/Завершенные/051-supabase-mcp-setup.md`
+  - `Work plans/Завершенные/084-vosstanovit-supabase-mcp.md`
+- Сделано:
+  - проверена текущая MCP-конфигурация `supabase`;
+  - по логам Codex подтверждено, что startup warning вызван истекшей или сломанной OAuth-авторизацией;
+  - выполнен `codex mcp login supabase`;
+  - подтверждено, что read-only URL для project `dagykilvpiacfbwpcluv` сохранен;
+  - write-операции через MCP не выполнялись;
+  - секреты, токены и ключи не записывались в проект.
+- Проверка:
+  - `codex mcp list` показывает `supabase` в статусе `enabled`;
+  - `codex mcp get supabase` показывает `read_only=true` и `features=database,docs`;
+  - `git diff --check` выполнен без ошибок.
+- Ограничение проверки:
+  - текущая API-сессия Codex может потребовать перезапуска, чтобы заново поднять MCP tools при старте.
+- Измененные файлы:
+  - `Work plans/Завершенные/088-obnovit-avtorizaciyu-supabase-mcp.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - перезапустить Codex/VS Code session и проверить, исчезло ли сообщение `MCP startup incomplete (failed: supabase)`.
+
 ## 2026-06-17 - Проверка соответствия планов 070-082
 
 - План: `Work plans/Завершенные/086-proverka-sootvetstviya-planov-070-082.md`
