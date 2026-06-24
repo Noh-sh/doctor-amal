@@ -9,11 +9,13 @@ import {
   type AdminExternalLink,
   type AdminPurchaseSettings,
   createCourse,
+  deleteCourse,
   fetchAdminContent,
   updateCourse,
   updateDoctorProfile,
   updateExternalLink,
-  updatePurchaseSettings
+  updatePurchaseSettings,
+  uploadDoctorPhoto
 } from "@/lib/supabase/adminContent";
 
 type AdminContentEditorProps = {
@@ -27,6 +29,8 @@ type Feedback = {
 
 type ProfileForm = {
   displayName: string;
+  photoSrc: string;
+  photoAlt: string;
   shortIntro: string;
   education: string;
   experience: string;
@@ -54,6 +58,8 @@ function splitList(value: string) {
 function toProfileForm(profile: AdminDoctorProfile): ProfileForm {
   return {
     displayName: profile.displayName,
+    photoSrc: profile.photoSrc,
+    photoAlt: profile.photoAlt,
     shortIntro: profile.shortIntro,
     education: joinList(profile.education),
     experience: joinList(profile.experience),
@@ -78,6 +84,10 @@ function createEmptyCourseForm(): NewCourseForm {
 }
 
 function readableError(error: unknown) {
+  if (error instanceof Error && error.message.startsWith("Фото ")) {
+    return error.message;
+  }
+
   if (error instanceof Error && error.message.includes("violates check constraint")) {
     return "Данные не прошли проверку Supabase. Проверьте обязательные поля и активные ссылки.";
   }
@@ -117,6 +127,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
   const [feedback, setFeedback] = useState<Feedback>(null);
   const [loadError, setLoadError] = useState("");
   const [profileForm, setProfileForm] = useState<ProfileForm | null>(null);
+  const [profilePhotoFile, setProfilePhotoFile] = useState<File | null>(null);
   const [courseForms, setCourseForms] = useState<CourseForm[]>([]);
   const [newCourseForm, setNewCourseForm] = useState<NewCourseForm>(() => createEmptyCourseForm());
   const [externalLinkForms, setExternalLinkForms] = useState<ExternalLinkForm[]>([]);
@@ -135,6 +146,7 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
       const content: AdminContent = await fetchAdminContent(supabase);
 
       setProfileForm(toProfileForm(content.doctorProfile));
+      setProfilePhotoFile(null);
       setCourseForms(content.courses);
       setExternalLinkForms(content.externalLinks);
       setPurchaseForm(content.purchaseSettings);
@@ -216,8 +228,14 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
     setFeedback(null);
 
     try {
+      const uploadedPhoto = profilePhotoFile
+        ? await uploadDoctorPhoto(supabase, profilePhotoFile, profileForm.displayName)
+        : null;
+
       await updateDoctorProfile(supabase, {
         displayName: profileForm.displayName,
+        photoSrc: uploadedPhoto?.photoSrc ?? profileForm.photoSrc,
+        photoAlt: uploadedPhoto?.photoAlt ?? profileForm.photoAlt,
         shortIntro: profileForm.shortIntro,
         education: splitList(profileForm.education),
         experience: splitList(profileForm.experience),
@@ -225,7 +243,34 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
         healthTopics: splitList(profileForm.healthTopics),
         helpFormats: splitList(profileForm.helpFormats)
       });
+      setProfilePhotoFile(null);
       await afterSave("Профиль сохранен.", "profile");
+    } catch (error) {
+      setFeedback({ tone: "error", text: readableError(error) });
+    } finally {
+      setSavingKey(null);
+    }
+  }
+
+  async function handleCourseDelete(course: CourseForm) {
+    if (savingKey) {
+      return;
+    }
+
+    const isConfirmed = window.confirm(`Удалить курс "${course.title}" из публичного списка?`);
+
+    if (!isConfirmed) {
+      return;
+    }
+
+    const key = `course:${course.id}:delete`;
+    setSavingKey(key);
+    setSavedKey(null);
+    setFeedback(null);
+
+    try {
+      await deleteCourse(supabase, course.id);
+      await afterSave("Курс удален из списка.", key);
     } catch (error) {
       setFeedback({ tone: "error", text: readableError(error) });
     } finally {
@@ -385,8 +430,27 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
       <form className="admin-editor-section" onSubmit={handleProfileSubmit}>
         <div className="admin-section-header">
           <h2>Профиль</h2>
-          <p className="admin-muted">Фото и медицинское предупреждение здесь не редактируются.</p>
+          <p className="admin-muted">Фото можно заменить файлом JPEG, PNG или WebP до 5 MB.</p>
         </div>
+
+        {profileForm.photoSrc ? (
+          <div className="admin-photo-preview">
+            <img alt={profileForm.photoAlt || "Фото доктора"} src={profileForm.photoSrc} />
+          </div>
+        ) : null}
+
+        <label className="admin-field">
+          <span>Новое фото доктора</span>
+          <input
+            accept="image/jpeg,image/png,image/webp"
+            type="file"
+            onChange={(event) => setProfilePhotoFile(event.target.files?.[0] ?? null)}
+          />
+        </label>
+
+        {profilePhotoFile ? (
+          <p className="admin-muted">Выбрано: {profilePhotoFile.name}</p>
+        ) : null}
 
         <label className="admin-field">
           <span>Имя доктора</span>
@@ -564,7 +628,17 @@ export function AdminContentEditor({ supabase }: AdminContentEditorProps) {
               <span>Показывать курс на публичной странице</span>
             </label>
 
-            {renderSaveButton(`course:${course.id}`, "Сохранить курс")}
+            <div className="admin-actions">
+              {renderSaveButton(`course:${course.id}`, "Сохранить курс")}
+              <button
+                className="admin-button admin-button-danger"
+                disabled={Boolean(savingKey)}
+                type="button"
+                onClick={() => void handleCourseDelete(course)}
+              >
+                {savingKey === `course:${course.id}:delete` ? "Удаляем..." : "Удалить курс"}
+              </button>
+            </div>
           </form>
         ))}
       </section>

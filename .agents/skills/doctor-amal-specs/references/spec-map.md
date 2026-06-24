@@ -27,6 +27,8 @@
 - `spec/feature-specs/medical-content-rules.md` — медицинские ограничения пользовательских текстов, запрет обещаний результата, диагностики, схем лечения и персональных рекомендаций.
 - `spec/feature-specs/future-online-purchase.md` — будущая онлайн-покупка, не входящая в текущую версию.
 - `spec/feature-specs/admin-content-editing.md` — текущая админка для редактирования контента доктором: профиль, курсы, цены, ссылки и Telegram менеджера.
+- `spec/feature-specs/admin-photo-management.md` — загрузка и замена фото доктора через админку.
+- `spec/feature-specs/admin-course-removal.md` — безопасное удаление курсов через админку без физического удаления row.
 
 ## Technical specs
 
@@ -58,7 +60,9 @@
 - Supabase как источник контента страницы: `supabase-content-source.md`, `supabase-dashboard-setup.md`, `architecture.md`, `data-model.md`, `requests-and-validation.md`, `future-extension-plan.md`, `course-purchase-link.md`, `future-online-purchase.md`.
 - Supabase MCP access: `supabase-mcp-access.md`, `supabase-content-source.md`, `supabase-dashboard-setup.md`, `change-management.md`.
 - Админка и Auth для редактирования контента: `admin-content-editing.md`, `admin-user-stories.md`, `admin-auth-and-access.md`, `change-management.md`, `supabase-content-source.md`.
-- Будущие расширения админки, новые роли, загрузка фото, удаление курсов или онлайн-покупка: `future-extension-plan.md`, `future-online-purchase.md`, но только для планирования, не для реализации текущей версии.
+- Загрузка фото через админку: `admin-photo-management.md`, `admin-content-editing.md`, `admin-auth-and-access.md`, `supabase-content-source.md`.
+- Безопасное удаление курсов через админку: `admin-course-removal.md`, `admin-content-editing.md`, `admin-auth-and-access.md`, `supabase-content-source.md`.
+- Будущие расширения админки, новые роли, физическое удаление курсов, восстановление удаленных курсов через UI или онлайн-покупка: `future-extension-plan.md`, `future-online-purchase.md`, но только для планирования, не для реализации текущей версии.
 
 ## Роли specs
 

@@ -3,6 +3,8 @@ import type { ExternalPlatform } from "@/domain/taplink";
 
 export type AdminDoctorProfile = {
   displayName: string;
+  photoSrc: string;
+  photoAlt: string;
   shortIntro: string;
   education: string[];
   experience: string[];
@@ -43,6 +45,8 @@ export type AdminContent = {
 
 type DoctorProfileRow = {
   display_name: string | null;
+  photo_src: string | null;
+  photo_alt: string | null;
   short_intro: string | null;
   education: unknown;
   experience: unknown;
@@ -78,6 +82,8 @@ type PurchaseSettingsRow = {
 
 export type DoctorProfileUpdate = {
   displayName: string;
+  photoSrc: string;
+  photoAlt: string;
   shortIntro: string;
   education: string[];
   experience: string[];
@@ -113,6 +119,14 @@ const platformLabels: Record<ExternalPlatform, AdminExternalLink["label"]> = {
   youtube: "YouTube",
   instagram: "Instagram"
 };
+
+const doctorMediaBucket = "doctor-media";
+const maxDoctorPhotoSizeBytes = 5 * 1024 * 1024;
+const doctorPhotoExtensions = new Map([
+  ["image/jpeg", "jpg"],
+  ["image/png", "png"],
+  ["image/webp", "webp"]
+]);
 
 function asStringArray(value: unknown): string[] {
   if (!Array.isArray(value)) {
@@ -160,6 +174,8 @@ function createCourseKeys(title: string) {
 function mapDoctorProfile(row: DoctorProfileRow): AdminDoctorProfile {
   return {
     displayName: toText(row.display_name),
+    photoSrc: toText(row.photo_src),
+    photoAlt: toText(row.photo_alt),
     shortIntro: toText(row.short_intro),
     education: asStringArray(row.education),
     experience: asStringArray(row.experience),
@@ -208,7 +224,7 @@ export async function fetchAdminContent(supabase: SupabaseClient): Promise<Admin
   const [doctorProfileResult, externalLinksResult, coursesResult, purchaseSettingsResult] = await Promise.all([
     supabase
       .from("doctor_profile")
-      .select("display_name,short_intro,education,experience,professional_directions,health_topics,help_formats")
+      .select("display_name,photo_src,photo_alt,short_intro,education,experience,professional_directions,health_topics,help_formats")
       .eq("id", "main")
       .maybeSingle<DoctorProfileRow>(),
     supabase
@@ -219,6 +235,7 @@ export async function fetchAdminContent(supabase: SupabaseClient): Promise<Admin
     supabase
       .from("courses")
       .select("id,slug,title,description,price_display_text,price_is_confirmed,is_active,sort_order")
+      .is("deleted_at", null)
       .order("sort_order", { ascending: true })
       .returns<CourseRow[]>(),
     supabase
@@ -261,6 +278,8 @@ export async function updateDoctorProfile(supabase: SupabaseClient, input: Docto
     .from("doctor_profile")
     .update({
       display_name: input.displayName.trim(),
+      photo_src: toNullableText(input.photoSrc),
+      photo_alt: toNullableText(input.photoAlt),
       short_intro: toNullableText(input.shortIntro),
       education: input.education,
       experience: input.experience,
@@ -275,6 +294,38 @@ export async function updateDoctorProfile(supabase: SupabaseClient, input: Docto
   }
 }
 
+export async function uploadDoctorPhoto(supabase: SupabaseClient, file: File, displayName: string) {
+  const extension = doctorPhotoExtensions.get(file.type);
+
+  if (!extension) {
+    throw new Error("Фото должно быть в формате JPEG, PNG или WebP.");
+  }
+
+  if (file.size > maxDoctorPhotoSizeBytes) {
+    throw new Error("Фото должно быть не больше 5 MB.");
+  }
+
+  const timestamp = new Date().toISOString().replace(/[^0-9]/g, "");
+  const path = `doctor-profile/main-${timestamp}.${extension}`;
+  const { error } = await supabase.storage.from(doctorMediaBucket).upload(path, file, {
+    cacheControl: "3600",
+    contentType: file.type,
+    upsert: false
+  });
+
+  if (error) {
+    throw error;
+  }
+
+  const { data } = supabase.storage.from(doctorMediaBucket).getPublicUrl(path);
+  const trimmedName = displayName.trim();
+
+  return {
+    photoSrc: data.publicUrl,
+    photoAlt: trimmedName ? `Фото: ${trimmedName}` : "Фото доктора"
+  };
+}
+
 export async function updateExternalLink(supabase: SupabaseClient, id: number, input: ExternalLinkUpdate) {
   const { error } = await supabase
     .from("external_links")
@@ -284,6 +335,14 @@ export async function updateExternalLink(supabase: SupabaseClient, id: number, i
       inactive_text: toNullableText(input.inactiveText)
     })
     .eq("id", id);
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function deleteCourse(supabase: SupabaseClient, id: string) {
+  const { error } = await supabase.from("courses").update({ deleted_at: new Date().toISOString() }).eq("id", id);
 
   if (error) {
     throw error;
