@@ -224,7 +224,7 @@ async function getSupabaseTaplinkPageData(): Promise<TaplinkPageData | null> {
       readTable<DoctorProfileRow>("doctor_profile", "select=*&id=eq.main&is_published=eq.true&limit=1"),
       readTable<PageSettingsRow>("page_settings", "select=*&id=eq.main&is_published=eq.true&limit=1"),
       readTable<ExternalLinkRow>("external_links", "select=*&order=sort_order.asc"),
-      readTable<CourseRow>("courses", "select=*&is_active=eq.true&order=sort_order.asc"),
+      readTable<CourseRow>("courses", "select=*&is_active=eq.true&deleted_at=is.null&order=sort_order.asc"),
       readTable<PurchaseSettingsRow>("purchase_settings", "select=*&id=eq.main&limit=1")
     ]);
 

@@ -27,6 +27,132 @@
   - ...
 ```
 
+## 2026-06-24 - Remote migration фото и soft delete
+
+- План: `Work plans/Завершенные/096-remote-migration-foto-i-soft-delete.md`
+- Статус: завершено
+- Области: `Supabase`, `Storage`, `RLS`, `Админка`, `Проверка`
+- Specs:
+  - `spec/feature-specs/admin-photo-management.md`
+  - `spec/feature-specs/admin-course-removal.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/implementation-checklist.md`
+- Сделано:
+  - применена remote migration `20260624000000_add_doctor_media_and_course_soft_delete.sql` к Supabase project `dagykilvpiacfbwpcluv`;
+  - remote Supabase получил `courses.deleted_at`;
+  - создан/обновлен Storage bucket `doctor-media` с public read, лимитом 5 MB и MIME `image/jpeg`, `image/png`, `image/webp`;
+  - проверены Storage policies для чтения, загрузки и обновления объектов doctor media активным `doctor_admin`;
+  - public policy курсов теперь исключает rows с `deleted_at is not null`.
+- Проверка:
+  - перед применением migration `npm run quality` выполнен успешно;
+  - `npx supabase migration list` подтвердил совпадение local и remote migrations после применения;
+  - MCP SQL подтвердил `courses.deleted_at`, bucket `doctor-media`, Storage policies и public course policy;
+  - владелец проекта локально проверил `/admin` после migration и сообщил, что изменения работают.
+- Измененные файлы:
+  - `Work plans/Завершенные/096-remote-migration-foto-i-soft-delete.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - выполнить commit/push/deploy только после отдельного подтверждения владельца.
+
+## 2026-06-24 - Реализация фото и удаления курсов
+
+- План: `Work plans/Завершенные/095-realizaciya-foto-i-udaleniya-kursov.md`
+- Статус: завершено
+- Области: `Frontend`, `Админка`, `Supabase`, `Storage`, `RLS`, `Курсы`
+- Specs:
+  - `spec/feature-specs/admin-photo-management.md`
+  - `spec/feature-specs/admin-course-removal.md`
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/user-stories/admin-user-stories.md`
+- Сделано:
+  - добавлена migration для `courses.deleted_at`, bucket `doctor-media`, Storage policies и точечных grants;
+  - админка получила загрузку/замену фото доктора через Supabase Storage;
+  - фото проверяется на JPEG, PNG, WebP и размер до 5 MB;
+  - после успешной загрузки обновляются `doctor_profile.photo_src` и `doctor_profile.photo_alt`;
+  - админка получила безопасное удаление курса через soft delete;
+  - публичная страница и основной список админки скрывают курсы с `deleted_at`;
+  - service role key во frontend не используется.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - `npm run quality` выполнен успешно: `lint`, `typecheck`, `next build`.
+- Измененные файлы:
+  - `supabase/migrations/20260624000000_add_doctor_media_and_course_soft_delete.sql`
+  - `lib/supabase/adminContent.ts`
+  - `components/admin/AdminContentEditor.tsx`
+  - `data/taplink-page-source.ts`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/095-realizaciya-foto-i-udaleniya-kursov.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - применить migration к remote Supabase project, проверить загрузку фото и soft delete курса в `/admin`, затем выполнить git commit/push по отдельному подтверждению владельца.
+
+## 2026-06-24 - Specs загрузки фото и удаления курсов
+
+- План: `Work plans/Завершенные/094-specs-foto-i-udalenie-kursov.md`
+- Статус: завершено
+- Области: `Specs`, `Админка`, `Supabase`, `Storage`, `Курсы`, `Roadmap`
+- Specs:
+  - `AGENTS.md`
+  - `.agents/skills/doctor-amal-specs/SKILL.md`
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/feature-specs/admin-photo-management.md`
+  - `spec/feature-specs/admin-course-removal.md`
+  - `spec/user-stories/admin-user-stories.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/future-extension-plan.md`
+- Сделано:
+  - добавлен feature spec загрузки и замены фото доктора через админку;
+  - добавлен feature spec безопасного удаления курса через soft delete;
+  - обновлены user stories доктора для фото и удаления курса;
+  - обновлены technical specs для Supabase Storage bucket `doctor-media`, проверки файла, `doctor_profile.photo_src/photo_alt` и `courses.deleted_at`;
+  - верхние specs больше не относят загрузку фото через админку к будущим неподтвержденным функциям;
+  - физическое удаление row из Supabase через UI и восстановление удаленных курсов через UI оставлены вне текущего этапа.
+- Проверка:
+  - `git diff --check` выполнен без ошибок;
+  - выполнен поиск по старым формулировкам о запрете загрузки фото через админку;
+  - противоречие между актуальными specs и future plan снято.
+- Измененные файлы:
+  - `.agents/skills/doctor-amal-specs/references/spec-map.md`
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/feature-specs/README.md`
+  - `spec/feature-specs/admin-content-editing.md`
+  - `spec/feature-specs/admin-photo-management.md`
+  - `spec/feature-specs/admin-course-removal.md`
+  - `spec/user-stories/admin-user-stories.md`
+  - `spec/technical-specs/README.md`
+  - `spec/technical-specs/architecture.md`
+  - `spec/technical-specs/data-model.md`
+  - `spec/technical-specs/admin-auth-and-access.md`
+  - `spec/technical-specs/supabase-content-source.md`
+  - `spec/technical-specs/requests-and-validation.md`
+  - `spec/technical-specs/implementation-checklist.md`
+  - `spec/technical-specs/future-extension-plan.md`
+  - `Work plans/Завершенные/094-specs-foto-i-udalenie-kursov.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - создать отдельный план реализации: Supabase migration/Storage policies, код загрузки фото, soft delete курсов и проверки RLS.
+
 ## 2026-06-24 - Дизайн и эргономика публичной страницы
 
 - План: `Work plans/Завершенные/093-dizayn-ergonomika-publichnoy-stranicy.md`
