@@ -27,6 +27,44 @@
   - ...
 ```
 
+## 2026-06-24 - Дизайн и эргономика публичной страницы
+
+- План: `Work plans/Завершенные/093-dizayn-ergonomika-publichnoy-stranicy.md`
+- Статус: завершено
+- Области: `Дизайн`, `Frontend`, `UI`, `Проверка`, `Roadmap`
+- Specs:
+  - `AGENTS.md`
+  - `.agents/skills/doctor-amal-specs/SKILL.md`
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `spec/user-stories/core-user-stories.md`
+  - `Design map/design-rules.md`
+- Сделано:
+  - выполнен референсный дизайн-проход по wellness, nutrition и link-in-bio интерфейсам;
+  - публичная страница получила более цельную светлую wellness-поверхность;
+  - hero, фото, кнопки, раскрытые блоки, course accordion, price badge, hover/open/disabled/focus состояния визуально уточнены;
+  - внутренние кнопки выделены глубоким зеленым, внешние ссылки оставлены светлыми с небольшими соц-акцентами;
+  - дизайн сохранен в текущих specs: без новых routes, кнопок, форм, оплаты, аналитики, сбора данных или медицинских обещаний;
+  - второй вариант визуально принят владельцем проекта.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - локально `/` возвращает `200`;
+  - локально `/admin` возвращает `200`;
+  - локально `/proverka-404` возвращает `404`;
+  - ручная визуальная проверка выполнена владельцем проекта.
+- Измененные файлы:
+  - `styles/globals.css`
+  - `Work plans/Завершенные/093-dizayn-ergonomika-publichnoy-stranicy.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - после финальной проверки выполнить commit по прямой просьбе пользователя.
+
 ## 2026-06-22 - Уточнить процесс работы агента
 
 - План: `Work plans/Завершенные/092-utochnit-agents-process.md`
