@@ -32,11 +32,11 @@ export function TaplinkPage({ data }: TaplinkPageProps) {
   return (
     <div className="taplink-page">
       <section className="taplink-hero" aria-labelledby="page-title">
-        <DoctorPhoto displayName={data.doctor.displayName} photo={data.doctor.photo} />
         <div className="taplink-hero-copy">
           <h1 id="page-title">{data.doctor.displayName}</h1>
-          {data.doctor.shortIntro ? <p className="lead">{data.doctor.shortIntro}</p> : null}
         </div>
+        <DoctorPhoto displayName={data.doctor.displayName} photo={data.doctor.photo} />
+        {data.doctor.shortIntro ? <p className="lead taplink-hero-intro">{data.doctor.shortIntro}</p> : null}
       </section>
 
       <div className="taplink-actions" aria-label="Кнопки текущей версии">

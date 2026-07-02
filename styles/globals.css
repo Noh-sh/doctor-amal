@@ -41,8 +41,8 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(180deg, #fbfff9 0%, #f3faf0 48%, #edf7e9 100%),
-    radial-gradient(ellipse at 50% -10%, rgba(168, 216, 159, 0.5), transparent 42%);
+    linear-gradient(180deg, #f8fbf5 0%, #eff5eb 100%),
+    radial-gradient(ellipse at 50% -10%, rgba(168, 216, 159, 0.42), transparent 42%);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
@@ -73,6 +73,29 @@ body::after {
   border: 1px solid rgba(47, 139, 74, 0.13);
   background: rgba(255, 255, 255, 0.2);
   transform: rotate(-20deg);
+}
+
+body:has(.taplink-page) {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 85% 74%, rgba(44, 70, 42, 0.22), transparent 31%),
+    linear-gradient(145deg, #92aa83 0%, #728d68 48%, #8ca27c 100%);
+}
+
+body:has(.taplink-page)::before {
+  background:
+    radial-gradient(ellipse at 10% 88%, rgba(48, 75, 43, 0.2), transparent 29%),
+    radial-gradient(ellipse at 88% 12%, rgba(235, 242, 226, 0.16), transparent 25%);
+}
+
+body:has(.taplink-page)::after {
+  width: 280px;
+  height: 420px;
+  right: -150px;
+  top: 16%;
+  border-color: rgba(246, 241, 231, 0.17);
+  background: rgba(246, 241, 231, 0.04);
 }
 
 a {
@@ -127,6 +150,11 @@ h2 {
   width: min(500px, calc(100% - 32px));
   margin: 0 auto;
   padding: 24px 0 48px;
+}
+
+.site-main:has(.taplink-page) {
+  width: min(560px, calc(100% - 32px));
+  padding: 28px 0 56px;
 }
 
 .admin-page {
@@ -418,47 +446,78 @@ h2 {
   gap: 16px;
 }
 
+.taplink-page {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(40, 61, 39, 0.12);
+  border-radius: 30px;
+  background: #f5efe5;
+  padding: 18px;
+  box-shadow:
+    0 34px 90px rgba(32, 54, 33, 0.2),
+    0 4px 18px rgba(32, 54, 33, 0.08);
+}
+
+.taplink-page::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 auto;
+  height: 300px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.72), transparent 38%),
+    linear-gradient(145deg, rgba(113, 137, 95, 0.13), transparent 62%);
+  pointer-events: none;
+}
+
+.taplink-page > * {
+  position: relative;
+  z-index: 1;
+}
+
 .taplink-hero {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   justify-items: center;
   text-align: center;
   position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(39, 82, 50, 0.11);
-  border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 255, 244, 0.84)),
-    linear-gradient(135deg, rgba(47, 139, 74, 0.08), transparent 54%);
-  padding: 22px 18px 20px;
-  box-shadow: var(--shadow-soft);
+  padding: 16px 10px 6px;
 }
 
 .taplink-hero::before {
   content: "";
   position: absolute;
-  inset: auto -44px -96px auto;
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  border: 1px solid rgba(47, 139, 74, 0.12);
-  background: rgba(227, 243, 223, 0.42);
+  top: 47px;
+  left: 50%;
+  width: 72px;
+  height: 1px;
+  background: rgba(55, 76, 49, 0.3);
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
 .taplink-hero-copy {
   display: grid;
-  gap: 10px;
+  gap: 6px;
   justify-items: center;
+}
+
+.taplink-hero-copy h1 {
+  color: #263627;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 9vw, 48px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .doctor-photo-image,
 .doctor-photo-placeholder {
-  width: 210px;
-  height: 210px;
-  border: 7px solid rgba(255, 255, 255, 0.96);
-  border-radius: 50%;
-  box-shadow: 0 20px 46px rgba(18, 63, 37, 0.16), 0 0 0 1px rgba(47, 139, 74, 0.08);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border: 1px solid rgba(40, 61, 39, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 20px 46px rgba(32, 54, 33, 0.18);
 }
 
 .doctor-photo-image {
@@ -492,10 +551,18 @@ h2 {
   max-width: 420px;
 }
 
+.taplink-hero-intro {
+  max-width: 390px;
+  padding: 0 10px;
+  color: #495a49;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
 .medical-notice {
-  border: 1px solid rgba(39, 82, 50, 0.13);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(55, 76, 49, 0.13);
+  border-radius: 14px;
+  background: rgba(255, 252, 247, 0.78);
   color: var(--muted);
   padding: 10px 14px;
   font-size: 13px;
@@ -511,7 +578,7 @@ h2 {
 
 .taplink-actions {
   display: grid;
-  gap: 9px;
+  gap: 11px;
 }
 
 .taplink-action-group {
@@ -540,9 +607,9 @@ h2 {
   width: 100%;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(39, 82, 50, 0.13);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(55, 76, 49, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 252, 247, 0.92);
   color: var(--text);
   font: inherit;
   font-weight: 700;
@@ -722,10 +789,10 @@ h2 {
 }
 
 .taplink-button-internal {
-  border-color: rgba(18, 63, 37, 0.18);
-  background: linear-gradient(135deg, var(--accent-dark), var(--accent-deep));
+  border-color: rgba(48, 70, 45, 0.2);
+  background: linear-gradient(135deg, #667c5a, #506746);
   color: #ffffff;
-  box-shadow: 0 16px 34px rgba(18, 63, 37, 0.18);
+  box-shadow: 0 14px 28px rgba(46, 67, 43, 0.17);
 }
 
 .taplink-button-external {
@@ -764,8 +831,8 @@ h2 {
 }
 
 .taplink-action-group[open] > .taplink-button {
-  border-color: var(--accent-deep);
-  background: linear-gradient(135deg, var(--accent-deep), #0d2f1c);
+  border-color: #3f5739;
+  background: linear-gradient(135deg, #506746, #3f5739);
   color: #ffffff;
 }
 
@@ -785,7 +852,7 @@ h2 {
 
 .taplink-button-internal:hover,
 .taplink-action-group[open] > .taplink-button:hover {
-  background: linear-gradient(135deg, var(--accent-deep), #0d2f1c);
+  background: linear-gradient(135deg, #506746, #3f5739);
   color: #ffffff;
 }
 
@@ -869,11 +936,28 @@ h2 {
   display: grid;
   gap: 14px;
   border: 1px solid rgba(39, 82, 50, 0.13);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.86);
+  border-radius: 14px;
+  background: rgba(255, 252, 247, 0.92);
   padding: 18px;
   box-shadow: 0 14px 32px rgba(17, 24, 22, 0.08);
   backdrop-filter: blur(20px) saturate(145%);
+}
+
+.taplink-action-group > .taplink-section::before {
+  content: "";
+  height: 68px;
+  margin: -18px -18px 2px;
+  border-radius: 14px 14px 0 0;
+  background:
+    linear-gradient(rgba(47, 66, 43, 0.05), rgba(47, 66, 43, 0.05)),
+    url("/images/nutritionStrip.png") center 52% / cover no-repeat;
+  box-shadow: inset 0 -1px rgba(55, 76, 49, 0.12);
+}
+
+#courses-panel::before {
+  background:
+    linear-gradient(rgba(47, 66, 43, 0.05), rgba(47, 66, 43, 0.05)),
+    url("/images/coursesNutritionStrip.png") center 50% / cover no-repeat;
 }
 
 .taplink-inline-panel {
@@ -923,8 +1007,8 @@ h2 {
 
 .course-item {
   border: 1px solid rgba(39, 82, 50, 0.14);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.78);
+  border-radius: 12px;
+  background: rgba(255, 252, 247, 0.82);
   overflow: hidden;
   backdrop-filter: blur(14px);
   transition:
@@ -1019,18 +1103,33 @@ h2 {
     padding-top: 22px;
   }
 
+  .site-main:has(.taplink-page) {
+    width: min(100% - 20px, 560px);
+    padding: 10px 0 32px;
+  }
+
   h1 {
     font-size: 31px;
   }
 
   .doctor-photo-image,
   .doctor-photo-placeholder {
-    width: min(64vw, 210px);
-    height: min(64vw, 210px);
+    width: 100%;
+    height: auto;
   }
 
   .taplink-hero {
-    padding: 20px 14px 18px;
+    padding: 14px 2px 4px;
+  }
+
+  .taplink-page {
+    gap: 14px;
+    border-radius: 24px;
+    padding: 12px;
+  }
+
+  .taplink-hero-copy h1 {
+    font-size: clamp(34px, 11vw, 42px);
   }
 
   .taplink-button,

@@ -27,6 +27,98 @@
   - ...
 ```
 
+## 2026-07-02 - Отдельная продуктовая полоса для курсов
+
+- План: `Work plans/Завершенные/099-otdelnaya-polosa-dlya-kursov.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Графика`, `Проверка`
+- Specs:
+  - `spec/technical-specs/routing-and-ui.md`
+  - `Design map/test-design-map.md`
+  - `Design map/design-rules.md`
+- Сделано:
+  - для блока `Курсы` создан отдельный оригинальный food-asset;
+  - в новой композиции показаны целый и разрезанный авокадо, а также другой набор фруктов, овощей и зелени;
+  - первая продуктовая полоса сохранена для блока `О докторе`;
+  - тексты, данные, маршруты и accordion-поведение не изменены.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `public/images/coursesNutritionStrip.png`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/099-otdelnaya-polosa-dlya-kursov.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - визуально оценить кадрирование двух разных полос в раскрытых вкладках.
+
+## 2026-07-02 - Декоративные фруктовые полосы
+
+- План: `Work plans/Завершенные/098-dekorativnye-fruktovye-polosy.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Графика`, `Проверка`
+- Specs:
+  - `spec/functional-map.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `Design map/test-design-map.md`
+  - `Design map/design-rules.md`
+- Сделано:
+  - создан оригинальный фотореалистичный asset с фруктами, овощами и зеленью;
+  - исключены текст, люди, таблетки, банки, добавки и медицинские предметы;
+  - в раскрытые блоки `О докторе` и `Курсы` добавлены узкие декоративные food-полосы по референсу;
+  - изображения не используются как фон под текстом и не меняют пользовательский сценарий.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок.
+- Измененные файлы:
+  - `public/images/nutritionStrip.png`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/098-dekorativnye-fruktovye-polosy.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - визуально оценить размер и кадрирование полос вместе с тестовым дизайном.
+
+## 2026-07-02 - Тестовый дизайн по референсу
+
+- План: `Work plans/Завершенные/097-testovyy-dizayn-po-referensu.md`
+- Статус: завершено
+- Области: `Frontend`, `Дизайн`, `Адаптивность`, `Проверка`
+- Specs:
+  - `spec/global-spec.md`
+  - `spec/functional-map.md`
+  - `spec/technical-specs/routing-and-ui.md`
+  - `Design map/test-design-map.md`
+  - `Design map/design-rules.md`
+- Сделано:
+  - публичная Taplink-страница оформлена как светлая центральная карточка на приглушенном зеленом фоне;
+  - текущее фото доктора увеличено почти до полной ширины карточки и получило мягкое скругление;
+  - композиция hero, кнопки, поверхности и accordion-блоки приближены к предоставленному референсу;
+  - данные, тексты, маршруты и пользовательские сценарии сохранены без изменений.
+- Проверка:
+  - `npm run quality` выполнен успешно;
+  - `git diff --check` выполнен без ошибок;
+  - локальная `/` вернула HTTP `200`;
+  - расчет layout на ширине 360 px не выявил горизонтального переполнения.
+- Измененные файлы:
+  - `components/taplink/TaplinkPage.tsx`
+  - `styles/globals.css`
+  - `Work plans/Завершенные/097-testovyy-dizayn-po-referensu.md`
+  - `Roadmap/chronology.md`
+  - `Roadmap/project-roadmap.md`
+- Git:
+  - commit: не выполнен
+  - push: не выполнен
+- Следующий шаг:
+  - визуально оценить тестовый вариант и при необходимости уточнить композицию отдельным подтвержденным этапом.
+
 ## 2026-06-24 - Remote migration фото и soft delete
 
 - План: `Work plans/Завершенные/096-remote-migration-foto-i-soft-delete.md`
